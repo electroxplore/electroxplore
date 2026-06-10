@@ -35,7 +35,7 @@ const founders = [
     field: "ETE · Wireless & IoT",
     bio: "Wireless communications researcher and full-stack developer. Leads platform architecture and the IoT & Embedded Systems research group.",
     image: "/images/founder-3.png",
-    socials: { linkedin: "#", email: "nabil@electroxplore.org", github: "#" , FaGoogleScholar: "#" },  
+    socials: { linkedin: "", email: "nabil@electroxplore.org", github: "#" , FaGoogleScholar: "#" },  
   },
 ]
 
