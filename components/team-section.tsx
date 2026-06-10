@@ -22,11 +22,11 @@ const founders = [
     socials: { linkedin: "#", email: "sadia@electroxplore.org", github: "#", FaGoogleScholar: "#" },  
   },
   {
-    name: "Md. Mehedi Hasan",
+    name: "Md. Mehedi Hassain",
     role: "Co-Founder & Tech Architect",
-    field: "ETE · Wireless & IoT",
+    field: "EEE · Wireless & IoT",
     bio: "Wireless communications researcher and full-stack developer. Leads platform architecture and the IoT & Embedded Systems research group.",
-    image: "/images/founder-3.png",
+    image: "/images/mehedi.jpeg",
     socials: { linkedin: "#", email: "nabil@electroxplore.org", github: "#" , FaGoogleScholar: "#" },  
   },
     {
@@ -151,7 +151,7 @@ export default function TeamSection() {
         </div>
 
         {/* Active members strip */}
-        <div>
+        {/* <div>
           <p className="text-muted-foreground text-xs uppercase tracking-widest font-semibold mb-6 flex items-center gap-3">
             <span className="h-px flex-1 bg-border" />
             Active Members
@@ -182,7 +182,7 @@ export default function TeamSection() {
             ))}
           </div>
 
-          {/* Join CTA */}
+        
           <div className="mt-8 bg-primary/5 border border-primary/20 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
               <h4 className="font-heading font-bold text-foreground text-lg">Become a Member</h4>
@@ -197,7 +197,7 @@ export default function TeamSection() {
               Apply Now
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   )

@@ -24,7 +24,7 @@ export default function Page() {
       <WhySection />
       <TrainingSection />
       <TeamSection />
-      <GallerySection />
+      {/* <GallerySection /> */}
       <TestimonialsSection />
       <FieldsSection />
       <FaqSection />

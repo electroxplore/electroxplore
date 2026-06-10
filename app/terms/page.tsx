@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import { Separator } from "@/components/ui/separator"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
 
 export const metadata: Metadata = {
   title: "Terms & Conditions — ElectroXplore",
@@ -54,8 +56,7 @@ const sections = [
 export default function TermsPage() {
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
-
+   
       {/* Hero */}
       <section className="pt-32 pb-16 bg-card border-b border-border">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -84,9 +85,10 @@ export default function TermsPage() {
             </div>
           ))}
         </div>
+                  <Link className="text-primary hover:underline flex justify-center my-10 cursor-pointer" href="/"><Button className="md:text-xl p-4" variant="ghost"> Return to Home </Button></Link>
       </section>
 
-      <Footer />
+ 
     </div>
   )
 }
