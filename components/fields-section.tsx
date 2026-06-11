@@ -1,16 +1,20 @@
-import { Cpu, Wifi, Zap, Code2, CircuitBoard, BrainCircuit, Waves, Settings2 } from "lucide-react"
+import { 
+  Cpu, 
+  Binary, 
+  Radio, 
+  Waves, 
+  BrainCircuit 
+} from "lucide-react";
+import { PiSunHorizonLight } from "react-icons/pi";
 
 const fields = [
-  { icon: Zap, label: "EEE", full: "Electrical & Electronic Engineering" },
-  { icon: Code2, label: "CSE", full: "Computer Science & Engineering" },
-  { icon: Wifi, label: "ETE", full: "Electronics & Telecom Engineering" },
-  { icon: CircuitBoard, label: "CCE", full: "Computer & Communication Engineering" },
-  { icon: Cpu, label: "ME", full: "Mechanical Engineering" },
-  { icon: BrainCircuit, label: "AI/ML", full: "Artificial Intelligence & ML" },
-  { icon: Waves, label: "Signal", full: "Signal Processing" },
-  { icon: Settings2, label: "Control", full: "Control Systems" },
-]
-
+  { icon: Cpu, label: "Robotics", full: "Robotics & Automation Engineering" },
+  { icon: Binary, label: "Embedded Systems", full: "Embedded Systems Design" },
+  { icon: Radio, label: "IoT", full: "Internet of Things" },
+  { icon: Waves, label: "Signal Processing", full: "Signal Processing & Communications" },
+  { icon: PiSunHorizonLight, label: "Renewable Energy", full: "Renewable Energy & Power Systems" },
+  { icon: BrainCircuit, label: "AI/ML", full: "Artificial Intelligence & Machine Learning" },
+];
 export default function FieldsSection() {
   return (
     <section className="py-16 bg-background border-y border-border overflow-hidden">
@@ -18,7 +22,7 @@ export default function FieldsSection() {
         <p className="text-center text-muted-foreground text-xs uppercase tracking-widest mb-10">
           The engineering fields we work in — all in one place
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4">
           {fields.map(({ icon: Icon, label, full }) => (
             <div
               key={label}

@@ -2,8 +2,8 @@
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
 import { HelpCircle, MessageCircle } from "lucide-react"
+import { ContactCollapsible } from "./contact-info"
 
 const faqs = [
   {
@@ -11,22 +11,27 @@ const faqs = [
     a: "Yes. ElectroXplore maintains strict academic integrity standards. Our research groups are led by experienced engineers with verifiable publication records. We are transparent about our membership criteria, research outcomes, and training curriculum.",
   },
   {
-    q: "What if I don't enjoy a course after enrolling?",
-    a: "We have a transparent refund and feedback policy. Since foundational courses are free, you can try before committing to any premium content. All paid courses offer a 7-day satisfaction window — if it's not right for you, we'll make it right.",
+    q: "What are the eligibility requirements to join as a researcher?",
+    a: "Applicants must be B.Sc. Engineering students currently in their 4th semester or above. We primarily accept individuals from EEE, CSE, ETE, CCE, or closely related technical disciplines who demonstrate strong academic performance and a problem-solving mindset.",
   },
   {
-    q: "How does membership in a research group work?",
-    a: "Membership is application-based. You apply for a specific group, go through a brief orientation, and get assigned to a project team. There are no fees initially — we want passionate people, not just paying subscribers.",
+    q: "What is expected of me as a trainee researcher?",
+    a: "You are expected to work diligently under your mentor's guidance, maintain regular attendance, dedicate the agreed-upon weekly hours, and show high operational discipline in all assigned research and data tasks.",
+  },
+  {
+    q: "Who owns the Intellectual Property (IP) and research data?",
+    a: "All IP, including raw data, methodologies, code, and final outputs (papers, patents), is the exclusive property of ElectroXplore. However, members can use findings for their own academic theses or dissertations with prior written permission.",
+  },
+  {
+    q: "Will I receive official recognition after completing the project?",
+    a: "Yes. Upon successful completion of your research tenure, satisfying your group's milestones, and completing a smooth task handover, you will receive an official Experience Certificate.",
   },
   {
     q: "Can I join multiple research groups?",
     a: "You can apply to multiple groups, though acceptance depends on your background and group capacity. We encourage interdisciplinary involvement — for example, an EEE student contributing to an IoT or AI project is very welcome.",
   },
-  {
-    q: "When will training programs start charging fees?",
-    a: "Advanced and specialized modules will introduce course fees as we expand our content library and bring in expert instructors. Foundational courses will remain free permanently. You will always have clear visibility on what is free vs. paid before enrolling.",
-  },
 ]
+
 
 export default function FaqSection() {
   return (
@@ -74,10 +79,10 @@ export default function FaqSection() {
           <p className="text-muted-foreground text-sm">
             You can reach our team anytime — we&apos;re happy to answer any questions about research groups or training.
           </p>
-          <Button variant="outline" className="border-primary/30 text-primary hover:bg-primary/10 uppercase tracking-wider text-xs font-bold gap-2">
-            <MessageCircle className="w-4 h-4" />
-            Contact Us
-          </Button>
+        <div className="flex justify-center">
+            <ContactCollapsible/>
+        </div>
+  
         </div>
       </div>
     </section>

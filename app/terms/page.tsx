@@ -1,6 +1,4 @@
 import type { Metadata } from "next"
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
 import { Separator } from "@/components/ui/separator"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -85,7 +83,7 @@ export default function TermsPage() {
             </div>
           ))}
         </div>
-                  <Link className="text-primary hover:underline flex justify-center my-10 cursor-pointer" href="/"><Button className="md:text-xl p-4" variant="ghost"> Return to Home </Button></Link>
+       <Link className="text-primary hover:underline flex justify-center my-10 cursor-pointer" href="/"><Button className="md:text-xl p-4" variant="ghost"> Return to Home </Button></Link>
       </section>
 
  
