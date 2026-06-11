@@ -2,10 +2,10 @@ import { Badge } from "@/components/ui/badge"
 import { Cpu, Globe, FlaskConical, GraduationCap } from "lucide-react"
 
 const highlights = [
-  { label: "Research Articles", value: "80+" },
-  { label: "Active Members", value: "500+" },
-  { label: "Partner Institutions", value: "12+" },
-  { label: "Courses Delivered", value: "30+" },
+  { label: "Research Articles", value: "10+" },
+  { label: "Active Members", value: "16+" },
+  // { label: "Partner Institutions", value: "12+" },
+  { label: "Courses Delivered", value: "2+" },
 ]
 
 const pillars = [

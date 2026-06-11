@@ -1,7 +1,10 @@
 import Image from "next/image"
 import { Globe, Mail, GitBranch } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
-import { FaGoogleScholar } from "react-icons/fa6"
+import { FaGoogleScholar, FaResearchgate } from "react-icons/fa6"
+import Link from "next/link"
+import { LiaLinkedin } from "react-icons/lia"
+import { FaLinkedin } from "react-icons/fa"
 
 const founders = [
   {
@@ -10,33 +13,41 @@ const founders = [
     field: "EEE · Signal Processing",
     bio: "MSc in Electrical Engineering with 5+ years in power electronics research. Passionate about bridging academic research and industry application.",
     image: "/images/founder-1.png",
-    socials: { linkedin: "#", email: "ahsan@electroxplore.org", github: "#", FaGoogleScholar: "#" },  
+    socials: { linkedin: "https://www.linkedin.com/in/mohammed-abdul-kader-rubel-9851421ab/", FaGoogleScholar: "https://scholar.google.com/citations?user=ksuG548AAAAJ&hl=en" },  
 
   },
   {
     name: "Md. Fakwer Uddin",
-    role: "Co-Founder & Training Director",
-    field: "CSE · Machine Learning",
+    role: "Co-Founder & Managing Lead",
+    field: "EEE · Embedded System & IoT",
     bio: "Software engineer and educator. Designed ElectroXplore's entire training curriculum covering ML, embedded systems, and software engineering.",
     image: "/images/founder-2.png",
-    socials: { linkedin: "#", email: "sadia@electroxplore.org", github: "#", FaGoogleScholar: "#" },  
+    socials: { linkedin: "https://www.linkedin.com/in/fkr-uddin/", FaGoogleScholar: "https://scholar.google.com/citations?user=aM3IifoAAAAJ&hl=en" },  
   },
   {
     name: "Md. Mehedi Hassain",
-    role: "Co-Founder & Tech Architect",
-    field: "EEE · Wireless & IoT",
+    role: "Co-Founder & Senior Trainer",
+    field: "EEE · Medical & IoT",
     bio: "Wireless communications researcher and full-stack developer. Leads platform architecture and the IoT & Embedded Systems research group.",
     image: "/images/mehedi.png",
-    socials: { linkedin: "#", email: "nabil@electroxplore.org", github: "#" , FaGoogleScholar: "#" },  
+    socials: { linkedin: "https://www.linkedin.com/in/mehedi-hassain-7b8b8b7b/",  FaGoogleScholar: "https://scholar.google.com/citations?user=MACE5hUAAAAJ&hl=en" },  
   },
     {
-    name: "Mohammed Woli Ullah",
-    role: "Co-Founder & Tech Architect",
+    name: "Mohammad Woli Ullah",
+    role: "Co-Founder & Senior Excecutive",
     field: "ETE · Wireless & IoT",
     bio: "Wireless communications researcher and full-stack developer. Leads platform architecture and the IoT & Embedded Systems research group.",
     image: "/images/woli.png",
-    socials: { linkedin: "", email: "nabil@electroxplore.org", github: "#" , FaGoogleScholar: "#" },  
+    socials: { linkedin: "https://www.linkedin.com/in/mohammad-woli-ullah-55231670/",  FaGoogleScholar: "https://scholar.google.com/citations?hl=en&user=beyYzs8AAAAJ&view_op=list_works&citft=1&citft=2&citft=3&email_for_op=fakwer.uddin%40gmail.com&gmla=ACrTK9WdUP6pEQCWWB2-Dv_bRLXWSSkhFlDUXOig64aLq__kepYXTxHZXU8HyPjDxKlhsUoPuSNCXFuaVJP6cyDXijtOSGhbVUvqHHuRa7SITe7oUPLd7U0V6blYIFEg9aZQIBAcXlzXiXWa_qWiLsNfbh5Yua_YAYxL1pmCCD1yFkT4W0OAhxPQ1pXUgZWCGch_WLkn3au_psfFKXr0wRIyBzRERl-xz45_gRV6IbFwShdDg44" },  
   },
+  //    {
+  //   name: "Mohammad Woli Ullah",
+  //   role: "Co-Founder & Senior Excecutive",
+  //   field: "ETE · Wireless & IoT",
+  //   bio: "Wireless communications researcher and full-stack developer. Leads platform architecture and the IoT & Embedded Systems research group.",
+  //   image: "/images/woli.png",
+  //   socials: { linkedin: "", email: "nabil@electroxplore.org", github: "#" , FaGoogleScholar: "https://scholar.google.com/citations?hl=en&user=beyYzs8AAAAJ&view_op=list_works&citft=1&citft=2&citft=3&email_for_op=fakwer.uddin%40gmail.com&gmla=ACrTK9WdUP6pEQCWWB2-Dv_bRLXWSSkhFlDUXOig64aLq__kepYXTxHZXU8HyPjDxKlhsUoPuSNCXFuaVJP6cyDXijtOSGhbVUvqHHuRa7SITe7oUPLd7U0V6blYIFEg9aZQIBAcXlzXiXWa_qWiLsNfbh5Yua_YAYxL1pmCCD1yFkT4W0OAhxPQ1pXUgZWCGch_WLkn3au_psfFKXr0wRIyBzRERl-xz45_gRV6IbFwShdDg44" },  
+  // },
 ]
 
 const members = [
@@ -118,31 +129,38 @@ export default function TeamSection() {
                     <h3 className="font-heading font-bold text-foreground text-lg leading-tight">{f.name}</h3>
                     <p className="text-primary text-xs font-semibold uppercase tracking-wider mt-0.5">{f.role}</p>
                   </div>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{f.bio}</p>
+                  {/* <p className="text-muted-foreground text-sm leading-relaxed">{f.bio}</p> */}
 
                   {/* Social links */}
                   <div className="flex items-center gap-2 pt-1">
-                    <a
+                    <Link
                       href={f.socials.linkedin}
                       aria-label={`${f.name} LinkedIn`}
                       className="w-8 h-8 bg-surface rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors border border-border"
                     >
-                      <Globe className="w-3.5 h-3.5" />
-                    </a>
-                    <a
+                      <FaLinkedin className="w-3.5 h-3.5" />
+                    </Link>
+                    {/* <Link
                       href={`mailto:${f.socials.email}`}
                       aria-label={`Email ${f.name}`}
                       className="w-8 h-8 bg-surface rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors border border-border"
                     >
                       <Mail className="w-3.5 h-3.5" />
-                    </a>
-                    <a
+                    </Link>
+                    <Link
                       href={f.socials.github}
                       aria-label={`${f.name} GitHub`}
                       className="w-8 h-8 bg-surface rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors border border-border"
                     >
                       <GitBranch className="w-3.5 h-3.5" />
-                    </a>
+                    </Link> */}
+                      <Link
+                      href={f.socials.FaGoogleScholar}
+                      aria-label={`${f.name} FaGoogleScholar`}
+                      className="w-8 h-8 bg-surface rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors border border-border"
+                    >
+                      <FaGoogleScholar className="w-3.5 h-3.5" />
+                    </Link> 
                   </div>
                 </div>
               </div>
@@ -190,12 +208,12 @@ export default function TeamSection() {
                 Join our growing community. Research membership is currently free.
               </p>
             </div>
-            <a
+            <Link
               href="#"
               className="flex-shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 font-bold uppercase tracking-wider text-xs px-6 py-3 rounded-lg transition-colors"
             >
               Apply Now
-            </a>
+            </Link>
           </div>
         </div> */}
       </div>

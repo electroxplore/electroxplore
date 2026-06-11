@@ -35,10 +35,10 @@ const features = [
 ]
 
 const specs = [
-  { label: "Research Groups Active", value: "12+" },
-  { label: "Published Papers", value: "80+" },
-  { label: "Total Members", value: "500+" },
-  { label: "Courses Available", value: "30+" },
+  { label: "Research Groups Active", value: "4+" },
+  { label: "Published Papers", value: "30+" },
+  { label: "Total Members", value: "16+" },
+  { label: "Courses Available", value: "2+" },
 ]
 
 export default function WhySection() {

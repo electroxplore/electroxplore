@@ -7,7 +7,7 @@ import { FaArrowUpRightFromSquare } from "react-icons/fa6"
 
 const stats = [
   { value: "10+", label: "Research Fields" },
-  { value: "15+", label: "Members" },
+  { value: "16+", label: "Members" },
   { value: "Relevant", label: "Courses" },
 ]
 

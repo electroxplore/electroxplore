@@ -92,7 +92,7 @@ export default function ResearchSection() {
                 ))}
               </div>
               <span className="text-muted-foreground text-sm">
-                <span className="text-foreground font-semibold">500+</span> active members
+                <span className="text-foreground font-semibold">16+</span> active members
               </span>
             </div>
           </div>
