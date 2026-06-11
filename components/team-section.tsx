@@ -26,7 +26,7 @@ const founders = [
     role: "Co-Founder & Tech Architect",
     field: "EEE · Wireless & IoT",
     bio: "Wireless communications researcher and full-stack developer. Leads platform architecture and the IoT & Embedded Systems research group.",
-    image: "/images/mehedi.jpeg",
+    image: "/images/mehedi.png",
     socials: { linkedin: "#", email: "nabil@electroxplore.org", github: "#" , FaGoogleScholar: "#" },  
   },
     {
@@ -34,7 +34,7 @@ const founders = [
     role: "Co-Founder & Tech Architect",
     field: "ETE · Wireless & IoT",
     bio: "Wireless communications researcher and full-stack developer. Leads platform architecture and the IoT & Embedded Systems research group.",
-    image: "/images/founder-3.png",
+    image: "/images/woli.png",
     socials: { linkedin: "", email: "nabil@electroxplore.org", github: "#" , FaGoogleScholar: "#" },  
   },
 ]
