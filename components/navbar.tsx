@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { Home, FlaskConical, BookOpen, Users, Info, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Image from "next/image"
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -35,13 +36,8 @@ export default function Navbar() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           {/* Logo */}
-          <Link href="#home" className="flex items-center gap group">
-            <p className="text-foreground font-heading font-bold text-lg tracking-tight">
-              Electro
-            </p><X className="size-6 text-primary" fill="currentColor" />
-              <p className="text-foreground font-heading font-bold text-lg tracking-tight">
-          plore
-            </p>
+          <Link href="#home">
+        <Image src="/logo.png" alt="ElectroXplore Logo" width={32} height={32} className="size-35" />
           </Link>
 
           {/* Desktop Nav */}

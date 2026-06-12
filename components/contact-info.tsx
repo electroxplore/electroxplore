@@ -71,12 +71,12 @@ export function ContactCollapsible() {
             <span className="text-[10px] text-muted-foreground uppercase tracking-wider block font-medium">
               Official Inquiry
             </span>
-            <a 
+            <Link 
               href="mailto:electroexplore.lab@gmail.com" 
               className="text-xs font-medium text-foreground hover:text-primary transition-colors break-all block"
             >
               electroexplore.lab@gmail.com
-            </a>
+            </Link>
           </div>
         </div>
 

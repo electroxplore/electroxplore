@@ -5,6 +5,7 @@ import { FaFacebook } from "react-icons/fa";
 import { BenefitsDrawer } from "./benefits";
 import { TermsAndConditionsDrawer } from "./ui/terms";
 import { RecruitmentPolicyDrawer } from "./policy";
+import Image from "next/image";
 
 const quickLinks = [
   { label: "Home", href: "#home" },
@@ -34,19 +35,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {/* Column 1: Brand + Contact */}
           <div className="space-y-5">
-            <Link href="#home" className="flex items-center gap group">
-              <p className="text-foreground font-heading font-bold text-lg tracking-tight">
-                Electro
-              </p>
-              <X className="size-6 text-primary" fill="currentColor" />
-              <p className="text-foreground font-heading font-bold text-lg tracking-tight">
-                plore
-              </p>
-            </Link>
+            <Link href="#home">
+        <Image src="/icon.png" alt="ElectroXplore Logo" width={32} height={32} className="w-20" />
+          </Link>
 
             <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
               Engineering research and training for the next generation of
-              innovators. Membership-based, community-driven.
+              innovators.
             </p>
 
             <div className="space-y-3">

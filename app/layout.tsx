@@ -13,20 +13,20 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'ElectroXplore — Engineering Research & Training',
   description: 'ElectroXplore is a research organization focused on engineering fields including EEE, CSE, ETE, and CCE. Join our membership-based research groups and training programs.',
-  generator: 'v0.app',
+  generator: 'FKR',
   icons: {
     icon: [
       {
-        url: '/icon-light-32x32.png',
+        url: '/icon.png',
         media: '(prefers-color-scheme: light)',
       },
       {
-        url: '/icon-dark-32x32.png',
+        url: '/icon.png',
         media: '(prefers-color-scheme: dark)',
       },
       {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
+        url: '/icon.png',
+        type: 'image/png',
       },
     ],
     apple: '/apple-icon.png',

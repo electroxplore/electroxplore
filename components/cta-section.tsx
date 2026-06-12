@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, X, Zap } from "lucide-react";
-import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import Image from "next/image";
+
 
 export default function CtaSection() {
   return (
@@ -45,21 +46,16 @@ export default function CtaSection() {
           {/* Right: Decorative card */}
           <div className="relative">
             <div className="bg-background border border-border rounded-2xl p-8 space-y-6">
-              <div className="flex items-center gap-3">
-                <div className="flex items-center gap group">
-                  <p className="text-foreground font-heading font-bold text-lg tracking-tight">
-                    Electro
-                  </p>
-                  <X className="size-6 text-primary" fill="currentColor" />
-                  <p className="text-foreground font-heading font-bold text-lg tracking-tight">
-                    plore
-                  </p>
-                </div>
-
-              </div>
-                <p className="text-muted-foreground text-xs font-semibold -mt-3">
+          
+                <div>
+        <Image src="/logo.png" alt="ElectroXplore Logo" width={32} height={32} className="size-35" />
+         
+           <p className="text-muted-foreground text-xs font-semibold -mt-12">
                   Engineering Research & Training
                 </p>
+          </div>
+
+            
               
               <div className="space-y-3">
                 {[
