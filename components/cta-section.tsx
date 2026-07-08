@@ -1,7 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
-import Image from "next/image";
-
+import { Button } from "@/components/ui/button"
+import { ArrowRight, Zap } from "lucide-react"
 
 export default function CtaSection() {
   return (
@@ -15,29 +13,18 @@ export default function CtaSection() {
           {/* Left */}
           <div className="space-y-6">
             <h2 className="font-heading text-5xl sm:text-6xl font-black text-foreground leading-tight text-balance">
-              LET&apos;S BUILD YOUR
-              <br />
-              <span className="text-primary">ENGINEERING</span>
-              <br />
+              LET&apos;S BUILD YOUR<br />
+              <span className="text-primary">ENGINEERING</span><br />
               FUTURE TOGETHER
             </h2>
             <p className="text-muted-foreground leading-relaxed max-w-md">
-              Whether you want to lead a research project, publish your first
-              paper, or simply learn new engineering skills — ElectroXplore is
-              the place to begin.
+              Whether you want to lead a research project, publish your first paper, or simply learn new engineering skills — ElectroXplore is the place to begin.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button
-                size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold uppercase tracking-wider text-sm px-8 gap-2"
-              >
+              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold uppercase tracking-wider text-sm px-8 gap-2">
                 Get Started Free <ArrowRight className="w-4 h-4" />
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-border text-foreground hover:bg-secondary uppercase tracking-wider text-sm px-8"
-              >
+              <Button size="lg" variant="outline" className="border-border text-foreground hover:bg-secondary uppercase tracking-wider text-sm px-8">
                 Explore Research
               </Button>
             </div>
@@ -46,17 +33,16 @@ export default function CtaSection() {
           {/* Right: Decorative card */}
           <div className="relative">
             <div className="bg-background border border-border rounded-2xl p-8 space-y-6">
-          
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                  <Zap className="w-5 h-5 text-primary-foreground" fill="currentColor" />
+                </div>
                 <div>
-        <Image src="/logo.png" alt="ElectroXplore Logo" width={32} height={32} className="size-35" />
-         
-           <p className="text-muted-foreground text-xs font-semibold -mt-12">
-                  Engineering Research & Training
-                </p>
-          </div>
+                  <div className="text-foreground font-heading font-bold">ElectroXplore</div>
+                  <div className="text-muted-foreground text-xs">Engineering Research & Training</div>
+                </div>
+              </div>
 
-            
-              
               <div className="space-y-3">
                 {[
                   { label: "Research Groups", value: "Free Membership" },
@@ -64,16 +50,9 @@ export default function CtaSection() {
                   { label: "Certifications", value: "Included" },
                   { label: "Mentorship", value: "Available" },
                 ].map((item) => (
-                  <div
-                    key={item.label}
-                    className="flex items-center justify-between py-3 border-b border-border last:border-0"
-                  >
-                    <span className="text-muted-foreground text-sm">
-                      {item.label}
-                    </span>
-                    <span className="text-primary text-sm font-semibold">
-                      {item.value}
-                    </span>
+                  <div key={item.label} className="flex items-center justify-between py-3 border-b border-border last:border-0">
+                    <span className="text-muted-foreground text-sm">{item.label}</span>
+                    <span className="text-primary text-sm font-semibold">{item.value}</span>
                   </div>
                 ))}
               </div>
@@ -90,5 +69,5 @@ export default function CtaSection() {
         </div>
       </div>
     </section>
-  );
+  )
 }

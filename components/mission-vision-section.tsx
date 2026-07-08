@@ -17,8 +17,6 @@ export default function MissionVisionSection() {
   return (
     <section id="mission" className="py-24 bg-background relative overflow-hidden">
       {/* Subtle accent line */}
-      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-48 bg-primary rounded-r-full" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">

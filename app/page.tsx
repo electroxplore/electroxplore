@@ -12,10 +12,12 @@ import FieldsSection from "@/components/fields-section"
 import FaqSection from "@/components/faq-section"
 import CtaSection from "@/components/cta-section"
 import Footer from "@/components/footer"
+import Float from "@/components/floating"
 
 export default function Page() {
   return (
     <main className="min-h-screen bg-background">
+      <Float/>
       <Navbar />
       <HeroSection />
       <MissionVisionSection />

@@ -1,31 +1,52 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Home, FlaskConical, BookOpen, Users, Info, X } from "lucide-react"
+import { Zap, Home, FlaskConical, BookOpen, Users, Info, Moon, Sun } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
-
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Research", href: "#research" },
-  { label: "Training", href: "#training" },
-  { label: "Team", href: "#team" },
-  { label: "About", href: "#about" },
+  { label: "Home", href: "/" },
+  { label: "Team", href: "/member" },
+  { label: "Blog", href: "/blog" },
+  { label: "News", href: "/news" },
+
+ 
 ]
 
 const mobileNavLinks = [
-  { label: "Home", href: "#home", icon: Home },
-  { label: "Research", href: "#research", icon: FlaskConical },
-  { label: "Courses", href: "#training", icon: BookOpen },
-  { label: "Team", href: "#team", icon: Users },
-  { label: "About", href: "#about", icon: Info },
+  { label: "Home", href: "/", icon: Home },
+  { label: "Team", href: "/member",icon: Users },
+  { label: "Blog", href: "/blog", icon: FlaskConical },
+  { label: "News", href: "/news", icon: BookOpen },
+
 ]
 
 export default function Navbar() {
   const [activeHash, setActiveHash] = useState("#home")
+  const [theme, setThemeState] = useState<"light" | "dark">("dark")
+  const [mounted, setMounted] = useState(false)
+  
+  const toggleTheme = () => {
+    const html = document.documentElement
+    const newTheme = theme === "light" ? "dark" : "light"
+    setThemeState(newTheme)
+    localStorage.setItem("theme", newTheme)
+    if (newTheme === "dark") {
+      html.classList.add("dark")
+    } else {
+      html.classList.remove("dark")
+    }
+  }
 
   useEffect(() => {
+    // Initialize theme from localStorage
+    const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
+    const initialTheme = savedTheme || (prefersDark ? "dark" : "light")
+    setThemeState(initialTheme)
+    setMounted(true)
+
     const onHashChange = () => setActiveHash(window.location.hash || "#home")
     window.addEventListener("hashchange", onHashChange)
     return () => window.removeEventListener("hashchange", onHashChange)
@@ -33,6 +54,7 @@ export default function Navbar() {
 
   return (
     <>
+      {/* Desktop / Tablet top navbar */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           {/* Logo */}
@@ -40,37 +62,67 @@ export default function Navbar() {
         <Image src="/logo.png" alt="ElectroXplore Logo" width={32} height={32} className="size-35" />
           </Link>
 
+
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <Link
+              <a
                 key={link.label}
                 href={link.href}
                 className="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors tracking-wide uppercase"
               >
                 {link.label}
-              </Link>
+              </a>
             ))}
           </nav>
 
           {/* CTA */}
           <div className="hidden md:flex items-center gap-3">
             <Button
-              size="sm"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 text-xs uppercase tracking-wider font-bold px-5"
+              onClick={toggleTheme}
+              variant="ghost"
+              size="icon"
+              className="text-muted-foreground hover:text-foreground"
             >
-              Join Now
+              {theme === "light" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
             </Button>
+            <Link href="/login">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-muted-foreground hover:text-foreground text-xs uppercase tracking-wider"
+              >
+                Sign In
+              </Button>
+            </Link>
+            <Link href="/register">
+              <Button
+                size="sm"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 text-xs uppercase tracking-wider font-bold px-5"
+              >
+                Join Now
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile: show logo + Join button in top bar, nav handled by bottom bar */}
           <div className="flex md:hidden items-center gap-2">
             <Button
-              size="sm"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 text-xs uppercase tracking-wider font-bold px-4 h-8"
+              onClick={toggleTheme}
+              variant="ghost"
+              size="icon"
+              className="text-muted-foreground hover:text-foreground h-8 w-8"
             >
-              Join
+              {theme === "light" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
             </Button>
+            <Link href="/register">
+              <Button
+                size="sm"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 text-xs uppercase tracking-wider font-bold px-4 h-8"
+              >
+                Join
+              </Button>
+            </Link>
           </div>
         </div>
       </header>
@@ -84,7 +136,7 @@ export default function Navbar() {
           {mobileNavLinks.map(({ label, href, icon: Icon }) => {
             const isActive = activeHash === href
             return (
-              <Link
+              <a
                 key={label}
                 href={href}
                 onClick={() => setActiveHash(href)}
@@ -112,7 +164,7 @@ export default function Navbar() {
                 >
                   {label}
                 </span>
-              </Link>
+              </a>
             )
           })}
         </div>

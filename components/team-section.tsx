@@ -169,7 +169,7 @@ export default function TeamSection() {
         </div>
 
         {/* Active members strip */}
-        {/* <div>
+        <div>
           <p className="text-muted-foreground text-xs uppercase tracking-widest font-semibold mb-6 flex items-center gap-3">
             <span className="h-px flex-1 bg-border" />
             Active Members
@@ -215,7 +215,7 @@ export default function TeamSection() {
               Apply Now
             </Link>
           </div>
-        </div> */}
+        </div>
       </div>
     </section>
   )

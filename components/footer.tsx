@@ -1,9 +1,9 @@
 import { Mail, Phone, MapPin, X } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
-import { FaFacebook } from "react-icons/fa";
+import { FaFacebook, FaGithub } from "react-icons/fa";
 import { BenefitsDrawer } from "./benefits";
-import { TermsAndConditionsDrawer } from "./ui/terms";
+import { TermsAndConditionsDrawer } from "./terms";
 import { RecruitmentPolicyDrawer } from "./policy";
 import Image from "next/image";
 
@@ -24,7 +24,7 @@ const socials = [
     href: "https://www.facebook.com/electroxplore/",
   },
   // { icon: Globe, label: "LinkedIn", href: "#" },
-  // { icon: GitBranch, label: "GitHub", href: "#" },
+  { icon: FaGithub, label: "GitHub", href: "https://github.com/electroxplore" },
   // { icon: Play, label: "YouTube", href: "#" },
 ];
 

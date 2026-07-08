@@ -2,7 +2,6 @@ import Image from "next/image"
 import { Users, BookOpen, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { FaLocationArrow } from "react-icons/fa"
 import { FaArrowUpRightFromSquare } from "react-icons/fa6"
 
 const stats = [

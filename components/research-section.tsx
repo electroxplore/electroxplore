@@ -3,49 +3,34 @@
 import { useState } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { ChevronDown, ChevronUp, ArrowRight } from "lucide-react"
+import { ChevronDown, ChevronUp, ArrowRight, UsersRound, TicketCheck } from "lucide-react"
 
 const groups = [
   {
     id: "01",
-    name: "Power Systems & Renewable Energy",
+    name: "Embedded Syestems & IoT",
     field: "EEE",
-    members: 48,
-    desc: "Investigating smart grid integration, renewable energy harvesting, and power electronics for sustainable solutions.",
-    topics: ["Smart Grid", "Solar PV", "Energy Storage", "FACTS Devices"],
+    members: 3,
+    desc: "Solutions for semi-paralyze people ",
+    topics: ["Embedded Systems", "IoT", "Medical", "Assistive Technology"],
   },
   {
     id: "02",
-    name: "Machine Learning & AI Systems",
-    field: "CSE",
-    members: 62,
-    desc: "Developing deep learning architectures, NLP models, and AI-driven engineering tools for real-world applications.",
-    topics: ["Deep Learning", "NLP", "Computer Vision", "MLOps"],
+    name: "Machine Learning & Embedded AI",
+    field: "EEE",
+    members: 2,
+    desc: "Developing a mechanism for semi paralyzed individuals.",
+    topics: ["Machine Learning", "Embedded AI", "IoT", "Mechanical Design"],
   },
   {
     id: "03",
-    name: "Wireless & Antenna Engineering",
-    field: "ETE",
-    members: 35,
-    desc: "Designing next-gen antenna systems, exploring 5G/6G propagation, and advancing RF circuit research.",
-    topics: ["5G/6G", "Microstrip Antennas", "Signal Processing", "SDR"],
+    name: "Computer Vision & Image Processing",
+    field: "EEE",
+    members: 2,
+    desc: "Developing a system for semi paralyzed individuals.",
+    topics: ["Computer Vision", "IoT", "Medical", "Assistive Technology"],
   },
-  {
-    id: "04",
-    name: "Embedded Systems & IoT",
-    field: "CCE",
-    members: 55,
-    desc: "Building low-power embedded architectures, sensor networks, and IoT platforms for smart environments.",
-    topics: ["RTOS", "Sensor Fusion", "FPGA", "Edge AI"],
-  },
-  {
-    id: "05",
-    name: "Robotics & Control Systems",
-    field: "EEE / CCE",
-    members: 41,
-    desc: "Advancing autonomous systems, control algorithms, and robotic platforms through interdisciplinary collaboration.",
-    topics: ["PID & MPC", "ROS", "Computer Vision", "Mechatronics"],
-  },
+  
 ]
 
 const fieldColors: Record<string, string> = {
@@ -92,7 +77,7 @@ export default function ResearchSection() {
                 ))}
               </div>
               <span className="text-muted-foreground text-sm">
-                <span className="text-foreground font-semibold">16+</span> active members
+                <span className="text-foreground font-semibold">15+</span> active members 
               </span>
             </div>
           </div>
@@ -137,8 +122,8 @@ export default function ResearchSection() {
                           </span>
                         ))}
                       </div>
-                      <Button size="sm" variant="outline" className="mt-2 border-primary/30 text-primary hover:bg-primary/10 text-xs uppercase tracking-wider gap-1">
-                        Apply for Membership <ArrowRight className="w-3 h-3" />
+                      <Button size="sm" variant="outline" className="mt-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white text-xs uppercase tracking-wider gap-1">
+                      Batch Full <UsersRound className="w-3 h-3" /> 
                       </Button>
                     </div>
                   )}

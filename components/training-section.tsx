@@ -3,40 +3,66 @@ import { Button } from "@/components/ui/button"
 import { Clock, Users, BookOpen, ArrowRight, Lock } from "lucide-react"
 
 const courses = [
- 
-
   {
     id: "01",
-    title: "Embedded Systems & IoT Architecture",
-    field: "IoT", // Corrected field to match the title
-    duration: "Based on Project",
-    students: 12,
-    level: "Intermediate",
+    title: "Fundamentals of Power Electronics",
+    field: "EEE",
+    duration: "8 weeks",
+    students: 120,
+    level: "Beginner",
     free: true,
-    desc: "Design and implement smart interconnected systems, working with sensor arrays, microcontrollers, and real-time cloud data pipelines.",
+    desc: "Master DC-DC converters, inverters, rectifiers and power factor correction circuits from scratch.",
   },
   {
     id: "02",
-    title: "Academic Research & Paper Writing with Overleaf",
-    field: "Signal Processing", // Fixed broken string quote from your input snippet
-    duration: "Based on Project",
-    students: 12,
-    level: "Intermediate",
+    title: "Python for Data Science & ML",
+    field: "CSE",
+    duration: "10 weeks",
+    students: 210,
+    level: "Beginner",
     free: true,
-    desc: "Master LaTeX formatting, literature reviews, methodology documentation, and structuring peer-reviewed manuscripts using Overleaf.",
+    desc: "Learn Python, NumPy, Pandas, Scikit-learn and build ML models for engineering applications.",
   },
-
-  //  {
-  //   id: "03",
-  //   title: "5G & Beyond: Wireless Systems",
-  //   field: "ETE",
-  //   duration: "6 weeks",
-  //   students: 78,
-  //   level: "Intermediate",
-  //   free: false,
-  //   desc: "Dive into 5G NR architecture, beamforming, massive MIMO and next-generation wireless technologies.",
-  // },
-
+  {
+    id: "03",
+    title: "5G & Beyond: Wireless Systems",
+    field: "ETE",
+    duration: "6 weeks",
+    students: 78,
+    level: "Intermediate",
+    free: false,
+    desc: "Dive into 5G NR architecture, beamforming, massive MIMO and next-generation wireless technologies.",
+  },
+  {
+    id: "04",
+    title: "Embedded C & Real-Time OS",
+    field: "CCE",
+    duration: "12 weeks",
+    students: 95,
+    level: "Intermediate",
+    free: false,
+    desc: "Build production-grade firmware using C, FreeRTOS, and industry-standard embedded practices.",
+  },
+  {
+    id: "05",
+    title: "Digital Circuit Design & FPGA",
+    field: "CCE / EEE",
+    duration: "8 weeks",
+    students: 67,
+    level: "Advanced",
+    free: false,
+    desc: "Design complex digital systems using VHDL/Verilog and implement them on Xilinx/Intel FPGAs.",
+  },
+  {
+    id: "06",
+    title: "Deep Learning for Engineers",
+    field: "CSE / ETE",
+    duration: "10 weeks",
+    students: 145,
+    level: "Advanced",
+    free: false,
+    desc: "TensorFlow, PyTorch, CNNs, transformers and deployment pipelines tailored for engineering use cases.",
+  },
 ]
 
 const fieldColors: Record<string, string> = {
@@ -72,7 +98,6 @@ export default function TrainingSection() {
           <div className="flex items-center gap-2 text-muted-foreground text-sm">
             <span className="w-2 h-2 rounded-full bg-green-400 inline-block" />
             Free courses available to start
-            
           </div>
         </div>
 
@@ -122,11 +147,11 @@ export default function TrainingSection() {
           ))}
         </div>
 
-        {/* <div className="flex justify-center mt-10">
+        <div className="flex justify-center mt-10">
           <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 uppercase tracking-wider text-sm font-bold px-10 gap-2">
             View All Courses <ArrowRight className="w-4 h-4" />
           </Button>
-        </div> */}
+        </div>
       </div>
     </section>
   )
