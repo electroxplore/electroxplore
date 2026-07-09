@@ -71,7 +71,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-background dark:bg-background flex flex-col">
-      <Navbar />
+     
 
       <main className="flex-1 flex items-center justify-center py-16 px-4">
         <Card className="w-full max-w-md bg-card border-border p-8">

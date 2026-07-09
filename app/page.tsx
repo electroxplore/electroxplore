@@ -1,4 +1,3 @@
-import Navbar from "@/components/navbar"
 import HeroSection from "@/components/hero-section"
 import MissionVisionSection from "@/components/mission-vision-section"
 import AboutSection from "@/components/about-section"
@@ -18,7 +17,6 @@ export default function Page() {
   return (
     <main className="min-h-screen bg-background">
       <Float/>
-      <Navbar />
       <HeroSection />
       <MissionVisionSection />
       <AboutSection />

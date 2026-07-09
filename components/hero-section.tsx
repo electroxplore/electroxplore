@@ -3,6 +3,7 @@ import { Users, BookOpen, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { FaArrowUpRightFromSquare } from "react-icons/fa6"
+import Link from "next/link"
 
 const stats = [
   { value: "10+", label: "Research Fields" },
@@ -12,7 +13,7 @@ const stats = [
 
 export default function HeroSection() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden pt-6">
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
       <div
         className="absolute inset-0 opacity-[0.04]"
         style={{
@@ -38,14 +39,14 @@ export default function HeroSection() {
             <p className="text-muted-foreground leading-relaxed max-w-lg text-base">
               ElectroXplore brings together researchers and learners across EEE, CSE, ETE, CCE and more. Join our membership-based research groups or enroll in structured training programs.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <Link href="/register" className="flex flex-wrap gap-4">
               <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold uppercase tracking-wider text-sm px-8 gap-2">
                 Join Research Group <FaArrowUpRightFromSquare className="size-3" />
               </Button>
               {/* <Button size="lg" variant="outline" className="border-border text-foreground hover:bg-secondary uppercase tracking-wider text-sm px-8">
                 Browse Courses
               </Button> */}
-            </div>
+            </Link>
             <div className="flex gap-8 pt-4 border-t border-border">
               {stats.map((s) => (
                 <div key={s.label}>

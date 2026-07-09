@@ -1,14 +1,17 @@
 "use client"
-
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import Link from "next/link"
 import { logoutUser } from "@/app/actions/login"
 import { Activity, User, BookOpen, Award, LogOut, Settings } from "lucide-react"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 
 interface MemberData {
   email: string
@@ -62,7 +65,7 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-background dark:bg-background flex flex-col">
-      <Navbar />
+     
 
       <main className="flex-1 py-12 px-4 md:py-16">
         <div className="max-w-6xl mx-auto">
@@ -184,12 +187,55 @@ export default function DashboardPage() {
                     <p className="text-foreground">{memberData.field}</p>
                   </div>
                 </div>
-                <Link href="/member/profile">
-                  <Button className="w-full mt-4 bg-cyan-500 hover:bg-cyan-600 text-white">
-                    <Settings className="w-4 h-4 mr-2" />
-                    Edit Profile
-                  </Button>
-                </Link>
+                <div>
+         <Popover>
+  <PopoverTrigger
+    render={
+      <Button
+        className="w-full mt-4 bg-cyan-500 hover:bg-cyan-600 text-white transition-all duration-300"
+        variant="outline"
+      >
+        <Settings className="w-4 h-4 mr-2" />
+        Edit Profile
+      </Button>
+    }
+  />
+
+  <PopoverContent className="w-80 border border-cyan-100 dark:border-cyan-900 shadow-xl rounded-xl">
+    <div className="space-y-4">
+      <div className="flex items-center gap-3">
+        <div className="p-2 rounded-full bg-cyan-100 dark:bg-cyan-900">
+          <Settings className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
+        </div>
+
+        <div>
+          <h4 className="font-semibold text-base">
+            Profile Management
+          </h4>
+          <p className="text-xs text-muted-foreground">
+            Profile editing is currently restricted.
+          </p>
+        </div>
+      </div>
+
+      <div className="rounded-lg bg-muted/50 p-3 text-sm">
+        If you need to update your profile information, please contact the administrator or send an email to:
+      </div>
+
+      <a
+        href="mailto:electroxplore.lab@gmail.com"
+        className="block w-full text-center rounded-lg bg-cyan-500 hover:bg-cyan-600 text-white py-2 font-medium transition-colors"
+      >
+        electroxplore.lab@gmail.com
+      </a>
+    </div>
+  </PopoverContent>
+</Popover>
+                  
+
+
+
+                </div>
               </Card>
 
               {/* Quick Links */}

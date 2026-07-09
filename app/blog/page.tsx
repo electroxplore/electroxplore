@@ -10,7 +10,7 @@ export default async function BlogPage() {
 
   return (
     <div className="min-h-screen bg-background dark:bg-background flex flex-col">
-      <Navbar />
+    
 
       <main className="flex-1 py-16 px-4 md:py-20">
         <div className="max-w-4xl mx-auto">

@@ -63,9 +63,9 @@ export default function ResearchSection() {
             <p className="text-muted-foreground leading-relaxed max-w-sm">
               Our research groups are open for membership. Each group is led by experienced researchers with active publication and project pipelines.
             </p>
-            <Button className="bg-primary text-primary-foreground hover:bg-primary/90 uppercase tracking-wider text-xs font-bold gap-2">
+            {/* <Button className="bg-primary text-primary-foreground hover:bg-primary/90 uppercase tracking-wider text-xs font-bold gap-2">
               Browse All Groups <ArrowRight className="w-3.5 h-3.5" />
-            </Button>
+            </Button> */}
 
             {/* Member count badge */}
             <div className="flex items-center gap-2 mt-4">

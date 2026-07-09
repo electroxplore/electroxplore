@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Zap } from "lucide-react"
+import Link from "next/link"
 
 export default function CtaSection() {
   return (
@@ -56,10 +57,12 @@ export default function CtaSection() {
                   </div>
                 ))}
               </div>
-
+ <Link href="/register">
               <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold uppercase tracking-wider text-sm gap-2">
                 Apply Now <ArrowRight className="w-4 h-4" />
               </Button>
+
+              </Link>
             </div>
 
             {/* Decorative elements */}

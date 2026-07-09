@@ -103,8 +103,7 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen bg-background dark:bg-background flex flex-col">
-      <Navbar />
-
+    
       <main className="flex-1 py-16 px-4 md:py-24">
         <div className="max-w-2xl mx-auto">
           <div className="mb-8">

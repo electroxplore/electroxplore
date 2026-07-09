@@ -30,7 +30,7 @@ const founders = [
     field: "EEE · Medical & IoT",
     bio: "Wireless communications researcher and full-stack developer. Leads platform architecture and the IoT & Embedded Systems research group.",
     image: "/images/mehedi.png",
-    socials: { linkedin: "https://www.linkedin.com/in/mehedi-hassain-7b8b8b7b/",  FaGoogleScholar: "https://scholar.google.com/citations?user=MACE5hUAAAAJ&hl=en" },  
+    socials: { linkedin: "https://www.linkedin.com/in/mehedi-hassain-88a92a17b/",  FaGoogleScholar: "https://scholar.google.com/citations?user=MACE5hUAAAAJ&hl=en" },  
   },
     {
     name: "Mohammad Woli Ullah",
@@ -208,8 +208,7 @@ export default function TeamSection() {
                 Join our growing community. Research membership is currently free.
               </p>
             </div>
-            <Link
-              href="#"
+     <Link href="/register"
               className="flex-shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 font-bold uppercase tracking-wider text-xs px-6 py-3 rounded-lg transition-colors"
             >
               Apply Now

@@ -22,7 +22,7 @@ export default async function NewsPostPage({ params }: { params: { slug: string 
 
   return (
     <div className="min-h-screen bg-background dark:bg-background flex flex-col">
-      <Navbar />
+    
 
       <main className="flex-1 py-12 px-4 md:py-16">
         <div className="max-w-2xl mx-auto">

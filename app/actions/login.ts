@@ -72,6 +72,10 @@ export async function verifyLoginOtp(code: string) {
       field: payload.field as string,
     })
 
+
+    console.log("JWT Token:", token)
+
+
     await setTokenCookie(token)
     await clearOtpChallenge()
 

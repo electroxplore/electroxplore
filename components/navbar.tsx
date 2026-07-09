@@ -22,7 +22,7 @@ const mobileNavLinks = [
 
 ]
 
-export default function Navbar() {
+export default function Navbar({ user }: any) {
   const [activeHash, setActiveHash] = useState("#home")
   const [theme, setThemeState] = useState<"light" | "dark">("dark")
   const [mounted, setMounted] = useState(false)
@@ -58,7 +58,7 @@ export default function Navbar() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           {/* Logo */}
-          <Link href="#home">
+          <Link href="/">
         <Image src="/logo.png" alt="ElectroXplore Logo" width={32} height={32} className="size-35" />
           </Link>
 
@@ -77,7 +77,7 @@ export default function Navbar() {
           </nav>
 
           {/* CTA */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="flex items-center gap-3">
             <Button
               onClick={toggleTheme}
               variant="ghost"
@@ -86,7 +86,13 @@ export default function Navbar() {
             >
               {theme === "light" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
             </Button>
-            <Link href="/login">
+
+
+      {user ? (
+        <Link href="/member/dashboard">{user.name}</Link>
+      ) : (
+        <>
+         <Link href="/login">
               <Button
                 variant="ghost"
                 size="sm"
@@ -95,7 +101,7 @@ export default function Navbar() {
                 Sign In
               </Button>
             </Link>
-            <Link href="/register">
+           <Link href="/register">
               <Button
                 size="sm"
                 className="bg-primary text-primary-foreground hover:bg-primary/90 text-xs uppercase tracking-wider font-bold px-5"
@@ -103,27 +109,13 @@ export default function Navbar() {
                 Join Now
               </Button>
             </Link>
+        </>
+      )}
+
+       
+        
           </div>
 
-          {/* Mobile: show logo + Join button in top bar, nav handled by bottom bar */}
-          <div className="flex md:hidden items-center gap-2">
-            <Button
-              onClick={toggleTheme}
-              variant="ghost"
-              size="icon"
-              className="text-muted-foreground hover:text-foreground h-8 w-8"
-            >
-              {theme === "light" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
-            </Button>
-            <Link href="/register">
-              <Button
-                size="sm"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 text-xs uppercase tracking-wider font-bold px-4 h-8"
-              >
-                Join
-              </Button>
-            </Link>
-          </div>
         </div>
       </header>
 
@@ -136,7 +128,7 @@ export default function Navbar() {
           {mobileNavLinks.map(({ label, href, icon: Icon }) => {
             const isActive = activeHash === href
             return (
-              <a
+              <Link
                 key={label}
                 href={href}
                 onClick={() => setActiveHash(href)}
@@ -164,7 +156,7 @@ export default function Navbar() {
                 >
                   {label}
                 </span>
-              </a>
+              </Link>
             )
           })}
         </div>
@@ -172,3 +164,5 @@ export default function Navbar() {
     </>
   )
 }
+
+
