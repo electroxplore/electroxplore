@@ -86,7 +86,7 @@ export default function OtpVerification({
       <InputOTP
         maxLength={6}
         value={code}
-        onChange={(value) => {
+        onChange={(value: string) => {
           setCode(value)
           if (value.length === 6) submitCode(value)
         }}

@@ -45,7 +45,7 @@ export async function requestRegisterOtp(data: RegisterFormData) {
     return { success: true, email: validated.email, message: "Verification code sent" }
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return { success: false, error: error.errors[0].message }
+      return { success: false, error: error.issues[0].message }
     }
     console.error("Register OTP request error:", error)
     return { success: false, error: "Could not send verification code. Please try again." }
