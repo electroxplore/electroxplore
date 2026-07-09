@@ -5,8 +5,11 @@ let transporter: nodemailer.Transporter | null = null
 function getTransporter() {
   if (transporter) return transporter
 
-  const user = process.env.GMAIL_USER
-  const pass = process.env.GMAIL_APP_PASSWORD
+  // Trim the email, and strip ALL whitespace from the app password.
+  // Google displays app passwords in groups of 4 (e.g. "abcd efgh ijkl mnop"),
+  // but SMTP requires the 16 characters with no spaces.
+  const user = process.env.GMAIL_USER?.trim()
+  const pass = process.env.GMAIL_APP_PASSWORD?.replace(/\s+/g, "")
 
   if (!user || !pass) {
     throw new Error(
