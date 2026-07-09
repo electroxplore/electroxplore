@@ -50,8 +50,10 @@ export async function setOtpChallenge(
   const cookieStore = await cookies()
   cookieStore.set(OTP_COOKIE, token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
+    // sameSite "none" + secure required so the cookie survives inside
+    // the cross-site iframe used by previews.
+    secure: true,
+    sameSite: "none",
     maxAge: 10 * 60, // 10 minutes
   })
 }
@@ -94,8 +96,8 @@ async function bumpAttempts(challenge: OtpChallenge) {
   const cookieStore = await cookies()
   cookieStore.set(OTP_COOKIE, token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
+    secure: true,
+    sameSite: "none",
     maxAge: 10 * 60,
   })
 }
