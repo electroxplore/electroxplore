@@ -102,20 +102,25 @@ export default function MembersListPage() {
               <div className="absolute inset-0 bg-cyan-500/20 blur-xl rounded-full" />
             )}
             
-            <Image 
-              src={member.ImageURL} 
-              alt={member.FullName}
-              width={96}
-              height={96}
-              className={`
-                relative z-10
-                w-24 h-24 
-                rounded-full 
-                object-cover 
-                ring-2 ring-offset-4 ring-offset-zinc-900
-                ${isCore ? "ring-cyan-500/60" : "ring-zinc-700"}
-              `}
-            />
+        <Image
+  src={
+    member.ImageURL &&
+    member.ImageURL.trim() !== ""
+      ? member.ImageURL
+      : "/no-user-dark.svg"
+  }
+  alt={member.FullName}
+  width={1200}
+  height={1200}
+  className={`
+    relative z-10
+    w-24 h-24
+    rounded-full
+    object-cover
+    ring-2 ring-offset-4 ring-offset-zinc-900
+    ${isCore ? "ring-cyan-500/60" : "ring-zinc-700"}
+  `}
+/>
           </div>
           
           <h3 className="text-xl font-bold text-zinc-100 text-center">
