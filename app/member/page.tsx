@@ -144,14 +144,12 @@ export default function MembersListPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black py-20 font-sans transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-white dark:bg-black pt-10 font-sans transition-colors duration-300">
+      <div className="">
         
         {/* Header Section */}
-        <div className="flex flex-col items-center text-center mb-20">
-          <span className="px-4 py-1.5 rounded-full bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 text-sm font-medium tracking-wide mb-6 border border-cyan-500/20">
-            Research Community
-          </span>
+        <div className="flex flex-col items-center text-center pb-10">
+    
           <h1 className="text-4xl md:text-5xl font-bold text-zinc-950 dark:text-zinc-100 tracking-tight">
             Research <span className="text-cyan-500 dark:text-cyan-400">Members</span>
           </h1>
