@@ -55,24 +55,39 @@ export default function Navbar({ user }: any) {
   return (
     <>
       {/* Desktop / Tablet top navbar */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-background/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/">
-        <Image src="/logo.png" alt="ElectroXplore Logo" width={32} height={32} className="size-35" />
-          </Link>
+         <Link href="/">
+  <>
+    <Image
+      src="/logo.png"
+      alt="ElectroXplore Logo"
+      width={140}
+      height={140}
+      className="size-35 hidden dark:block"
+    />
+    <Image
+      src="/logo-w.png"
+      alt="ElectroXplore Logo"
+      width={140}
+      height={140}
+      className="size-35 block dark:hidden"
+    />
+  </>
+</Link>
 
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.label}
                 href={link.href}
                 className="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors tracking-wide uppercase"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -82,14 +97,14 @@ export default function Navbar({ user }: any) {
               onClick={toggleTheme}
               variant="ghost"
               size="icon"
-              className="text-muted-foreground hover:text-foreground"
+              className="text-muted-foreground dark:hover:text-foreground hover:text-black hover:bg-transparent"
             >
               {theme === "light" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
             </Button>
 
 
       {user ? (
-        <Link href="/member/dashboard">{user.name}</Link>
+        <Link href="/member/dashboard" className="dark:text-foreground text-black md:text-base text-sm">{user.name}</Link>
       ) : (
         <>
          <Link href="/login">

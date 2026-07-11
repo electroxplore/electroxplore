@@ -11,7 +11,7 @@ const quickLinks = [
   { label: "Home", href: "#home" },
   { label: "Research Groups", href: "#research" },
   { label: "Training Courses", href: "#training" },
-  { label: "Our Team", href: "#team" },
+  { label: "Our Team", href: "/team" },
   { label: "About Us", href: "#about" },
   { label: "Gallery", href: "#gallery" },
   { label: "FAQ", href: "#faq" },
@@ -30,7 +30,7 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="bg-card border-t border-border">
+    <footer className="dark:bg-card bg white  border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {/* Column 1: Brand + Contact */}
@@ -73,7 +73,7 @@ export default function Footer() {
           </div>
 
           <div className="space-y-5">
-            <h4 className="text-foreground font-heading font-bold text-xs uppercase tracking-widest">
+            <h4 className="dark:text-foreground text-black font-heading font-bold text-xs uppercase tracking-widest">
               Quick Links
             </h4>
             <ul className="grid grid-cols-2 gap-y-2.5 gap-x-4">
@@ -91,7 +91,7 @@ export default function Footer() {
           </div>
 
           <div className="space-y-5">
-            <h4 className="text-foreground font-heading font-bold text-xs uppercase tracking-widest">
+            <h4 className="dark:text-foreground text-black font-heading font-bold text-xs uppercase tracking-widest">
               Follow Us
             </h4>
             <div className="flex flex-wrap gap-3">
@@ -101,7 +101,7 @@ export default function Footer() {
                   target="_blank"
                   href={href}
                   aria-label={label}
-                  className="w-10 h-10 bg-surface rounded-xl flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors border border-border"
+                  className="w-10 h-10  bg-gray-50 dark:bg-surface rounded-xl flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors border border-border"
                 >
                   <Icon className="w-4 h-4" />
                 </Link>
@@ -109,7 +109,7 @@ export default function Footer() {
             </div>
 
             <div className="pt-2 space-y-2">
-              <h4 className="text-foreground font-heading font-bold text-xs uppercase tracking-widest">
+              <h4 className=" font-heading font-bold text-xs uppercase tracking-widest dark:text-foreground text-black">
                 Research Fields
               </h4>
               <div className="flex flex-wrap gap-2">
@@ -123,7 +123,7 @@ export default function Footer() {
                 ].map((f) => (
                   <span
                     key={f}
-                    className="text-xs bg-primary/10 text-primary border border-primary/20 rounded-full px-3 py-1"
+                    className="text-xs bg-gray-50 dark:bg-primary/10 text-primary border border-primary/20 rounded-full px-3 py-1"
                   >
                     {f}
                   </span>

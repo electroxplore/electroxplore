@@ -7,6 +7,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "@/components/ui/sonner";
 import { getCurrentUser } from "@/lib/jwt";
 import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 const spaceGrotesk = Space_Grotesk({
@@ -54,10 +55,11 @@ export default async function RootLayout({
       lang="en"
       className={`${inter.variable} ${spaceGrotesk.variable} ${geistMono.variable} bg-background`}
     >
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased dark:bg-black bg-white">
         <ThemeProvider>
           <Navbar user={user} />
-          <div className="py-10">{children}</div>
+          <div className="md:py-16 py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">{children}</div>
+          <Footer/>
         </ThemeProvider>
         {process.env.NODE_ENV === "production" && <Analytics />}
         <Analytics />

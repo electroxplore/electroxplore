@@ -15,13 +15,13 @@ const values = [
 
 export default function MissionVisionSection() {
   return (
-    <section id="mission" className="py-24 bg-background relative overflow-hidden">
+    <section id="mission" className="py-24 bg-white dark:bg-background relative overflow-hidden">
       {/* Subtle accent line */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div>
         {/* Header */}
         <div className="text-center mb-16">
           <p className="text-primary text-xs uppercase tracking-widest font-semibold mb-3">Our Purpose</p>
-          <h2 className="font-heading font-black text-4xl sm:text-5xl text-foreground text-balance">
+          <h2 className="font-heading font-black text-4xl sm:text-5xl text-zinc-950 dark:text-foreground text-balance">
             WHAT DRIVES<br />
             <span className="text-primary">ELECTROXPLORE</span>
           </h2>
@@ -30,7 +30,7 @@ export default function MissionVisionSection() {
         {/* Mission / Vision cards */}
         <div className="grid md:grid-cols-2 gap-6 mb-12">
           {/* Mission */}
-          <div className="group relative bg-card border border-border rounded-2xl p-8 overflow-hidden hover:border-primary/40 transition-colors">
+          <div className="group relative bg-white dark:bg-card border border-zinc-200 dark:border-border rounded-2xl p-8 overflow-hidden hover:border-primary/40 transition-colors shadow-lg shadow-zinc-100/50 dark:shadow-none">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
             <div className="relative">
               <div className="flex items-center gap-4 mb-6">
@@ -38,11 +38,11 @@ export default function MissionVisionSection() {
                   <Target className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <p className="text-muted-foreground text-xs uppercase tracking-widest">Our Mission</p>
-                  <h3 className="font-heading font-black text-xl text-foreground">What We Do</h3>
+                  <p className="text-zinc-500 dark:text-muted-foreground text-xs uppercase tracking-widest">Our Mission</p>
+                  <h3 className="font-heading font-black text-xl text-zinc-950 dark:text-foreground">What We Do</h3>
                 </div>
               </div>
-              <p className="text-muted-foreground leading-relaxed text-base">
+              <p className="text-zinc-600 dark:text-muted-foreground leading-relaxed text-base">
                 To create a collaborative engineering research community where students, graduates, and professionals explore
                 real-world problems across EEE, CSE, ETE, CCE, and beyond. We provide structured research groups and
                 accessible training programs that bridge the gap between academic theory and practical innovation.
@@ -58,7 +58,7 @@ export default function MissionVisionSection() {
           </div>
 
           {/* Vision */}
-          <div className="group relative bg-card border border-border rounded-2xl p-8 overflow-hidden hover:border-primary/40 transition-colors">
+          <div className="group relative bg-white dark:bg-card border border-zinc-200 dark:border-border rounded-2xl p-8 overflow-hidden hover:border-primary/40 transition-colors shadow-lg shadow-zinc-100/50 dark:shadow-none">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
             <div className="relative">
               <div className="flex items-center gap-4 mb-6">
@@ -66,11 +66,11 @@ export default function MissionVisionSection() {
                   <Eye className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <p className="text-muted-foreground text-xs uppercase tracking-widest">Our Vision</p>
-                  <h3 className="font-heading font-black text-xl text-foreground">Where We Are Going</h3>
+                  <p className="text-zinc-500 dark:text-muted-foreground text-xs uppercase tracking-widest">Our Vision</p>
+                  <h3 className="font-heading font-black text-xl text-zinc-950 dark:text-foreground">Where We Are Going</h3>
                 </div>
               </div>
-              <p className="text-muted-foreground leading-relaxed text-base">
+              <p className="text-zinc-600 dark:text-muted-foreground leading-relaxed text-base">
                 To become the leading engineering research and education platform in South Asia — a recognized hub
                 where the next generation of engineers develop groundbreaking solutions, publish impactful research, and
                 build careers that transform industries and society.
@@ -89,13 +89,13 @@ export default function MissionVisionSection() {
         {/* Values strip */}
         <div className="grid sm:grid-cols-2 gap-4">
           {values.map(({ icon: Icon, title, desc }) => (
-            <div key={title} className="bg-surface border border-border rounded-xl p-5 flex gap-4 items-start hover:border-primary/30 transition-colors">
+            <div key={title} className="bg-zinc-50 dark:bg-surface border border-zinc-200 dark:border-border rounded-xl p-5 flex gap-4 items-start hover:border-primary/30 transition-colors">
               <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
                 <Icon className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <h4 className="font-heading font-bold text-foreground text-sm mb-1">{title}</h4>
-                <p className="text-muted-foreground text-sm leading-relaxed">{desc}</p>
+                <h4 className="font-heading font-bold text-zinc-950 dark:text-foreground text-sm mb-1">{title}</h4>
+                <p className="text-zinc-600 dark:text-muted-foreground text-sm leading-relaxed">{desc}</p>
               </div>
             </div>
           ))}
