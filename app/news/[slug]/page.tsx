@@ -1,9 +1,9 @@
 import { getNewsPostBySlug, getNewsPosts } from "@/app/actions/blog"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
-import { Card } from "@/components/ui/card"
 import Link from "next/link"
-import { Calendar, User, ArrowLeft } from "lucide-react"
+import Image from "next/image"
+import { Calendar, User, ArrowLeft, Tag } from "lucide-react"
 import { notFound } from "next/navigation"
 
 export async function generateStaticParams() {
@@ -13,68 +13,110 @@ export async function generateStaticParams() {
   }))
 }
 
-export default async function NewsPostPage({ params }: { params: { slug: string } }) {
-  const post = await getNewsPostBySlug(params.slug)
+interface PageProps {
+  params: Promise<{ slug: string }>
+}
+
+export default async function NewsPostPage({ params }: PageProps) {
+  const resolvedParams = await params
+  const post = await getNewsPostBySlug(resolvedParams.slug)
 
   if (!post) {
     notFound()
   }
 
   return (
-    <div className="min-h-screen bg-background dark:bg-background flex flex-col">
-    
-
-      <main className="flex-1 py-12 px-4 md:py-16">
-        <div className="max-w-2xl mx-auto">
-          {/* Back Link */}
-          <Link href="/news" className="flex items-center gap-2 text-cyan-500 hover:text-cyan-400 mb-8">
-            <ArrowLeft className="w-4 h-4" />
-            Back to News
+    <div className="">
+     
+      <main className="flex-1 py-10">
+        <article className="">
+          
+          {/* Back Button */}
+          <Link 
+            href="/news" 
+            className="inline-flex items-center gap-2 text-sm font-medium text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 mb-8 transition-colors group"
+          >
+            <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+            Back to News & Announcements
           </Link>
 
-          {/* Header */}
+          {/* Header Area */}
           <div className="mb-8">
             <div className="flex items-center gap-2 mb-4">
-              <span className="px-3 py-1 bg-orange-500/10 border border-orange-500/30 rounded-full text-orange-500 text-xs font-semibold">
-                Breaking News
+              <span className="px-3 py-1 bg-cyan-50 dark:bg-cyan-950/40 border border-cyan-200 dark:border-cyan-800/60 rounded-full text-cyan-600 dark:text-cyan-400 text-xs font-semibold tracking-wide uppercase">
+                {post.category || "News"}
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 text-balance">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-neutral-900 dark:text-neutral-50 mb-6 text-balance leading-tight">
               {post.title}
             </h1>
 
-            <div className="flex flex-wrap items-center gap-6 text-muted-foreground border-b border-border pb-6">
+            {/* Author & Date Metadata */}
+            <div className="flex flex-wrap items-center gap-6 text-sm text-neutral-500 dark:text-neutral-400 border-y border-neutral-200 dark:border-zinc-800/80 py-4 my-6">
               <div className="flex items-center gap-2">
-                <User className="w-5 h-5" />
-                <span>{post.author}</span>
+                <div className="p-1.5 bg-neutral-100 dark:bg-zinc-900 rounded-full">
+                  <User className="w-4 h-4 text-cyan-600 dark:text-cyan-400/80" />
+                </div>
+                <span>By <span className="font-medium text-neutral-900 dark:text-neutral-200">{post.author}</span></span>
               </div>
               <div className="flex items-center gap-2">
-                <Calendar className="w-5 h-5" />
-                <span>{new Date(post.date).toLocaleDateString()}</span>
+                <div className="p-1.5 bg-neutral-100 dark:bg-zinc-900 rounded-full">
+                  <Calendar className="w-4 h-4 text-cyan-600 dark:text-cyan-400/80" />
+                </div>
+                <span>
+                  {new Date(post.date).toLocaleDateString(undefined, {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
+                </span>
               </div>
             </div>
           </div>
 
-          {/* Content */}
-          <Card className="bg-card border-border p-8">
-            <div className="prose prose-invert max-w-none text-foreground">
-              <p className="text-lg leading-relaxed whitespace-pre-wrap mb-6">{post.excerpt}</p>
-              <div className="whitespace-pre-wrap">{post.content}</div>
+          {/* Optional Featured Post Image */}
+          {post.image && (
+            <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-neutral-200 dark:border-zinc-800 mb-10 bg-neutral-100 dark:bg-zinc-900 shadow-sm">
+              <Image
+                src={post.image}
+                alt={post.title}
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 800px"
+              />
             </div>
-          </Card>
+          )}
 
-          {/* Related News */}
-          <Card className="bg-card border-border p-6 mt-8">
-            <h3 className="font-semibold text-foreground mb-3">More News</h3>
-            <Link href="/news" className="text-cyan-500 hover:text-cyan-400 text-sm">
-              View all news articles →
+          {/* Post Content Body */}
+          <div className="prose prose-neutral dark:prose-invert max-w-none text-neutral-800 dark:text-neutral-200/90 antialiased selection:bg-cyan-500/30">
+            {post.excerpt && (
+              <p className="text-xl leading-relaxed text-neutral-600 dark:text-neutral-400 font-medium mb-8 border-l-4 border-cyan-500 pl-4 italic">
+                {post.excerpt}
+              </p>
+            )}
+            
+            <div className="whitespace-pre-wrap leading-relaxed text-base sm:text-lg space-y-6 break-words text-neutral-800 dark:text-neutral-300">
+              {post.content}
+            </div>
+          </div>
+
+          {/* Bottom Navigation Shortcut */}
+          <div className="mt-16 pt-6 border-t border-neutral-200 dark:border-zinc-800 flex justify-between items-center">
+            <Link 
+              href="/news" 
+              className="text-sm font-medium text-neutral-500 hover:text-cyan-600 dark:text-neutral-400 dark:hover:text-cyan-400 transition-colors flex items-center gap-1"
+            >
+              ← Previous Updates
             </Link>
-          </Card>
-        </div>
+            <div className="text-xs text-neutral-400 dark:text-neutral-500 italic flex items-center gap-1">
+              <Tag className="w-3 h-3" /> ElectroXplore Insights
+            </div>
+          </div>
+        </article>
       </main>
 
-      <Footer />
     </div>
   )
 }

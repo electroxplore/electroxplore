@@ -5,9 +5,8 @@ const secret = new TextEncoder().encode(
   process.env.JWT_SECRET || "default-secret-change-this-in-production"
 )
 
-// Routes that require a valid session.
-const protectedRoutes = ["/member", "/dashboard"]
-// Auth pages that a logged-in user should NOT see.
+// 1. Specify exactly which sub-paths require authentication
+const protectedRoutes = ["/dashboard", "/member/dashboard"]
 const authRoutes = ["/login", "/register"]
 
 async function isAuthenticated(request: NextRequest): Promise<boolean> {
@@ -25,13 +24,16 @@ export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
   const loggedIn = await isAuthenticated(request)
 
-  // Block protected routes when logged out -> send to login.
-  const isProtected = protectedRoutes.some((route) => pathname.startsWith(route))
+  // 2. Exact or sub-path protection check
+  const isProtected = protectedRoutes.some((route) => 
+    pathname === route || pathname.startsWith(route + "/")
+  )
+  
   if (isProtected && !loggedIn) {
     return NextResponse.redirect(new URL("/login", request.url))
   }
 
-  // Hide auth pages when already logged in -> send to dashboard.
+  // Hide login/register pages when already logged in
   const isAuthPage = authRoutes.some((route) => pathname.startsWith(route))
   if (isAuthPage && loggedIn) {
     return NextResponse.redirect(new URL("/member/dashboard", request.url))
@@ -41,5 +43,13 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/member/:path*", "/dashboard/:path*", "/login", "/register"],
+  // We use a negative lookahead to exclude the base /member page from being intercepted if needed,
+  // but simpler is to just be explicit about what we DO want to match.
+  matcher: [
+    "/dashboard/:path*", 
+    "/member/dashboard/:path*", 
+    "/member/dashboard",
+    "/login", 
+    "/register"
+  ],
 }

@@ -7,7 +7,7 @@ import Link from "next/link"
 import Image from "next/image"
 const navLinks = [
   { label: "Home", href: "/" },
-  { label: "Team", href: "/member" },
+  { label: "Team", href: "/team" },
   { label: "Blog", href: "/blog" },
   { label: "News", href: "/news" },
 
@@ -16,7 +16,7 @@ const navLinks = [
 
 const mobileNavLinks = [
   { label: "Home", href: "/", icon: Home },
-  { label: "Team", href: "/member",icon: Users },
+  { label: "Team", href: "/team",icon: Users },
   { label: "Blog", href: "/blog", icon: FlaskConical },
   { label: "News", href: "/news", icon: BookOpen },
 

@@ -22,10 +22,12 @@ async function getAuthClient() {
     const decodedKey = Buffer.from(serviceAccountKey, "base64").toString()
     const keyJson = JSON.parse(decodedKey)
 
-    authClient = new google.auth.GoogleAuth({
-      credentials: keyJson,
-      scopes: ["https://www.googleapis.com/auth/spreadsheets"],
-    })
+const auth = new google.auth.GoogleAuth({
+  credentials: keyJson,
+  scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+})
+authClient = await auth.getClient()
+return authClient
 
     return authClient
   } catch (error) {

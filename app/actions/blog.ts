@@ -62,20 +62,25 @@ export async function getNewsPosts(): Promise<BlogPost[]> {
     const data = await getSheetData("News")
     if (!data || data.length === 0) return []
 
+
+    
     const [, ...rows] = data
-    return rows
-      .map((row: any) => ({
-        id: row[0] || "",
-        title: row[1] || "",
-        slug: row[2] || "",
-        excerpt: row[3] || "",
-        content: row[4] || "",
-        author: row[5] || "",
-        date: row[6] || "",
-        category: row[7] || "News",
-        image: row[8] || "",
-      }))
-      .filter((post) => post.slug)
+
+    // Update ONLY this mapping block inside getNewsPosts() in your actions file:
+return rows
+  .map((row: any) => ({
+    id: row[0] || "",
+    title: row[1] || "",
+    slug: row[2] || "",
+    excerpt: row[3] || "",
+    content: row[4] || "",
+    author: row[5] || "",
+    date: row[6] || "",
+    category: row[7] || "News",
+    image: row[8] || "",
+    featured: row[9] === "TRUE" || row[9] === "true" || row[9] === true || row[9] === "yes", // Maps Column J
+  }))
+  .filter((post) => post.slug)
   } catch (error) {
     console.error("Error fetching news posts:", error)
     return []

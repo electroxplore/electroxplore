@@ -1,67 +1,18 @@
-"use client"
 import Image from "next/image"
-import { Globe, Mail, GitBranch } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
-import { FaGoogleScholar, FaResearchgate } from "react-icons/fa6"
+import { FaGoogleScholar } from "react-icons/fa6"
 import Link from "next/link"
-import { LiaLinkedin } from "react-icons/lia"
 import { FaLinkedin } from "react-icons/fa"
-import { useEffect, useMemo, useState } from "react";
+import { getMembers } from "@/app/actions/teams" // Server Action runs directly on the server
+import ActiveMembersClient from "@/components/activeMember" // Import the client child component
 
-interface members {
-  MemberId: string;
-  FullName: string;
-  Email: string;
-  Fields: string;
-  Status: string;
-  ImageURL: string;
-  Group: string;
-  Role: string;
-  SpecialRole: string;
-  LKDN: string;
-  GS: string;
-}
+export default async function TeamSection() {
+  // 1. Fetch data directly on the server during SSR
+  const members = await getMembers()
 
-export default function TeamSection() {
-  const [members, setMembers] = useState<members[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchMembers = async () => {
-      try {
-        const response = await fetch("/api/member");
-        if (response.ok) {
-          const data = await response.json();
-          setMembers(data);
-        }
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchMembers();
-  }, []);
-
-  // Filter for 'Active' status before getting a random subset
-  const randomMembers = useMemo(() => {
-    const activeMembers = members.filter(
-      (m) => m.Status?.toLowerCase() === "active"
-    );
-    return [...activeMembers]
-      .sort(() => Math.random() - 0.5)
-      .slice(0, 3);
-  }, [members]);
-
-  if (isLoading) {
-    return (
-      <div className="min-h-[400px] flex flex-col items-center justify-center gap-4 bg-white dark:bg-transparent">
-        <div className="w-10 h-10 border-4 border-zinc-200 dark:border-zinc-800 border-t-primary rounded-full animate-spin" />
-        <span className="text-zinc-500 dark:text-muted-foreground text-sm font-medium">Loading Team...</span>
-      </div>
-    );
-  }
+  // 2. Process data on the server
+  const founders = members.filter((f) => f.specialRole?.toLowerCase() === "founder")
+  const activeMembers = members.filter((m) => m.status?.toLowerCase() === "active")
 
   return (
     <section id="team" className="py-24 bg-white dark:bg-black">
@@ -78,81 +29,24 @@ export default function TeamSection() {
           </p>
         </div>
 
-        {/* Founders grid */}
-        <div className="mb-16">
-          <p className="text-zinc-500 dark:text-muted-foreground text-xs uppercase tracking-widest font-semibold mb-6 flex items-center gap-3">
-            <span className="h-px flex-1 bg-zinc-200 dark:bg-border" />
-            Founders
-            <span className="h-px flex-1 bg-zinc-200 dark:bg-border" />
-          </p>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {members
-              .filter((f) => f.SpecialRole === "Founder")
-              .map((f) => (
-                <div
-                  key={f.FullName}
-                  className="group bg-white dark:bg-background border border-zinc-200 dark:border-border rounded-2xl overflow-hidden hover:border-primary/40 transition-colors shadow-sm dark:shadow-none"
-                >
-                  {/* Photo */}
-                  <div className="relative h-56 overflow-hidden">
-                    <Image
-                      src={f.ImageURL}
-                      alt={`${f.FullName}`}
-                      fill
-                      className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-white via-white/30 dark:from-background dark:via-background/30 to-transparent" />
-                    <div className="absolute bottom-3 left-4 z-10">
-                      <Badge className="bg-primary/15 text-primary border border-primary/30 text-xs shadow-none">
-                        {f.Fields}
-                      </Badge>
-                    </div>
-                  </div>
-
-                  {/* Info */}
-                  <div className="p-5 space-y-3">
-                    <div>
-                      <h3 className="font-heading font-bold text-zinc-950 dark:text-foreground text-lg leading-tight">
-                        {f.FullName}
-                      </h3>
-                      <p className="text-primary text-xs font-semibold uppercase tracking-wider mt-0.5">
-                        {f.Role}
-                      </p>
-                    </div>
-
-                    <div className="flex items-center gap-2 pt-1">
-                      {f.LKDN && (
-                        <Link
-                          href={f.LKDN}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label="LinkedIn"
-                          className="w-8 h-8 bg-zinc-50 dark:bg-surface rounded-lg flex items-center justify-center text-zinc-500 dark:text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors border border-zinc-200 dark:border-border"
-                        >
-                          <FaLinkedin className="w-3.5 h-3.5" />
-                        </Link>
-                      )}
-
-                      {f.GS && (
-                        <Link
-                          href={f.GS}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label="Google Scholar"
-                          className="w-8 h-8 bg-zinc-50 dark:bg-surface rounded-lg flex items-center justify-center text-zinc-500 dark:text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors border border-zinc-200 dark:border-border"
-                        >
-                          <FaGoogleScholar className="w-3.5 h-3.5" />
-                        </Link>
-                      )}
-                    </div>
-                  </div>
-                </div>
+        {/* Founders grid - Completely Rendered via SSR */}
+        {founders.length > 0 && (
+          <div className="mb-16">
+            <p className="text-zinc-500 dark:text-muted-foreground text-xs uppercase tracking-widest font-semibold mb-6 flex items-center gap-3">
+              <span className="h-px flex-1 bg-zinc-200 dark:bg-border" />
+              Founders
+              <span className="h-px flex-1 bg-zinc-200 dark:bg-border" />
+            </p>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+              {founders.map((founder) => (
+                <FounderCard key={founder.memberId || founder.fullName} founder={founder} />
               ))}
+            </div>
           </div>
-        </div>
+        )}
 
-        {/* Active members strip */}
+        {/* Active members strip - Structures remain SSR, randomization safely drops inside */}
         <div>
           <p className="text-zinc-500 dark:text-muted-foreground text-xs uppercase tracking-widest font-semibold mb-6 flex items-center gap-3">
             <span className="h-px flex-1 bg-zinc-200 dark:bg-border" />
@@ -160,37 +54,8 @@ export default function TeamSection() {
             <span className="h-px flex-1 bg-zinc-200 dark:bg-border" />
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {randomMembers.map((m) => (
-              <div
-                key={m.FullName}
-                className="group bg-white dark:bg-background border border-zinc-200 dark:border-border rounded-xl p-4 flex flex-col sm:flex-row items-center sm:items-start gap-4 hover:border-primary/30 transition-colors shadow-sm dark:shadow-none"
-              >
-                <div className="relative w-14 h-14 rounded-full overflow-hidden flex-shrink-0 border-2 border-zinc-200 dark:border-border group-hover:border-primary/40 transition-colors">
-                  <Image
-                    src={
-                      m.ImageURL && m.ImageURL.trim() !== ""
-                        ? m.ImageURL
-                        : "/no-user-dark.svg"
-                    }
-                    alt={m.FullName}
-                    fill
-                    className="object-cover object-top"
-                  />
-                </div>
-
-                <div className="text-center sm:text-left flex-1 min-w-0">
-                  <h4 className="font-heading font-bold text-zinc-950 dark:text-foreground text-sm line-clamp-1">
-                    {m.FullName}
-                  </h4>
-                  <p className="text-zinc-500 dark:text-muted-foreground text-xs capitalize">{m.Status}</p>
-                  <Badge className="mt-1.5 bg-primary/10 text-primary border border-primary/20 text-[10px] px-2 py-0.5 shadow-none">
-                    {m.Fields}
-                  </Badge>
-                </div>
-              </div>
-            ))}
-          </div>
+          {/* Send active members to the client bundle to sort securely */}
+          <ActiveMembersClient activeMembers={activeMembers} />
 
           {/* Call to action section */}
           <div className="mt-8 bg-white dark:bg-primary/5 border border-zinc-200 dark:border-primary/20 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm dark:shadow-none">
@@ -210,5 +75,68 @@ export default function TeamSection() {
         </div>
       </div>
     </section>
+  )
+}
+
+/* ================= SSR SERVER CARD COMPONENT ================= */
+function FounderCard({ founder }: any) {
+  const fallbackImage = "/no-user-dark.svg"
+  
+  return (
+    <div className="group bg-white dark:bg-background border border-zinc-200 dark:border-border rounded-2xl overflow-hidden hover:border-primary/40 transition-colors shadow-sm dark:shadow-none">
+      <div className="relative h-56 overflow-hidden">
+        <Image
+          src={founder.imageUrl && founder.imageUrl.trim() !== "" ? founder.imageUrl : fallbackImage}
+          alt={founder.fullName}
+          fill
+          className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/30 dark:from-background dark:via-background/30 to-transparent" />
+        {founder.fields && (
+          <div className="absolute bottom-3 left-4 z-10">
+            <Badge className="bg-primary/15 text-primary border border-primary/30 text-xs shadow-none">
+              {founder.fields}
+            </Badge>
+          </div>
+        )}
+      </div>
+
+      <div className="p-5 space-y-3">
+        <div>
+          <h3 className="font-heading font-bold text-zinc-950 dark:text-foreground text-lg leading-tight">
+            {founder.fullName}
+          </h3>
+          <p className="text-primary text-xs font-semibold uppercase tracking-wider mt-0.5">
+            {founder.role}
+          </p>
+        </div>
+
+        <div className="flex items-center gap-2 pt-1">
+          {founder.lkdn && (
+            <Link
+              href={founder.lkdn}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="w-8 h-8 bg-zinc-50 dark:bg-surface rounded-lg flex items-center justify-center text-zinc-500 dark:text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors border border-zinc-200 dark:border-border"
+            >
+              <FaLinkedin className="w-3.5 h-3.5" />
+            </Link>
+          )}
+
+          {founder.gs && (
+            <Link
+              href={founder.gs}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Google Scholar"
+              className="w-8 h-8 bg-zinc-50 dark:bg-surface rounded-lg flex items-center justify-center text-zinc-500 dark:text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors border border-zinc-200 dark:border-border"
+            >
+              <FaGoogleScholar className="w-3.5 h-3.5" />
+            </Link>
+          )}
+        </div>
+      </div>
+    </div>
   )
 }

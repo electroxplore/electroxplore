@@ -1,41 +1,42 @@
-import { getBlogPostBySlug, getBlogPosts } from "@/app/actions/blog"
-import { Card } from "@/components/ui/card"
-import Link from "next/link"
-import { Calendar, User, ArrowLeft } from "lucide-react"
-import { notFound } from "next/navigation"
+import { getBlogPostBySlug, getBlogPosts } from "@/app/actions/blog";
+import { Card } from "@/components/ui/card";
+import Link from "next/link";
+import { Calendar, User, ArrowLeft } from "lucide-react";
+import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
-import Image from "next/image"
-export const dynamicParams = true 
+import Image from "next/image";
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  const posts = await getBlogPosts()
+  const posts = await getBlogPosts();
   return posts.map((post) => ({
     slug: post.slug,
-  }))
+  }));
 }
 
 // 2. Make the page component correctly accept params as a Promise (Next.js 15+ compliant)
-export default async function BlogPostPage({ 
-  params 
-}: { 
-  params: Promise<{ slug: string }> 
+export default async function BlogPostPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
 }) {
   // Await the parameters before using them
-  const resolvedParams = await params
-  const post = await getBlogPostBySlug(resolvedParams.slug)
+  const resolvedParams = await params;
+  const post = await getBlogPostBySlug(resolvedParams.slug);
 
   if (!post) {
-    notFound()
+    notFound();
   }
 
   return (
     <>
-  
-
       <main className="flex-1">
         <div className="pt-10">
           {/* Back Link */}
-          <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 mb-8 transition-colors">
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 mb-8 transition-colors"
+          >
             <ArrowLeft className="w-4 h-4" />
             Back to Articles
           </Link>
@@ -55,19 +56,31 @@ export default async function BlogPostPage({
             <div className="flex flex-wrap items-center gap-6 text-sm text-zinc-500 dark:text-zinc-400 border-b border-zinc-200 dark:border-zinc-800 pb-6">
               <div className="flex items-center gap-2">
                 <User className="w-4 h-4 text-zinc-400" />
-                <span className="font-medium text-zinc-700 dark:text-zinc-300">{post.author}</span>
+                <span className="font-medium text-zinc-700 dark:text-zinc-300">
+                  {post.author}
+                </span>
               </div>
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4 text-zinc-400" />
-                <span>{new Date(post.date).toLocaleDateString(undefined, { dateStyle: 'long' })}</span>
+                <span>
+                  {new Date(post.date).toLocaleDateString(undefined, {
+                    dateStyle: "long",
+                  })}
+                </span>
               </div>
             </div>
           </div>
-<div className="flex">
-
-                                <Image className="pb-10" src={post.image} alt="Blog" width={500} height={500} />
-          
-  </div>
+          {post.image && (
+            <div className="flex justify-center items-center">
+              <Image
+                className="pb-10"
+                src={post.image}
+                alt="Blog"
+                width={500}
+                height={500}
+              />
+            </div>
+          )}
 
           {/* Content Card */}
           <Card className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-6 md:p-10 shadow-sm rounded-xl">
@@ -75,15 +88,13 @@ export default async function BlogPostPage({
               <p className="text-lg md:text-xl leading-relaxed text-zinc-600 dark:text-zinc-400 italic mb-8 whitespace-pre-wrap border-l-4 border-cyan-500 pl-4">
                 {post.excerpt}
               </p>
-             <div className="leading-relaxed text-base md:text-lg transition-colors duration-300">
-<div 
-  className="
-    leading-relaxed text-base md:text-lg transition-colors duration-300
+              <div className="leading-relaxed text-base md:text-lg transition-colors duration-300">
+                <div
+                  className="
+    leading-relaxed text-sm md:text-base transition-colors duration-300
     whitespace-pre-wrap 
     space-y-4 
     text-zinc-600 dark:text-zinc-400
-    
-    /* Target the Markdown HTML elements safely inside the wrapper */
     [&_h3]:text-xl [&_h3]:font-black [&_h3]:text-zinc-950 dark:[&_h3]:text-zinc-100 [&_h3]:mt-6 [&_h3]:mb-2
     [&_strong]:font-bold [&_strong]:text-zinc-950 dark:[&_strong]:text-zinc-100
     [&_em]:italic
@@ -91,12 +102,10 @@ export default async function BlogPostPage({
     [&_ul]:list-disc [&_ul]:ml-5 [&_ul]:space-y-2
     [&_a]:text-primary [&_a]:underline [&_a]:font-medium hover:[&_a]:text-primary/80
   "
->
-  <ReactMarkdown>
-    {post.content}
-  </ReactMarkdown>
-</div>
-</div>
+                >
+                  <ReactMarkdown>{post.content}</ReactMarkdown>
+                </div>
+              </div>
             </article>
           </Card>
 
@@ -107,17 +116,18 @@ export default async function BlogPostPage({
                 {post.author?.charAt(0).toUpperCase()}
               </div>
               <div>
-                <h3 className="font-bold text-zinc-900 dark:text-zinc-100 mb-1 text-base">Written by {post.author}</h3>
+                <h3 className="font-bold text-zinc-900 dark:text-zinc-100 mb-1 text-base">
+                  Written by {post.author}
+                </h3>
                 <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
-                  Contributor sharing research engineering discoveries, technical documentation, and ecosystem education.
+                  Contributor sharing research engineering discoveries,
+                  technical documentation, and ecosystem education.
                 </p>
               </div>
             </div>
           </Card>
         </div>
       </main>
-
-
     </>
-  )
+  );
 }
