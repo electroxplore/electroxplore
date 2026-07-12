@@ -27,7 +27,7 @@ export default async function NewsPage() {
       <main className="flex-1 py-10 md:py-16">
         <div className="">
           
-          {/* Header */}
+      
           <div className="mb-16 text-center max-w-3xl mx-auto">
             <h1 className="text-4xl md:text-6xl font-extrabold text-neutral-900 dark:text-neutral-50 mb-6 tracking-tight text-balance">
               Latest News & <span className="text-cyan-600 dark:text-cyan-400">Announcements</span>
