@@ -7,7 +7,6 @@ import { Calendar, User, ArrowRight } from "lucide-react"
 export default async function NewsPage() {
   const posts = await getNewsPosts()
 
-  // 1. Sort all posts by date descending first
   const sortedPosts = [...posts].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   )
@@ -26,8 +25,6 @@ export default async function NewsPage() {
     <div className="">
       <main className="flex-1 py-10 md:py-16">
         <div className="">
-          
-      
           <div className="mb-16 text-center max-w-3xl mx-auto">
             <h1 className="text-4xl md:text-6xl font-extrabold text-neutral-900 dark:text-neutral-50 mb-6 tracking-tight text-balance">
               Latest News & <span className="text-cyan-600 dark:text-cyan-400">Announcements</span>
