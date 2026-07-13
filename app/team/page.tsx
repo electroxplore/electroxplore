@@ -94,9 +94,9 @@ function FounderCard({ member }: { member: Member }) {
 
       <div className="p-3">
           <div className="flex justify-start items-center gap-2 mb-2">
-    {member.lkdn && (
+    {member.linkedin && (
       <Link
-        href={member.lkdn}
+        href={member.linkedin}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="LinkedIn"
@@ -106,9 +106,9 @@ function FounderCard({ member }: { member: Member }) {
       </Link>
     )}
 
-    {member.gs && (
+    {member.googleScholar && (
       <Link
-        href={member.gs}
+        href={member.googleScholar}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Google Scholar"
@@ -118,14 +118,14 @@ function FounderCard({ member }: { member: Member }) {
       </Link>
     )}
     
-    {!member.lkdn && !member.gs && <span className="text-zinc-400 dark:text-zinc-600 text-xs">—</span>}
+    {!member.linkedin && !member.googleScholar && <span className="text-zinc-400 dark:text-zinc-600 text-xs">—</span>}
   </div>
         <div className="mb-4">
           <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-50 tracking-tight transition-colors">
             {member.fullName}
           </h3>
           <p className="text-xs font-semibold text-cyan-600 dark:text-cyan-400 tracking-wide uppercase mt-0.5">
-            {member.role}
+            {member.groupRole}
           </p>
         </div>
 
@@ -175,7 +175,7 @@ function MemberCard({ member }: { member: Member }) {
           </div>
           <div>
             <h4 className="font-semibold text-gray-900 dark:text-zinc-300 leading-snug">{member.fullName}</h4>
-            <p className="text-xs text-zinc-900 dark:text-cyan-600 font-medium">{member.role || "Member"}</p>
+            <p className="text-xs text-zinc-900 dark:text-cyan-600 font-medium">{member.groupRole || "Member"}</p>
           </div>
         </div>
 

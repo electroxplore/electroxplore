@@ -12,11 +12,11 @@ export interface Member {
   dateJoined: string
   imageUrl?: string
   group: string
-  role: string
+  groupRole: string
   specialRole: string
   phoneNumber: string
-  lkdn:string
-  gs:string
+  linkedin:string
+  googleScholar:string
 
 }
 
@@ -34,23 +34,22 @@ export async function getMembers(): Promise<Member[]> {
 
     return rows
       .map((row: any) => ({
-        memberId: row[0] || "",       // Column A
-        email: row[1] || "",          // Column B
-        fullName: row[2] || "",       // Column C
-        organization: row[3] || "",   // Column D
-        academicLevel: row[4] || "",  // Column E
-        studentId: row[5] || "",      // Column F
-        fields: row[6] || "",         // Column G
-        status: row[7] || "",         // Column H
-        dateJoined: row[8] || "",     // Column I
-        imageUrl: row[9] || "",       // Column J
-        group: row[10] || "",         // Column K
-        role: row[11] || "",          // Column L
-        specialRole: row[12] || "",   // Column M
-        phoneNumber: row[13] || "",   // Column N
-        lkdn: row[14] || "",   // Column N
-        gs: row[17] || "",   // Column N
-
+        memberId: row[0] || "",
+        email: row[1] || "",
+        fullName: row[2] || "",
+        organization: row[3] || "",
+        academicLevel: row[4] || "",
+        studentId: row[5] || "",
+        fields: row[6] || "",
+        status: row[7] || "",
+        dateJoined: row[8] || "",
+        imageUrl: row[9] || "",
+        group: row[10] || "",
+        groupRole: row[11] || "",
+        specialRole: row[12] || "",
+        phoneNumber: row[13] || "",
+        linkedin: row[14] || "",
+        googleScholar: row[15] || "",
       }))
       .filter((member) => member.memberId) // Filters out empty rows
   } catch (error) {

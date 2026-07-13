@@ -1,9 +1,9 @@
-import { getCurrentUser } from "@/lib/jwt"
+import { getCurrentMemberProfile } from "@/lib/jwt"
 import { NextResponse } from "next/server"
 
 export async function GET() {
   try {
-    const user = await getCurrentUser()
+    const user = await getCurrentMemberProfile()
 
     if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })

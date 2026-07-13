@@ -107,14 +107,14 @@ function FounderCard({ founder }: any) {
             {founder.fullName}
           </h3>
           <p className="text-primary text-xs font-semibold uppercase tracking-wider mt-0.5">
-            {founder.role}
+            {founder.groupRole}
           </p>
         </div>
 
         <div className="flex items-center gap-2 pt-1">
-          {founder.lkdn && (
+          {founder.linkedin && (
             <Link
-              href={founder.lkdn}
+              href={founder.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
@@ -124,9 +124,9 @@ function FounderCard({ founder }: any) {
             </Link>
           )}
 
-          {founder.gs && (
+          {founder.googleScholar && (
             <Link
-              href={founder.gs}
+              href={founder.googleScholar}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Google Scholar"

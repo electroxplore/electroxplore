@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 import Link from "next/link"
 import { toast } from "sonner"
+import { ShieldCheck, Mail, ArrowRight, Loader2 } from "lucide-react"
 
 // Custom Field Primitives
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field"
@@ -19,8 +20,6 @@ import { Input } from "@/components/ui/input"
 // Custom Layout / Actions
 import { requestLoginOtp, verifyLoginOtp, LoginFormData } from "@/app/actions/login"
 import OtpVerification from "@/components/otp-verification"
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -70,51 +69,68 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background dark:bg-background flex flex-col">
-     
-
-      <main className="flex-1 flex items-center justify-center py-16 px-4">
-        <Card className="w-full max-w-md bg-card border-border p-8">
+    <div className=" ">
+    
+    
+      <main className="relative z-10 w-full max-w-md p-4">
+        <Card className="w-full bg-white/75 dark:bg-zinc-900/60 backdrop-blur-xl border-slate-200/80 dark:border-slate-800/80 shadow-2xl shadow-slate-200/50 dark:shadow-none rounded-2xl p-8 transition-all duration-300">
           {step === "credentials" ? (
             <>
-              <div className="mb-8">
-                <h1 className="text-3xl font-bold text-foreground mb-2">Member Login</h1>
-                <p className="text-muted-foreground">
+              {/* Branding Header Area */}
+              <div className="mb-4 text-center sm:text-left">
+                <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white mb-2">
+                  Member Login
+                </h1>
+                <p className="text-sm text-slate-500 dark:text-slate-400">
                   Sign in to access your membership dashboard
                 </p>
               </div>
 
               <form onSubmit={handleSubmit(onSubmit)}>
-                <FieldGroup>
+                <FieldGroup className="space-y-2">
+                  
                   {/* Email Address */}
-                  <Field>
-                    <FieldLabel htmlFor="login-email">Email Address</FieldLabel>
-                    <Input
-                      id="login-email"
-                      type="email"
-                      placeholder="your@email.com"
-                      {...register("email")}
-                      className="w-full py-2.5 bg-background focus-visible:ring-cyan-500"
-                    />
+                  <Field className="space-y-1.5">
+                    <FieldLabel 
+                      htmlFor="login-email" 
+                      className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400"
+                    >
+                      Email Address
+                    </FieldLabel>
+                    <div className="relative">
+                      <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                      <Input
+                        id="login-email"
+                        type="email"
+                        placeholder="your@email.com"
+                        {...register("email")}
+                        className="w-full pl-10 pr-4 py-2.5 bg-slate-50/50 dark:bg-slate-950/40 border-slate-200 dark:border-slate-800 focus-visible:ring-cyan-500 rounded-xl transition-all placeholder:text-slate-400 text-sm"
+                      />
+                    </div>
                     {errors.email && (
-                      <p className="text-destructive text-sm font-medium mt-1">
+                      <p className="text-rose-500 dark:text-rose-400 text-xs font-medium mt-1">
                         {errors.email.message}
                       </p>
                     )}
                   </Field>
 
                   {/* Member ID */}
-                  <Field>
-                    <FieldLabel htmlFor="login-memberid">Member ID</FieldLabel>
+                  <Field className="space-y-1.5">
+                    <FieldLabel 
+                      htmlFor="login-memberid" 
+                      className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400"
+                    >
+                      Member ID
+                    </FieldLabel>
                     <Input
                       id="login-memberid"
                       type="text"
                       placeholder="Your Member ID (e.g., EXP-...)"
                       {...register("memberId")}
-                      className="w-full py-2.5 bg-background focus-visible:ring-cyan-500"
+                      className="w-full px-4 py-2.5 bg-slate-50/50 dark:bg-slate-950/40 border-slate-200 dark:border-slate-800 focus-visible:ring-cyan-500 rounded-xl transition-all placeholder:text-slate-400 text-sm"
                     />
                     {errors.memberId && (
-                      <p className="text-destructive text-sm font-medium mt-1">
+                      <p className="text-rose-500 dark:text-rose-400 text-xs font-medium mt-1">
                         {errors.memberId.message}
                       </p>
                     )}
@@ -125,21 +141,33 @@ export default function LoginPage() {
                     <Button
                       type="submit"
                       disabled={isLoading}
-                      className="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2.5 rounded-lg transition"
+                      className="relative w-full overflow-hidden bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-medium py-2.5 rounded-xl shadow-md shadow-cyan-500/10 hover:shadow-cyan-500/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2 group border-none"
                     >
-                      {isLoading ? "Sending code..." : "Continue"}
+                      {isLoading ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span>Sending code...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>Continue</span>
+                          <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+                        </>
+                      )}
                     </Button>
                   </Field>
                 </FieldGroup>
               </form>
 
               {/* Navigation Redirection Link */}
-              <p className="text-center text-sm text-muted-foreground mt-6">
-                Not a member yet?{" "}
-                <Link href="/register" className="text-cyan-500 hover:underline font-semibold">
-                  Register here
-                </Link>
-              </p>
+              <div className="mt-3 pt-3 border-t border-slate-100 dark:border-slate-800/60 text-center">
+                <p className="text-xs text-slate-500 dark:text-slate-400">
+                  Not a member yet?{" "}
+                  <Link href="/register" className="text-cyan-500 hover:text-cyan-600 dark:hover:text-cyan-400 font-semibold underline-offset-4 hover:underline transition">
+                    Register here
+                  </Link>
+                </p>
+              </div>
             </>
           ) : (
             <OtpVerification
@@ -152,8 +180,6 @@ export default function LoginPage() {
           )}
         </Card>
       </main>
-
-      <Footer />
     </div>
   )
 }
