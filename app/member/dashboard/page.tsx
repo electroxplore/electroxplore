@@ -1,281 +1,4 @@
-// import { redirect } from "next/navigation";
-// import { Button } from "@/components/ui/button";
-// import { Card } from "@/components/ui/card";
-// import Link from "next/link";
-// import { logoutUser } from "@/app/actions/login";
-// import {
-//   Activity,
-//   User,
-//   BookOpen,
-//   Award,
-//   LogOut,
-//   Settings,
-// } from "lucide-react";
-// import {
-//   Popover,
-//   PopoverContent,
-//   PopoverTrigger,
-// } from "@/components/ui/popover";
-// import { getCurrentMemberProfile } from "@/lib/jwt";
-
-// interface MemberData {
-//   email: string;
-//   name: string;
-//   field: string;
-//   memberId: string;
-//   organization:string;
-// }
-
-// export const dynamic = "force-dynamic";
-
-// export default async function DashboardPage() {
-//   const memberData = await getCurrentMemberProfile();
-
-//   if (!memberData) {
-//     redirect("/login");
-//   }
-
-//   const safeMemberData: MemberData = {
-//     email: memberData.email,
-//     name: memberData.name,
-//     field: memberData.field,
-//     memberId: memberData.memberId,
-//     organization: memberData.organization || "N/A",
-//   };
-
-//   return (
-//     <div className="min-h-screen bg-background dark:bg-background flex flex-col">
-//       <main className="flex-1 py-12 px-4 md:py-16">
-//         <div className="max-w-6xl mx-auto">
-//           <div className="flex justify-between items-start mb-8">
-//             <div>
-//               <h1 className="text-4xl font-bold text-foreground mb-2">
-//                 Welcome, {safeMemberData.name}
-//               </h1>
-//               <p className="text-muted-foreground">
-//                 Member ID: {safeMemberData.memberId}
-//               </p>
-//             </div>
-//             <form action={logoutUser}>
-//               <Button
-//                 type="submit"
-//                 variant="outline"
-//                 className="flex items-center gap-2"
-//               >
-//                 <LogOut className="w-4 h-4" />
-//                 Logout
-//               </Button>
-//             </form>
-//           </div>
-
-//           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-//             <Card className="bg-card border-border p-6">
-//               <div className="flex items-center gap-4">
-//                 <Award className="w-8 h-8 text-cyan-500" />
-//                 <div>
-//                   <p className="text-sm text-muted-foreground">Status</p>
-//                   <p className="text-xl font-bold text-foreground">Active</p>
-//                 </div>
-//               </div>
-//             </Card>
-
-//             <Card className="bg-card border-border p-6">
-//               <div className="flex items-center gap-4">
-//                 <BookOpen className="w-8 h-8 text-cyan-500" />
-//                 <div>
-//                   <p className="text-sm text-muted-foreground">Courses</p>
-//                   <p className="text-xl font-bold text-foreground">
-//                     2 Enrolled
-//                   </p>
-//                 </div>
-//               </div>
-//             </Card>
-
-//             <Card className="bg-card border-border p-6">
-//               <div className="flex items-center gap-4">
-//                 <Activity className="w-8 h-8 text-cyan-500" />
-//                 <div>
-//                   <p className="text-sm text-muted-foreground">
-//                     Research Groups
-//                   </p>
-//                   <p className="text-xl font-bold text-foreground">1 Joined</p>
-//                 </div>
-//               </div>
-//             </Card>
-
-//             <Card className="bg-card border-border p-6">
-//               <div className="flex items-center gap-4">
-//                 <User className="w-8 h-8 text-cyan-500" />
-//                 <div>
-//                   <p className="text-sm text-muted-foreground">Field</p>
-//                   <p className="text-xl font-bold text-foreground">
-//                     {safeMemberData.field}
-//                       {safeMemberData.organization}
-//                   </p>
-//                 </div>
-//               </div>
-//             </Card>
-//           </div>
-
-//           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-//             <div className="lg:col-span-2 space-y-6">
-//               <Card className="bg-card border-border p-6">
-//                 <h2 className="text-xl font-bold text-foreground mb-4">
-//                   Enrolled Courses
-//                 </h2>
-//                 <div className="space-y-3">
-//                   <div className="p-4 bg-background rounded-lg border border-border">
-//                     <h3 className="font-semibold text-foreground mb-1">
-//                       Advanced Power Systems
-//                     </h3>
-//                     <p className="text-sm text-muted-foreground mb-3">
-//                       EEE • In Progress
-//                     </p>
-//                     <div className="w-full bg-border rounded-full h-2">
-//                       <div
-//                         className="bg-cyan-500 h-2 rounded-full"
-//                         style={{ width: "65%" }}
-//                       ></div>
-//                     </div>
-//                   </div>
-//                   <div className="p-4 bg-background rounded-lg border border-border">
-//                     <h3 className="font-semibold text-foreground mb-1">
-//                       Machine Learning Basics
-//                     </h3>
-//                     <p className="text-sm text-muted-foreground mb-3">
-//                       CSE • In Progress
-//                     </p>
-//                     <div className="w-full bg-border rounded-full h-2">
-//                       <div
-//                         className="bg-cyan-500 h-2 rounded-full"
-//                         style={{ width: "40%" }}
-//                       ></div>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </Card>
-
-//               <Card className="bg-card border-border p-6">
-//                 <h2 className="text-xl font-bold text-foreground mb-4">
-//                   My Research Groups
-//                 </h2>
-//                 <div className="space-y-3">
-//                   <div className="p-4 bg-background rounded-lg border border-border">
-//                     <h3 className="font-semibold text-foreground">
-//                       Power Systems & Grid Control
-//                     </h3>
-//                     <p className="text-sm text-muted-foreground mt-1">
-//                       11 members • Active discussions
-//                     </p>
-//                   </div>
-//                 </div>
-//               </Card>
-//             </div>
-
-//             <div className="space-y-6">
-//               <Card className="bg-card border-border p-6">
-//                 <h2 className="text-lg font-bold text-foreground mb-4 flex items-center gap-2">
-//                   <User className="w-5 h-5" />
-//                   Profile
-//                 </h2>
-//                 <div className="space-y-3">
-//                   <div>
-//                     <p className="text-xs text-muted-foreground uppercase">
-//                       Email
-//                     </p>
-//                     <p className="text-foreground truncate">
-//                       {safeMemberData.email}
-//                     </p>
-//                   </div>
-//                   <div>
-//                     <p className="text-xs text-muted-foreground uppercase">
-//                       Field
-//                     </p>
-//                     <p className="text-foreground">{safeMemberData.field}</p>
-//                   </div>
-//                 </div>
-//                 <div>
-//                   <Popover>
-//                     <PopoverTrigger className="w-full mt-4 rounded-lg border border-border bg-cyan-500 px-3 py-2 text-sm font-medium text-white transition-all duration-300 hover:bg-cyan-600">
-//                       <div className="flex items-center justify-center gap-2">
-//                         <Settings className="w-4 h-4" />
-//                         Edit Profile
-//                       </div>
-//                     </PopoverTrigger>
-//                     <PopoverContent className="w-80 border border-cyan-100 dark:border-cyan-900 shadow-xl rounded-xl">
-//                       <div className="space-y-4">
-//                         <div className="flex items-center gap-3">
-//                           <div className="p-2 rounded-full bg-cyan-100 dark:bg-cyan-900">
-//                             <Settings className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
-//                           </div>
-//                           <div>
-//                             <h4 className="font-semibold text-base">
-//                               Profile Management
-//                             </h4>
-//                             <p className="text-xs text-muted-foreground">
-//                               Profile editing is currently restricted.
-//                             </p>
-//                           </div>
-//                         </div>
-//                         <div className="rounded-lg bg-muted/50 p-3 text-sm">
-//                           If you need to update your profile information, please
-//                           contact the administrator or send an email to:
-//                         </div>
-
-//                         <a
-//                           href="mailto:electroxplore.lab@gmail.com"
-//                           className="block w-full text-center rounded-lg bg-cyan-500 hover:bg-cyan-600 text-white py-2 font-medium transition-colors"
-//                         >
-//                           electroxplore.lab@gmail.com
-//                         </a>
-//                       </div>
-//                     </PopoverContent>
-//                   </Popover>
-//                 </div>
-//               </Card>
-//               <Card className="bg-card border-border p-6">
-//                 <h2 className="text-lg font-bold text-foreground mb-4">
-//                   Quick Links
-//                 </h2>
-//                 <div className="space-y-2">
-//                   <Link href="/research">
-//                     <Button
-//                       variant="ghost"
-//                       className="w-full justify-start text-foreground hover:bg-background"
-//                     >
-//                       Browse Research Groups
-//                     </Button>
-//                   </Link>
-//                   <Link href="/training">
-//                     <Button
-//                       variant="ghost"
-//                       className="w-full justify-start text-foreground hover:bg-background"
-//                     >
-//                       Explore Courses
-//                     </Button>
-//                   </Link>
-//                   <Link href="/blog">
-//                     <Button
-//                       variant="ghost"
-//                       className="w-full justify-start text-foreground hover:bg-background"
-//                     >
-//                       Read Blog Posts
-//                     </Button>
-//                   </Link>
-//                 </div>
-//               </Card>
-//             </div>
-//           </div>
-//         </div>
-//       </main>
-//     </div>
-//   );
-// }
-
-
-
 import { redirect } from "next/navigation";
-import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
@@ -396,12 +119,12 @@ export default async function DashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background dark:bg-background flex flex-col">
-      <main className="flex-1 py-12 px-4 md:py-16">
-        <div className="max-w-7xl mx-auto">
+    <div className="">
+      <main className="flex-1 py-5">
+        <div className="">
           
           {/* Top Banner / Header Segment */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8 bg-card border border-border p-6 rounded-2xl shadow-sm">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8 dark:bg-card bg-zinc-50 border border-border p-6 rounded-2xl shadow-sm">
             <div className="flex items-center gap-4">
               <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-cyan-500 bg-muted">
                 <Image
@@ -412,7 +135,7 @@ export default async function DashboardPage() {
                 />
               </div>
               <div>
-                <h1 className="text-3xl font-bold text-foreground mb-1">
+                <h1 className="text-2xl font-bold dark:text-foreground text-black mb-1">
                   Welcome, {safeMemberData.fullName}
                 </h1>
                 <p className="text-sm text-muted-foreground">
@@ -421,7 +144,7 @@ export default async function DashboardPage() {
               </div>
             </div>
             <form action={logoutUser}>
-              <Button variant="outline" type="submit" className="flex items-center gap-2 hover:bg-destructive/10 hover:text-destructive">
+              <Button variant="outline" type="submit" className="text-sm md:text-base flex items-center gap-2 dark:bg-black bg-zinc-600 text-white dark:text-zinc-200 hover:bg-destructive/10 hover:text-destructive">
                 <LogOut className="w-4 h-4" />
                 Logout
               </Button>
@@ -429,50 +152,55 @@ export default async function DashboardPage() {
           </div>
 
           {/* Quick High-Level Stats Panel */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            <Card className="bg-card border-border p-5 flex items-center gap-4">
-              <div className="p-3 bg-cyan-500/10 rounded-xl text-cyan-500">
-                <Award className="w-6 h-6" />
-              </div>
-              <div>
-                <p className="text-xs text-muted-foreground uppercase tracking-wider">Status</p>
-                <p className="text-lg font-bold text-foreground capitalize">{safeMemberData.status}</p>
-              </div>
-            </Card>
+       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+  {/* Card 1: Status */}
+  <Card className="bg-white dark:bg-zinc-900/50 border-zinc-200 dark:border-zinc-800 p-5 flex items-center gap-4 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 group">
+    <div className="p-3 bg-cyan-50 dark:bg-cyan-950/40 rounded-xl text-cyan-600 dark:text-cyan-400 group-hover:scale-105 transition-transform">
+      <Award className="w-5 h-5" />
+    </div>
+    <div className="min-w-0">
+      <p className="text-[10px] font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mb-0.5">Status</p>
+      <p className="text-base font-bold text-zinc-800 dark:text-zinc-100 capitalize truncate">{safeMemberData.status}</p>
+    </div>
+  </Card>
 
-            <Card className="bg-card border-border p-5 flex items-center gap-4">
-              <div className="p-3 bg-cyan-500/10 rounded-xl text-cyan-500">
-                <BookOpen className="w-6 h-6" />
-              </div>
-              <div>
-                <p className="text-xs text-muted-foreground uppercase tracking-wider">Courses</p>
-                <p className="text-lg font-bold text-foreground">
-                  {safeMemberData.courses.length} {safeMemberData.courses.length === 1 ? 'Enrolled' : 'Enrolled'}
-                </p>
-              </div>
-            </Card>
+  {/* Card 2: Courses */}
+  <Card className="bg-white dark:bg-zinc-900/50 border-zinc-200 dark:border-zinc-800 p-5 flex items-center gap-4 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 group">
+    <div className="p-3 bg-cyan-50 dark:bg-cyan-950/40 rounded-xl text-cyan-600 dark:text-cyan-400 group-hover:scale-105 transition-transform">
+      <BookOpen className="w-5 h-5" />
+    </div>
+    <div className="min-w-0">
+      <p className="text-[10px] font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mb-0.5">Courses</p>
+      <p className="text-base font-bold text-zinc-800 dark:text-zinc-100 truncate">
+        {safeMemberData.courses.length} <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400 ml-0.5">{safeMemberData.courses.length === 1 ? 'Course' : 'Courses'}</span>
+      </p>
+    </div>
+  </Card>
 
-            <Card className="bg-card border-border p-5 flex items-center gap-4">
-              <div className="p-3 bg-cyan-500/10 rounded-xl text-cyan-500">
-                <Activity className="w-6 h-6" />
-              </div>
-              <div>
-                <p className="text-xs text-muted-foreground uppercase tracking-wider">Research Role</p>
-                <p className="text-lg font-bold text-foreground">{safeMemberData.groupRole}</p>
-              </div>
-            </Card>
+  {/* Card 3: Research Role */}
+  <Card className="bg-white dark:bg-zinc-900/50 border-zinc-200 dark:border-zinc-800 p-5 flex items-center gap-4 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 group">
+    <div className="p-3 bg-cyan-50 dark:bg-cyan-950/40 rounded-xl text-cyan-600 dark:text-cyan-400 group-hover:scale-105 transition-transform">
+      <Activity className="w-5 h-5" />
+    </div>
+    <div className="min-w-0">
+      <p className="text-[10px] font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mb-0.5">Research Role</p>
+      <p className="text-base font-bold text-zinc-800 dark:text-zinc-100 truncate">{safeMemberData.groupRole}</p>
+    </div>
+  </Card>
 
-            <Card className="bg-card border-border p-5 flex items-center gap-4">
-              <div className="p-3 bg-cyan-500/10 rounded-xl text-cyan-500">
-                <Layers className="w-6 h-6" />
-              </div>
-              <div>
-                <p className="text-xs text-muted-foreground uppercase tracking-wider">Fields</p>
-                <p className="text-lg font-bold text-foreground truncate max-w-[180px]">{safeMemberData.fields}</p>
-              </div>
-            </Card>
-          </div>
-
+  {/* Card 4: Fields */}
+  <Card className="bg-white dark:bg-zinc-900/50 border-zinc-200 dark:border-zinc-800 p-5 flex items-center gap-4 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 group">
+    <div className="p-3 bg-cyan-50 dark:bg-cyan-950/40 rounded-xl text-cyan-600 dark:text-cyan-400 group-hover:scale-105 transition-transform">
+      <Layers className="w-5 h-5" />
+    </div>
+    <div className="min-w-0 w-full">
+      <p className="text-[10px] font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mb-0.5">Fields</p>
+      <p className="text-base font-bold text-zinc-800 dark:text-zinc-100 truncate" title={safeMemberData.fields}>
+        {safeMemberData.fields}
+      </p>
+    </div>
+  </Card>
+</div>
           {/* Main Content Layout Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
@@ -697,28 +425,6 @@ export default async function DashboardPage() {
                   {!safeMemberData.linkedin && !safeMemberData.facebook && !safeMemberData.researchGate && !safeMemberData.googleScholar && !safeMemberData.orcidId && (
                     <p className="text-sm text-muted-foreground italic text-center py-2">No external profile nodes connected.</p>
                   )}
-                </div>
-              </Card>
-
-              {/* Quick Route Context Links */}
-              <Card className="bg-card border-border p-6">
-                <h2 className="text-lg font-bold text-foreground mb-4">Quick Links</h2>
-                <div className="space-y-2">
-                  <Link href="/research" passHref>
-                    <Button variant="ghost" className="w-full justify-start text-foreground hover:bg-background">
-                      Browse Research Groups
-                    </Button>
-                  </Link>
-                  <Link href="/training" passHref>
-                    <Button variant="ghost" className="w-full justify-start text-foreground hover:bg-background">
-                      Explore Courses
-                    </Button>
-                  </Link>
-                  <Link href="/blog" passHref>
-                    <Button variant="ghost" className="w-full justify-start text-foreground hover:bg-background">
-                      Read Blog Posts
-                    </Button>
-                  </Link>
                 </div>
               </Card>
             </div>
