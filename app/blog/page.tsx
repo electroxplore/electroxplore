@@ -1,6 +1,5 @@
 import { getBlogPosts } from "@/app/actions/blog"
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
+
 import { Card } from "@/components/ui/card"
 import Link from "next/link"
 import { Calendar, User } from "lucide-react"
@@ -10,8 +9,8 @@ export default async function BlogPage() {
   const posts = await getBlogPosts()
 
   return (
-    <div className="">
-      <Navbar />
+    <>
+     
 
       <main className="flex-1 py-10 md:py-16">
         <div className="">
@@ -71,7 +70,7 @@ export default async function BlogPage() {
         </div>
       </main>
 
-      <Footer />
-    </div>
+      
+    </>
   )
 }
