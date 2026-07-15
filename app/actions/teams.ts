@@ -11,7 +11,7 @@ export interface Member {
   status: string
   dateJoined: string
   imageUrl?: string
-  group: string
+  // group: string
   groupRole: string
   specialRole: string
   phoneNumber: string
@@ -35,20 +35,20 @@ export async function getMembers(): Promise<Member[]> {
     return rows
       .map((row: any) => ({
         memberId: row[0] || "",
-        email: row[1] || "",
-        fullName: row[2] || "",
-        organization: row[3] || "",
-        academicLevel: row[4] || "",
-        studentId: row[5] || "",
-        fields: row[6] || "",
-        status: row[7] || "",
-        dateJoined: row[8] || "",
-        imageUrl: row[9] || "",
-        group: row[10] || "",
-        groupRole: row[11] || "",
-        specialRole: row[12] || "",
-        phoneNumber: row[13] || "",
-        linkedin: row[14] || "",
+        email: row[2] || "",
+        fullName: row[1] || "",
+        organization: row[5] || "",
+        academicLevel: row[6] || "",
+        studentId: row[7] || "",
+        fields: row[19] || "",
+        status: row[8] || "",
+        dateJoined: row[9] || "",
+        imageUrl: row[4] || "",
+        // group: row[10] || "",
+        groupRole: row[10] || "",
+        specialRole: row[11] || "",
+        phoneNumber: row[3] || "",
+        linkedin: row[12] || "",
         googleScholar: row[15] || "",
       }))
       .filter((member) => member.memberId) // Filters out empty rows
