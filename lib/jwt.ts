@@ -167,9 +167,9 @@ const secret = new TextEncoder().encode(
 )
 
 export interface JWTPayload {
-  email: string
   memberId: string
   name: string
+  email: string
   field: string
   iat?: number
   exp?: number

@@ -4,8 +4,6 @@ import { jwtVerify } from "jose"
 const secret = new TextEncoder().encode(
   process.env.JWT_SECRET || "default-secret-change-this-in-production"
 )
-
-// 1. Specify exactly which sub-paths require authentication
 const protectedRoutes = ["/dashboard", "/member/dashboard"]
 const authRoutes = ["/login", "/register"]
 
@@ -43,8 +41,6 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  // We use a negative lookahead to exclude the base /member page from being intercepted if needed,
-  // but simpler is to just be explicit about what we DO want to match.
   matcher: [
     "/dashboard/:path*", 
     "/member/dashboard/:path*", 

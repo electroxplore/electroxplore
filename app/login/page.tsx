@@ -8,11 +8,7 @@ import { z } from "zod"
 import Link from "next/link"
 import { toast } from "sonner"
 import { ShieldCheck, Mail, ArrowRight, Loader2 } from "lucide-react"
-
-// Custom Field Primitives
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field"
-
-// Core UI Components
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"

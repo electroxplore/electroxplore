@@ -26,7 +26,7 @@ export async function requestLoginOtp(data: LoginFormData) {
 
     const [, ...rows] = members
     const member = rows.find(
-      (row: any) => row[1] === validated.email && row[0] === validated.memberId
+      (row: any) => row[2] === validated.email && row[0] === validated.memberId
     )
 
     if (!member) {

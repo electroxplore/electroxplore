@@ -16,7 +16,6 @@ interface OtpChallenge {
   email: string
   codeHash: string
   attempts: number
-  // Arbitrary payload carried through verification (member data / registration data)
   payload: Record<string, unknown>
 }
 
