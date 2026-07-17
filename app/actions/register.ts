@@ -10,7 +10,7 @@ const registerSchema = z.object({
   fullName: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Invalid email address"),
   organization: z.string().min(2, "Organization is required"),
-  academicLevel: z.enum(["UG1", "UG2", "UG3", "UG4", "PG", "Faculty"]),
+  academicLevel: z.enum(["UG1", "UG2", "UG3", "UG4","Graduate", "PG", "Faculty"]),
   studentId: z.string().min(3, "Student ID is required"),
   fields: z.array(z.string()).min(1, "Select at least one field"),
   agreeTerms: z.boolean().refine((val) => val === true, "You must agree to terms"),
@@ -81,19 +81,30 @@ export async function verifyRegisterOtp(code: string) {
     await appendToSheet("Members", [
       [
         memberId,
-        email,
         fullName,
+        email,
+        "",
+        "",
         organization,
         academicLevel,
         studentId,
-        fields.join(", "),
-        "active",
+        "pending",
         timestamp,
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        fields.join(", "),
       ],
     ])
 
     await appendToSheet("Registrations", [
-      [memberId, email, fullName, timestamp, "verified"],
+      [memberId, email, fullName, timestamp, "pending"],
     ])
 
     // Sign the new member in immediately.

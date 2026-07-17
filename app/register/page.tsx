@@ -1,5 +1,4 @@
 "use client"
-
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { useForm, Controller } from "react-hook-form"
@@ -34,21 +33,18 @@ import {
 // Custom Layout / Actions
 import { requestRegisterOtp, verifyRegisterOtp, RegisterFormData } from "@/app/actions/register"
 import OtpVerification from "@/components/otp-verification"
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
 
 const registerSchema = z.object({
   fullName: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Invalid email address"),
   organization: z.string().min(2, "Organization is required"),
-  academicLevel: z.enum(["UG1", "UG2", "UG3", "UG4", "PG", "Faculty"]),
+  academicLevel: z.enum(["UG1", "UG2", "UG3", "UG4","Graduate", "PG", "Faculty"]),
   studentId: z.string().min(3, "Student ID is required"),
   fields: z.array(z.string()).min(1, "Select at least one field"),
   agreeTerms: z.boolean().refine((val) => val === true, "You must agree to terms"),
 })
 
-const FIELDS = ["EEE", "CSE", "ETE", "CCE", "ME", "CE", "Other"]
-
+const FIELDS = ["Robotics", "Embedded Systems", "IoT", "Signal Processing", "Renewable Energy", "AI/ML", "Other"]
 export default function RegisterPage() {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
@@ -102,12 +98,11 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background dark:bg-background flex flex-col">
-    
-      <main className="flex-1 py-16 px-4 md:py-24">
+    <div className="min-h-screen bg-white dark:bg-background flex flex-col">
+      <main className="flex-1 py-10 md:py-16">
         <div className="max-w-2xl mx-auto">
           <div className="mb-8">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-3 text-balance">
+            <h1 className="text-4xl md:text-5xl font-bold text-black dark:text-foreground  mb-3 text-balance">
               Join ElectroXplore
             </h1>
             <p className="text-lg text-muted-foreground">
@@ -115,7 +110,7 @@ export default function RegisterPage() {
             </p>
           </div>
 
-          <Card className="bg-card border-border p-8">
+          <Card className="bg-card rounded-4xl border-border p-8">
             {step === "form" ? (
               <form onSubmit={handleSubmit(onSubmit)}>
                 <FieldGroup>
@@ -188,6 +183,7 @@ export default function RegisterPage() {
                                 <SelectItem value="UG2">2nd Year Undergraduate</SelectItem>
                                 <SelectItem value="UG3">3rd Year Undergraduate</SelectItem>
                                 <SelectItem value="UG4">4th Year Undergraduate</SelectItem>
+                                <SelectItem value="Graduate">Graduate</SelectItem>
                                 <SelectItem value="PG">Postgraduate</SelectItem>
                                 <SelectItem value="Faculty">Faculty</SelectItem>
                               </SelectContent>
@@ -316,8 +312,6 @@ export default function RegisterPage() {
           </Card>
         </div>
       </main>
-
-      <Footer />
     </div>
   )
 }
