@@ -881,7 +881,7 @@ export default async function DashboardPage() {
                     <p className="text-[9px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">Academic Context</p>
                     <p className="text-zinc-700 dark:text-zinc-300 font-semibold">
                       {safeMemberData.academicLevel} 
-                      {safeMemberData.studentId !== "N/A" && ` • ID: ${safeMemberData.studentId}`}
+                      {safeMemberData.studentId !== "N/A" && ` • Academic/Org ID: ${safeMemberData.studentId}`}
                     </p>
                   </div>
                 </div>

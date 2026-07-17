@@ -75,8 +75,21 @@ export async function verifyRegisterOtp(code: string) {
       return { success: false, error: "Email already registered" }
     }
 
-    const memberId = `EXP-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
-    const timestamp = new Date().toISOString()
+    // const memberId = `EXP-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+    const memberId = `EXP-${Math.floor(100000 + Math.random() * 900000)}`;
+
+    // const timestamp = new Date().toISOString()
+const formattedTimestamp = new Intl.DateTimeFormat('en-GB', {
+  day: 'numeric',
+  month: 'short',
+  year: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit',
+  hour12: true
+}).format(new Date()).replace(' at ', ', ');
+
+// Assigning it directly to your field
+const timestamp = formattedTimestamp;
 
     await appendToSheet("Members", [
       [
