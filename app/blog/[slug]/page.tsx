@@ -32,7 +32,6 @@ export default async function BlogPostPage({
     <>
       <main className="flex-1">
         <div className="pt-10">
-          {/* Back Link */}
           <Link
             href="/blog"
             className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 mb-8 transition-colors"
@@ -101,15 +100,12 @@ export default async function BlogPostPage({
     [&_ol]:list-decimal [&_ol]:ml-5 [&_ol]:space-y-2
     [&_ul]:list-disc [&_ul]:ml-5 [&_ul]:space-y-2
     [&_a]:text-primary [&_a]:underline [&_a]:font-medium hover:[&_a]:text-primary/80
-  "
-                >
+  "             >
                   <ReactMarkdown>{post.content}</ReactMarkdown>
                 </div>
               </div>
             </article>
           </Card>
-
-          {/* Author Bio */}
           <Card className="bg-white dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 p-6 mt-8 rounded-xl">
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left">
               <div className="w-14 h-14 shrink-0 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold text-xl shadow-inner">

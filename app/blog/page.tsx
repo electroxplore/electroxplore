@@ -1,20 +1,15 @@
 import { getBlogPosts } from "@/app/actions/blog"
-
 import { Card } from "@/components/ui/card"
 import Link from "next/link"
 import { Calendar, User } from "lucide-react"
 import Image from "next/image"
-
 export default async function BlogPage() {
   const posts = await getBlogPosts()
 
   return (
     <>
-     
-
       <main className="flex-1 py-10 md:py-16">
         <div className="">
-          {/* Header */}
           <div className="mb-16 text-center md:text-left">
             <h1 className="text-4xl md:text-6xl font-black tracking-tight text-zinc-900 dark:text-white mb-4 text-balance">
               Engineering Insights <span className="text-cyan-500 dark:text-cyan-400">&amp; Updates</span>
@@ -24,13 +19,12 @@ export default async function BlogPage() {
             </p>
           </div>
 
-          {/* Blog Posts */}
           {posts.length === 0 ? (
             <Card className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-16 text-center shadow-sm">
               <p className="text-zinc-500 dark:text-zinc-400 text-lg font-medium">No articles published yet.</p>
             </Card>
           ) : (
-            <div className="grid grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 grid-cols-1 gap-6">
               {posts.map((post) => (
                 <Link key={post.slug} href={`/blog/${post.slug}`} className="group block">
                   <Card className="bg-white dark:bg-zinc-900/50 backdrop-blur-2xl border border-zinc-200 dark:border-zinc-800/80 hover:border-cyan-500/60 dark:hover:border-cyan-400/40 transition-all duration-300 shadow-sm group-hover:shadow-md overflow-hidden p-0">

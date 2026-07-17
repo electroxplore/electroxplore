@@ -27,7 +27,7 @@ export default async function MembersPage() {
             The driving force behind our vision and organizational direction.
           </p>
           
-          <div className="grid md:grid-cols-4 grid-cols-2 md:gap-8 gap-4">
+          <div className="grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 md:gap-8 gap-4">
             {founders.map((founder) => (
               <FounderCard key={founder.memberId} member={founder} />
             ))}
