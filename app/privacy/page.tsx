@@ -1,12 +1,12 @@
-import type { Metadata } from "next"
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
-import { Separator } from "@/components/ui/separator"
+import Footer from "@/components/footer";
+import { Separator } from "@/components/ui/separator";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Privacy Policy — ElectroXplore",
-  description: "Privacy Policy for ElectroXplore research and training platform.",
-}
+  description:
+    "Privacy Policy for ElectroXplore research and training platform.",
+};
 
 const sections = [
   {
@@ -53,23 +53,26 @@ const sections = [
     title: "11. Contact Us",
     body: `If you have questions or concerns about this Privacy Policy or our data practices, please contact us: Email: hello@electroxplore.org | Address: ElectroXplore, Dhaka, Bangladesh | Phone: +880 1700-000000`,
   },
-]
+];
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-background">
-  
-
+    <div className="min-h-screen bg-background relative">
       {/* Hero */}
       <section className="pt-32 pb-16 bg-card border-b border-border">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-primary text-xs uppercase tracking-widest font-semibold mb-3">Legal</p>
+          <p className="text-primary text-xs uppercase tracking-widest font-semibold mb-3">
+            Legal
+          </p>
           <h1 className="font-heading font-black text-4xl sm:text-5xl text-foreground text-balance">
-            Privacy<br />
+            Privacy
+            <br />
             <span className="text-primary">Policy</span>
           </h1>
           <p className="text-muted-foreground mt-4 text-base leading-relaxed max-w-2xl">
-            We take your privacy seriously. This policy explains what data we collect, how we use it, and your rights as a member of ElectroXplore.
+            We take your privacy seriously. This policy explains what data we
+            collect, how we use it, and your rights as a member of
+            ElectroXplore.
           </p>
           <p className="text-muted-foreground text-xs mt-4 uppercase tracking-wider">
             Last updated: June 2026
@@ -82,9 +85,15 @@ export default function PrivacyPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           {sections.map((sec, i) => (
             <div key={i} className="space-y-3">
-              <h2 className="font-heading font-bold text-foreground text-xl">{sec.title}</h2>
-              <p className="text-muted-foreground leading-relaxed text-base">{sec.body}</p>
-              {i < sections.length - 1 && <Separator className="bg-border mt-6" />}
+              <h2 className="font-heading font-bold text-foreground text-xl">
+                {sec.title}
+              </h2>
+              <p className="text-muted-foreground leading-relaxed text-base">
+                {sec.body}
+              </p>
+              {i < sections.length - 1 && (
+                <Separator className="bg-border mt-6" />
+              )}
             </div>
           ))}
         </div>
@@ -92,5 +101,5 @@ export default function PrivacyPage() {
 
       <Footer />
     </div>
-  )
+  );
 }

@@ -1,12 +1,12 @@
-import type { Metadata } from "next"
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
-import { Separator } from "@/components/ui/separator"
+import Footer from "@/components/footer";
+import { Separator } from "@/components/ui/separator";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions — ElectroXplore",
-  description: "Terms and Conditions for using ElectroXplore research and training services.",
-}
+  description:
+    "Terms and Conditions for using ElectroXplore research and training services.",
+};
 
 const sections = [
   {
@@ -49,23 +49,24 @@ const sections = [
     title: "10. Contact",
     body: `For questions about these Terms and Conditions, please contact us at: hello@electroxplore.org or write to us at ElectroXplore, Dhaka, Bangladesh.`,
   },
-]
+];
 
 export default function TermsPage() {
   return (
-    <div className="min-h-screen bg-background">
-   
-
+    <div className="min-h-screen bg-background relative">
       {/* Hero */}
       <section className="pt-32 pb-16 bg-card border-b border-border">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-primary text-xs uppercase tracking-widest font-semibold mb-3">Legal</p>
+          <p className="text-primary text-xs uppercase tracking-widest font-semibold mb-3">
+            Legal
+          </p>
           <h1 className="font-heading font-black text-4xl sm:text-5xl text-foreground text-balance">
             Terms &<br />
             <span className="text-primary">Conditions</span>
           </h1>
           <p className="text-muted-foreground mt-4 text-base leading-relaxed max-w-2xl">
-            Please read these terms carefully before using ElectroXplore. They govern your use of our research and training services.
+            Please read these terms carefully before using ElectroXplore. They
+            govern your use of our research and training services.
           </p>
           <p className="text-muted-foreground text-xs mt-4 uppercase tracking-wider">
             Last updated: June 2026
@@ -78,9 +79,15 @@ export default function TermsPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           {sections.map((sec, i) => (
             <div key={i} className="space-y-3">
-              <h2 className="font-heading font-bold text-foreground text-xl">{sec.title}</h2>
-              <p className="text-muted-foreground leading-relaxed text-base">{sec.body}</p>
-              {i < sections.length - 1 && <Separator className="bg-border mt-6" />}
+              <h2 className="font-heading font-bold text-foreground text-xl">
+                {sec.title}
+              </h2>
+              <p className="text-muted-foreground leading-relaxed text-base">
+                {sec.body}
+              </p>
+              {i < sections.length - 1 && (
+                <Separator className="bg-border mt-6" />
+              )}
             </div>
           ))}
         </div>
@@ -88,5 +95,5 @@ export default function TermsPage() {
 
       <Footer />
     </div>
-  )
+  );
 }
