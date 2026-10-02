@@ -43,12 +43,12 @@ const specs = [
 
 export default function WhySection() {
   return (
-    <section className="py-24 bg-white dark:bg-black">
+    <section className="py-24  relative">
   
       <div className="">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Spec card */}
-          <div className="relative">
+          <div className="">
             <div className="bg-white dark:bg-background border border-zinc-200 dark:border-border rounded-2xl p-8 space-y-6 shadow-xl shadow-zinc-200/40 dark:shadow-none">
               <Badge className="bg-primary/10 text-primary border border-primary/30 text-xs uppercase tracking-widest px-3 py-1">
                 What We Offer
@@ -90,7 +90,7 @@ export default function WhySection() {
           {/* Right: Features grid */}
           <div className="space-y-4">
             {features.map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="flex gap-4 p-4 rounded-xl hover:bg-white dark:hover:bg-background transition-colors hover:shadow-md hover:shadow-zinc-200/30 dark:hover:shadow-none group">
+              <div key={title} className="flex gap-4 p-4 rounded-xl hover:bg-white dark:hover:bg-background dark:bg-cyan-950/20 backdrop-blur-3xl transition-colors hover:shadow-md hover:shadow-zinc-200/30 dark:hover:shadow-none group">
                 <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors mt-0.5">
                   <Icon className="w-5 h-5 text-primary" />
                 </div>

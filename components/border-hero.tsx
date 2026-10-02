@@ -1,17 +1,15 @@
 "use client";
-import React from "react";
+import { cn } from "@/lib/utils";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 
-export default function HoverBorderGradientDemo() {
+export default function BorderHero({ className }: { className?: string }) {
   return (
-    <div className="m-40 flex justify-center text-center">
+    <div className={cn("flex justify-center text-center", className)}>
       <HoverBorderGradient
         containerClassName="rounded-full"
         as="button"
         className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2"
       >
-        <AceternityLogo />
-        <span>Aceternity UI</span>
       </HoverBorderGradient>
     </div>
   );

@@ -15,7 +15,7 @@ const values = [
 
 export default function MissionVisionSection() {
   return (
-    <section id="mission" className="py-24 bg-white dark:bg-background relative overflow-hidden">
+    <section id="mission" className="py-24 relative overflow-hidden">
       {/* Subtle accent line */}
       <div>
         {/* Header */}
@@ -30,7 +30,7 @@ export default function MissionVisionSection() {
         {/* Mission / Vision cards */}
         <div className="grid md:grid-cols-2 gap-6 mb-12">
           {/* Mission */}
-          <div className="group relative bg-white dark:bg-card border border-zinc-200 dark:border-border rounded-2xl p-8 overflow-hidden hover:border-primary/40 transition-colors shadow-lg shadow-zinc-100/50 dark:shadow-none">
+          <div className="group relative bg-white dark:bg-transparent backdrop-blur-xs border border-zinc-200 dark:border-zinc-900 rounded-2xl p-8 overflow-hidden hover:border-primary/40 transition-colors shadow-lg shadow-zinc-100/50 dark:shadow-none">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
             <div className="relative">
               <div className="flex items-center gap-4 mb-6">
@@ -58,7 +58,7 @@ export default function MissionVisionSection() {
           </div>
 
           {/* Vision */}
-          <div className="group relative bg-white dark:bg-card border border-zinc-200 dark:border-border rounded-2xl p-8 overflow-hidden hover:border-primary/40 transition-colors shadow-lg shadow-zinc-100/50 dark:shadow-none">
+          <div className="group relative bg-white dark:bg-transparent backdrop-blur-xs border border-zinc-200 dark:border-zinc-900 rounded-2xl p-8 overflow-hidden hover:border-primary/40 transition-colors shadow-lg shadow-zinc-100/50 dark:shadow-none">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
             <div className="relative">
               <div className="flex items-center gap-4 mb-6">

@@ -18,7 +18,7 @@ const fields = [
 
 export default function FieldsSection() {
   return (
-    <section className="py-16 bg-white dark:bg-background border-y border-zinc-200 dark:border-border overflow-hidden">
+    <section className="py-16 bg-white dark:bg-background border-y border-zinc-200 relative dark:border-border overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <p className="text-center text-zinc-500 dark:text-muted-foreground text-xs uppercase tracking-widest mb-10">
           The engineering fields we work in — all in one place

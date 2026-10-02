@@ -44,7 +44,7 @@ export default function ResearchSection() {
   const [expanded, setExpanded] = useState<string | null>("01")
 
   return (
-    <section id="research" className="py-24 bg-white dark:bg-background relative overflow-hidden">
+    <section id="research" className="py-20 rounded-3xl border-border bg-white dark:bg-transparent backdrop-blur-xs relative overflow-hidden">
       <div className="absolute left-0 top-0 w-px h-full bg-gradient-to-b from-transparent via-primary/15 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

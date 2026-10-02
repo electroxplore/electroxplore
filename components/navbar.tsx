@@ -1,82 +1,86 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Zap, Home, FlaskConical, BookOpen, Users, Info, Moon, Sun } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import Image from "next/image"
+import { useState, useEffect } from "react";
+import {
+  Zap,
+  Home,
+  FlaskConical,
+  BookOpen,
+  Users,
+  Info,
+  Moon,
+  Sun,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import Image from "next/image";
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Team", href: "/team" },
   { label: "Blog", href: "/blog" },
   { label: "News", href: "/news" },
-
- 
-]
+];
 
 const mobileNavLinks = [
   { label: "Home", href: "/", icon: Home },
-  { label: "Team", href: "/team",icon: Users },
+  { label: "Team", href: "/team", icon: Users },
   { label: "Blog", href: "/blog", icon: FlaskConical },
   { label: "News", href: "/news", icon: BookOpen },
-
-]
+];
 
 export default function Navbar({ user }: any) {
-  const [activeHash, setActiveHash] = useState("#home")
-  const [theme, setThemeState] = useState<"light" | "dark">("dark")
-  const [mounted, setMounted] = useState(false)
-  
+  const [activeHash, setActiveHash] = useState("#home");
+  const [theme, setThemeState] = useState<"light" | "dark">("dark");
+  const [mounted, setMounted] = useState(false);
+
   const toggleTheme = () => {
-    const html = document.documentElement
-    const newTheme = theme === "light" ? "dark" : "light"
-    setThemeState(newTheme)
-    localStorage.setItem("theme", newTheme)
+    const html = document.documentElement;
+    const newTheme = theme === "light" ? "dark" : "light";
+    setThemeState(newTheme);
+    localStorage.setItem("theme", newTheme);
     if (newTheme === "dark") {
-      html.classList.add("dark")
+      html.classList.add("dark");
     } else {
-      html.classList.remove("dark")
+      html.classList.remove("dark");
     }
-  }
+  };
 
   useEffect(() => {
     // Initialize theme from localStorage
-    const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
-    const initialTheme = savedTheme || (prefersDark ? "dark" : "light")
-    setThemeState(initialTheme)
-    setMounted(true)
+    const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
+    const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
+    setThemeState(initialTheme);
+    setMounted(true);
 
-    const onHashChange = () => setActiveHash(window.location.hash || "#home")
-    window.addEventListener("hashchange", onHashChange)
-    return () => window.removeEventListener("hashchange", onHashChange)
-  }, [])
+    const onHashChange = () => setActiveHash(window.location.hash || "#home");
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, []);
 
   return (
     <>
-      {/* Desktop / Tablet top navbar */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-background/80 backdrop-blur-md border-b border-border">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-transparent backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          {/* Logo */}
-         <Link href="/">
-  <>
-    <Image
-      src="/logo.png"
-      alt="ElectroXplore Logo"
-      width={140}
-      height={140}
-      className="size-35 hidden dark:block"
-    />
-    <Image
-      src="/logo-w.png"
-      alt="ElectroXplore Logo"
-      width={140}
-      height={140}
-      className="size-35 block dark:hidden"
-    />
-  </>
-</Link>
-
+          <Link href="/">
+              <Image
+                src="/logo.png"
+                alt="ElectroXplore Logo"
+                width={140}
+                height={140}
+                className="size-35 hidden dark:block"
+              />
+              <Image
+                src="/logo-w.png"
+                alt="ElectroXplore Logo"
+                width={140}
+                height={140}
+                className="size-35 block dark:hidden"
+              />
+      
+          </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
@@ -93,44 +97,48 @@ export default function Navbar({ user }: any) {
 
           {/* CTA */}
           <div className="flex items-center gap-3">
-            <Button
+            {/* <Button
               onClick={toggleTheme}
               variant="ghost"
               size="icon"
               className="text-muted-foreground dark:hover:text-foreground hover:text-black hover:bg-transparent"
             >
-              {theme === "light" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
-            </Button>
+              {theme === "light" ? (
+                <Moon className="w-4 h-4" />
+              ) : (
+                <Sun className="w-4 h-4" />
+              )}
+            </Button> */}
 
-
-      {user ? (
-        <Link href="/member/dashboard" className="dark:text-foreground text-black md:text-base text-sm">{user.name}</Link>
-      ) : (
-        <>
-         <Link href="/login">
-              <Button
-                variant="ghost"
-                size="sm"
-                className="text-muted-foreground hover:text-foreground text-xs uppercase tracking-wider"
+            {user ? (
+              <Link
+                href="/member/dashboard"
+                className="dark:text-foreground text-black md:text-base text-sm"
               >
-                Sign In
-              </Button>
-            </Link>
-           <Link href="/register">
-              <Button
-                size="sm"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 text-xs uppercase tracking-wider font-bold px-5"
-              >
-                Join Now
-              </Button>
-            </Link>
-        </>
-      )}
-
-       
-        
+                {user.name}
+              </Link>
+            ) : (
+              <>
+                <Link href="/login">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="text-muted-foreground hover:text-foreground text-xs uppercase tracking-wider"
+                  >
+                    Sign In
+                  </Button>
+                </Link>
+                <Link href="/register">
+                  <Button
+                    size="sm"
+                    className="bg-primary text-primary-foreground hover:bg-primary/90 text-xs uppercase tracking-wider font-bold px-5"
+                  >
+                    Join Now
+                  </Button>
+                </Link>
+              </>
+            )}
           </div>
-
         </div>
       </header>
 
@@ -141,7 +149,7 @@ export default function Navbar({ user }: any) {
       >
         <div className="flex items-center justify-around px-2 py-1 safe-bottom">
           {mobileNavLinks.map(({ label, href, icon: Icon }) => {
-            const isActive = activeHash === href
+            const isActive = activeHash === href;
             return (
               <Link
                 key={label}
@@ -153,14 +161,14 @@ export default function Navbar({ user }: any) {
               >
                 <div
                   className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
-                    isActive
-                      ? "bg-primary/15"
-                      : "group-hover:bg-surface"
+                    isActive ? "bg-primary/15" : "group-hover:bg-surface"
                   }`}
                 >
                   <Icon
                     className={`w-5 h-5 transition-colors ${
-                      isActive ? "text-primary" : "text-muted-foreground group-hover:text-foreground"
+                      isActive
+                        ? "text-primary"
+                        : "text-muted-foreground group-hover:text-foreground"
                     }`}
                   />
                 </div>
@@ -172,12 +180,10 @@ export default function Navbar({ user }: any) {
                   {label}
                 </span>
               </Link>
-            )
+            );
           })}
         </div>
       </nav>
     </>
-  )
+  );
 }
-
-

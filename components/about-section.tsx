@@ -17,7 +17,7 @@ const pillars = [
 
 export default function AboutSection() {
   return (
-    <section id="about" className="py-24 bg-white dark:bg-transparent">
+    <section id="about" className="py-24 bg-white dark:bg-transparent relative">
       {/* Subtle right accent */}
 
       <div>

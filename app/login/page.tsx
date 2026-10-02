@@ -1,32 +1,36 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { z } from "zod"
-import Link from "next/link"
-import { toast } from "sonner"
-import { ShieldCheck, Mail, ArrowRight, Loader2 } from "lucide-react"
-import { Field, FieldGroup, FieldLabel } from "@/components/ui/field"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button";
+import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ArrowRight, Loader2, Mail } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
 
 // Custom Layout / Actions
-import { requestLoginOtp, verifyLoginOtp, LoginFormData } from "@/app/actions/login"
-import OtpVerification from "@/components/otp-verification"
+import {
+  LoginFormData,
+  requestLoginOtp,
+  verifyLoginOtp,
+} from "@/app/actions/login";
+import OtpVerification from "@/components/otp-verification";
+import { MagicCard } from "@/components/ui/magic-card";
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email address"),
   memberId: z.string().min(3, "Member ID is required"),
-})
+});
 
 export default function LoginPage() {
-  const router = useRouter()
-  const [isLoading, setIsLoading] = useState(false)
-  const [step, setStep] = useState<"credentials" | "otp">("credentials")
-  const [pendingData, setPendingData] = useState<LoginFormData | null>(null)
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const [step, setStep] = useState<"credentials" | "otp">("credentials");
+  const [pendingData, setPendingData] = useState<LoginFormData | null>(null);
 
   const {
     register,
@@ -38,38 +42,37 @@ export default function LoginPage() {
       email: "",
       memberId: "",
     },
-  })
+  });
 
   const onSubmit = async (data: LoginFormData) => {
-    setIsLoading(true)
+    setIsLoading(true);
     try {
-      const result = await requestLoginOtp(data)
+      const result = await requestLoginOtp(data);
       if (result.success) {
-        setPendingData(data)
-        setStep("otp")
+        setPendingData(data);
+        setStep("otp");
         toast.success("Code sent", {
           description: `We emailed a verification code to ${data.email}.`,
-        })
+        });
       } else {
         toast.error("Login failed", {
-          description: result.error || "Please verify your credentials and try again.",
-        })
+          description:
+            result.error || "Please verify your credentials and try again.",
+        });
       }
     } catch (error) {
       toast.error("Something went wrong", {
         description: "An unexpected network error occurred. Please try again.",
-      })
+      });
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
     <div className=" ">
-    
-    
-      <main className="relative z-10 w-full max-w-md p-4">
-        <Card className="w-full bg-white/75 dark:bg-zinc-900/60 backdrop-blur-xl border-slate-200/80 dark:border-slate-800/80 shadow-2xl shadow-slate-200/50 dark:shadow-none rounded-2xl p-8 transition-all duration-300">
+      <main className="relative flex mx-auto pt-10 z-10 w-full max-w-md p-4">
+        <MagicCard className="w-full bg-white/75 dark:bg-zinc-900/60 backdrop-blur-xl border-slate-200/80 dark:border-slate-800/80 shadow-2xl shadow-slate-200/50 dark:shadow-none rounded-2xl p-8 transition-all duration-300">
           {step === "credentials" ? (
             <>
               {/* Branding Header Area */}
@@ -84,11 +87,10 @@ export default function LoginPage() {
 
               <form onSubmit={handleSubmit(onSubmit)}>
                 <FieldGroup className="space-y-2">
-                  
                   {/* Email Address */}
                   <Field className="space-y-1.5">
-                    <FieldLabel 
-                      htmlFor="login-email" 
+                    <FieldLabel
+                      htmlFor="login-email"
                       className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400"
                     >
                       Email Address
@@ -112,8 +114,8 @@ export default function LoginPage() {
 
                   {/* Member ID */}
                   <Field className="space-y-1.5">
-                    <FieldLabel 
-                      htmlFor="login-memberid" 
+                    <FieldLabel
+                      htmlFor="login-memberid"
                       className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400"
                     >
                       Member ID
@@ -159,7 +161,10 @@ export default function LoginPage() {
               <div className="mt-3 pt-3 border-t border-slate-100 dark:border-slate-800/60 text-center">
                 <p className="text-xs text-slate-500 dark:text-slate-400">
                   Not a member yet?{" "}
-                  <Link href="/register" className="text-cyan-500 hover:text-cyan-600 dark:hover:text-cyan-400 font-semibold underline-offset-4 hover:underline transition">
+                  <Link
+                    href="/register"
+                    className="text-cyan-500 hover:text-cyan-600 dark:hover:text-cyan-400 font-semibold underline-offset-4 hover:underline transition"
+                  >
                     Register here
                   </Link>
                 </p>
@@ -169,13 +174,15 @@ export default function LoginPage() {
             <OtpVerification
               email={pendingData?.email || ""}
               onVerify={(code) => verifyLoginOtp(code)}
-              onResend={async () => (pendingData ? requestLoginOtp(pendingData) : { success: false })}
+              onResend={async () =>
+                pendingData ? requestLoginOtp(pendingData) : { success: false }
+              }
               onVerified={() => router.push("/member/dashboard")}
               onBack={() => setStep("credentials")}
             />
           )}
-        </Card>
+        </MagicCard>
       </main>
     </div>
-  )
+  );
 }

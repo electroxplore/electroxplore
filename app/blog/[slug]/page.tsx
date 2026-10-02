@@ -30,7 +30,7 @@ export default async function BlogPostPage({
 
   return (
     <>
-      <main className="flex-1">
+      <main className="flex-1 relative">
         <div className="pt-10">
           <Link
             href="/blog"

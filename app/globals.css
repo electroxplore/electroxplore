@@ -2,6 +2,23 @@
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
 
+@theme inline {
+  --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
+}
+
+@keyframes spotlight {
+  0% {
+    opacity: 0;
+    transform: translate(-72%, -62%) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -40%) scale(1);
+  }
+}
+
+
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -142,3 +159,83 @@
     padding-bottom: 5rem;
   }
 }
+
+
+
+/* From Uiverse.io by Shoh2008 */ 
+.loader {
+  position: relative;
+  font-size: 20px;
+  width: 9em;
+  height: 9em;
+}
+
+.loader:before {
+  content: '';
+  position: absolute;
+  transform: translate(-50%, -50%) rotate(45deg);
+  height: 100%;
+  width: 6px;
+  background: #fff;
+  left: 50%;
+  top: 50%;
+}
+
+.loader:after {
+  content: '';
+  position: absolute;
+  left: -0.6em;
+  bottom: 0.18em;
+  width: 2em;
+  height: 2em;
+  background-color: rgb(0, 195, 255);
+  border-radius: 15%;
+  animation: rollingRock 2.5s cubic-bezier(.79, 0, .47, .97) infinite;
+}
+
+@keyframes rollingRock {
+  0% {
+    transform: translate(0, -1em) rotate(-45deg)
+  }
+
+  5% {
+    transform: translate(0, -1em) rotate(-50deg)
+  }
+
+  20% {
+    transform: translate(1em, -2em) rotate(47deg)
+  }
+
+  25% {
+    transform: translate(1em, -2em) rotate(45deg)
+  }
+
+  30% {
+    transform: translate(1em, -2em) rotate(40deg)
+  }
+
+  45% {
+    transform: translate(2em, -3em) rotate(137deg)
+  }
+
+  50% {
+    transform: translate(2em, -3em) rotate(135deg)
+  }
+
+  55% {
+    transform: translate(2em, -3em) rotate(130deg)
+  }
+
+  70% {
+    transform: translate(3em, -4em) rotate(217deg)
+  }
+
+  75% {
+    transform: translate(3em, -4em) rotate(220deg)
+  }
+
+  100% {
+    transform: translate(0, -1em) rotate(-225deg)
+  }
+}
+      

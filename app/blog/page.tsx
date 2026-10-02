@@ -8,7 +8,7 @@ export default async function BlogPage() {
 
   return (
     <>
-      <main className="flex-1 py-10 md:py-16">
+      <main className="flex-1 py-10 relative">
         <div className="">
           <div className="mb-16 text-center md:text-left">
             <h1 className="text-4xl md:text-6xl font-black tracking-tight text-zinc-900 dark:text-white mb-4 text-balance">

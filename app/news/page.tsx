@@ -1,52 +1,61 @@
-import { getNewsPosts } from "@/app/actions/blog"
-import { Card } from "@/components/ui/card"
-import Link from "next/link"
-import Image from "next/image"
-import { Calendar, User, ArrowRight } from "lucide-react"
+import { getNewsPosts } from "@/app/actions/blog";
+import { Card } from "@/components/ui/card";
+import { ArrowRight, Calendar, User } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default async function NewsPage() {
-  const posts = await getNewsPosts()
+  const posts = await getNewsPosts();
 
   const sortedPosts = [...posts].sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  )
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+  );
 
   // 2. Strict separation: Featured on top, Non-featured below
-  const featuredPosts = sortedPosts.filter(post => (post as any).featured === true)
-  const regularPosts = sortedPosts.filter(post => !(post as any).featured)
+  const featuredPosts = sortedPosts.filter(
+    (post) => (post as any).featured === true,
+  );
+  const regularPosts = sortedPosts.filter((post) => !(post as any).featured);
 
   // Take the latest featured post for the big hero slot if multiple are marked featured
-  const mainFeaturedPost = featuredPosts[0]
-  
+  const mainFeaturedPost = featuredPosts[0];
+
   // If there are extra featured posts, we can group them into the remaining list so they aren't lost
-  const remainingPosts = [...featuredPosts.slice(1), ...regularPosts]
+  const remainingPosts = [...featuredPosts.slice(1), ...regularPosts];
 
   return (
-    <div className="">
+    <div className="relative">
       <main className="flex-1 py-10 md:py-16">
         <div className="">
           <div className="mb-16 text-center max-w-3xl mx-auto">
             <h1 className="text-4xl md:text-6xl font-extrabold text-neutral-900 dark:text-neutral-50 mb-6 tracking-tight text-balance">
-              Latest News & <span className="text-cyan-600 dark:text-cyan-400">Announcements</span>
+              Latest News &{" "}
+              <span className="text-cyan-600 dark:text-cyan-400">
+                Announcements
+              </span>
             </h1>
             <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed">
-              Stay updated with the latest announcements, events, and opportunities from ElectroXplore.
+              Stay updated with the latest announcements, events, and
+              opportunities from ElectroXplore.
             </p>
           </div>
 
           {sortedPosts.length === 0 ? (
             <Card className="bg-white dark:bg-zinc-900 border-neutral-200 dark:border-zinc-800 p-16 text-center shadow-sm max-w-2xl mx-auto">
-              <p className="text-neutral-500 dark:text-neutral-400 text-lg">No news posts available yet.</p>
+              <p className="text-neutral-500 dark:text-neutral-400 text-lg">
+                No news posts available yet.
+              </p>
             </Card>
           ) : (
             <div className="space-y-16">
-              
               {/* Featured Section (Only renders if a post is explicitly featured) */}
               {mainFeaturedPost && (
-                <Link href={`/news/${mainFeaturedPost.slug}`} className="group block">
+                <Link
+                  href={`/news/${mainFeaturedPost.slug}`}
+                  className="group block"
+                >
                   <Card className="overflow-hidden border-neutral-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 hover:border-cyan-500/50 dark:hover:border-cyan-500/40 transition-all duration-300 shadow-sm hover:shadow-md group-hover:shadow-cyan-500/[0.03]">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
-                      
                       {mainFeaturedPost.image ? (
                         <div className="lg:col-span-7 relative min-h-[280px] sm:min-h-[380px] overflow-hidden bg-neutral-100 dark:bg-zinc-900">
                           <Image
@@ -91,10 +100,12 @@ export default async function NewsPage() {
                             </div>
                             <div className="flex items-center gap-1.5">
                               <Calendar className="w-4 h-4 text-neutral-400 dark:text-neutral-500" />
-                              {new Date(mainFeaturedPost.date).toLocaleDateString(undefined, {
-                                year: 'numeric',
-                                month: 'long',
-                                day: 'numeric'
+                              {new Date(
+                                mainFeaturedPost.date,
+                              ).toLocaleDateString(undefined, {
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric",
                               })}
                             </div>
                           </div>
@@ -103,7 +114,6 @@ export default async function NewsPage() {
                           </div>
                         </div>
                       </div>
-
                     </div>
                   </Card>
                 </Link>
@@ -117,9 +127,12 @@ export default async function NewsPage() {
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {remainingPosts.map((post) => (
-                      <Link key={post.slug} href={`/news/${post.slug}`} className="group block h-full">
+                      <Link
+                        key={post.slug}
+                        href={`/news/${post.slug}`}
+                        className="group block h-full"
+                      >
                         <Card className="bg-white dark:bg-zinc-900 border-neutral-200 dark:border-zinc-800/80 hover:border-cyan-500/40 dark:hover:border-cyan-500/30 transition-all duration-300 h-full flex flex-col overflow-hidden shadow-sm hover:shadow-md">
-                          
                           {post.image && (
                             <div className="relative h-48 w-full overflow-hidden bg-neutral-100 dark:bg-zinc-950 border-b border-neutral-200 dark:border-zinc-800/60">
                               <Image
@@ -131,7 +144,7 @@ export default async function NewsPage() {
                               />
                             </div>
                           )}
-                          
+
                           <div className="p-6 flex-1 flex flex-col justify-between bg-white dark:bg-zinc-900">
                             <div>
                               <div className="mb-3">
@@ -160,18 +173,16 @@ export default async function NewsPage() {
                               </div>
                             </div>
                           </div>
-
                         </Card>
                       </Link>
                     ))}
                   </div>
                 </div>
               )}
-
             </div>
           )}
         </div>
       </main>
     </div>
-  )
+  );
 }
