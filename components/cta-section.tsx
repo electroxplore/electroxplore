@@ -5,11 +5,8 @@ import Link from "next/link";
 export default function CtaSection() {
   return (
     <section className="py-24 bg-white dark:bg-black">
-      {/* Accent glow */}
-
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left */}
           <div className="space-y-6">
             <h1 className="font-heading text-5xl sm:text-6xl font-black text-zinc-950 dark:text-foreground leading-tight text-balance">
               LET&apos;S BUILD YOUR
