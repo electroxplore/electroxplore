@@ -1,5 +1,13 @@
-import { Badge } from "@/components/ui/badge"
-import { CheckCircle2, Users, BookOpen, Globe, Award, Zap, HeartHandshake } from "lucide-react"
+import { Badge } from "@/components/ui/badge";
+import {
+  Award,
+  BookOpen,
+  CheckCircle2,
+  Globe,
+  HeartHandshake,
+  Users,
+  Zap,
+} from "lucide-react";
 
 const features = [
   {
@@ -32,19 +40,18 @@ const features = [
     title: "Mentorship Access",
     desc: "Get paired with experienced researchers and senior engineers who guide your growth within your chosen field.",
   },
-]
+];
 
 const specs = [
   { label: "Research Groups Active", value: "12+" },
   { label: "Published Papers", value: "80+" },
   { label: "Total Members", value: "500+" },
   { label: "Courses Available", value: "30+" },
-]
+];
 
 export default function WhySection() {
   return (
     <section className="py-24  relative">
-  
       <div className="">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Spec card */}
@@ -53,21 +60,32 @@ export default function WhySection() {
               <Badge className="bg-primary/10 text-primary border border-primary/30 text-xs uppercase tracking-widest px-3 py-1">
                 What We Offer
               </Badge>
-              <h2 className="font-heading text-3xl sm:text-4xl font-black text-zinc-950 dark:text-foreground leading-tight">
-                EVERYTHING WE<br />
-                DO IS BUILT<br />
+              <h1 className="font-heading text-3xl sm:text-4xl font-black text-zinc-950 dark:text-foreground leading-tight">
+                EVERYTHING WE
+                <br />
+                DO IS BUILT
+                <br />
                 <span className="text-primary">AROUND YOU</span>
-              </h2>
+              </h1>
               <p className="text-zinc-600 dark:text-muted-foreground text-sm leading-relaxed">
-                We don&apos;t just sell courses. We build relationships that last beyond any single program — mentors who stay, communities that grow, and research that matters.
+                We don&apos;t just sell courses. We build relationships that
+                last beyond any single program — mentors who stay, communities
+                that grow, and research that matters.
               </p>
 
               {/* Spec grid */}
               <div className="grid grid-cols-2 gap-px bg-zinc-200 dark:bg-border rounded-xl overflow-hidden">
                 {specs.map((s) => (
-                  <div key={s.label} className="bg-white dark:bg-card p-4 space-y-1">
-                    <div className="font-heading font-black text-2xl text-primary">{s.value}</div>
-                    <div className="text-zinc-500 dark:text-muted-foreground text-xs uppercase tracking-wider">{s.label}</div>
+                  <div
+                    key={s.label}
+                    className="bg-white dark:bg-card p-4 space-y-1"
+                  >
+                    <div className="font-heading font-black text-2xl text-primary">
+                      {s.value}
+                    </div>
+                    <div className="text-zinc-500 dark:text-muted-foreground text-xs uppercase tracking-wider">
+                      {s.label}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -78,7 +96,9 @@ export default function WhySection() {
                 <div className="flex-1 h-px bg-primary/20 relative">
                   <div className="absolute inset-y-0 left-0 w-1/2 h-px bg-primary animate-pulse" />
                 </div>
-                <span className="text-primary text-xs font-mono font-bold tracking-widest">ELECTRO·XPLORE</span>
+                <span className="text-primary text-xs font-mono font-bold tracking-widest">
+                  ELECTRO·XPLORE
+                </span>
                 <div className="flex-1 h-px bg-primary/20 relative">
                   <div className="absolute inset-y-0 right-0 w-1/2 h-px bg-primary animate-pulse" />
                 </div>
@@ -90,13 +110,20 @@ export default function WhySection() {
           {/* Right: Features grid */}
           <div className="space-y-4">
             {features.map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="flex gap-4 p-4 rounded-xl hover:bg-white dark:hover:bg-background dark:bg-cyan-950/20 backdrop-blur-3xl transition-colors hover:shadow-md hover:shadow-zinc-200/30 dark:hover:shadow-none group">
+              <div
+                key={title}
+                className="flex gap-4 p-4 rounded-xl hover:bg-white dark:hover:bg-background dark:bg-cyan-950/20 backdrop-blur-3xl transition-colors hover:shadow-md hover:shadow-zinc-200/30 dark:hover:shadow-none group"
+              >
                 <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors mt-0.5">
                   <Icon className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-heading font-bold text-zinc-950 dark:text-foreground text-sm uppercase tracking-wide mb-1">{title}</h3>
-                  <p className="text-zinc-600 dark:text-muted-foreground text-sm leading-relaxed">{desc}</p>
+                  <h3 className="font-heading font-bold text-zinc-950 dark:text-foreground text-sm uppercase tracking-wide mb-1">
+                    {title}
+                  </h3>
+                  <p className="text-zinc-600 dark:text-muted-foreground text-sm leading-relaxed">
+                    {desc}
+                  </p>
                 </div>
               </div>
             ))}
@@ -104,5 +131,5 @@ export default function WhySection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

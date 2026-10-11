@@ -1,23 +1,27 @@
-import { Button } from "@/components/ui/button"
-import { ArrowRight, Zap } from "lucide-react"
-import Link from "next/link"
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Zap } from "lucide-react";
+import Link from "next/link";
 
 export default function CtaSection() {
   return (
     <section className="py-24 bg-white dark:bg-black">
       {/* Accent glow */}
-   
+
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left */}
           <div className="space-y-6">
-            <h2 className="font-heading text-5xl sm:text-6xl font-black text-zinc-950 dark:text-foreground leading-tight text-balance">
-              LET&apos;S BUILD YOUR<br />
-              <span className="text-primary">ENGINEERING</span><br />
+            <h1 className="font-heading text-5xl sm:text-6xl font-black text-zinc-950 dark:text-foreground leading-tight text-balance">
+              LET&apos;S BUILD YOUR
+              <br />
+              <span className="text-primary">ENGINEERING</span>
+              <br />
               FUTURE TOGETHER
-            </h2>
+            </h1>
             <p className="text-zinc-600 dark:text-muted-foreground leading-relaxed max-w-md">
-              Whether you want to lead a research project, publish your first paper, or simply learn new engineering skills — ElectroXplore is the place to begin.
+              Whether you want to lead a research project, publish your first
+              paper, or simply learn new engineering skills — ElectroXplore is
+              the place to begin.
             </p>
           </div>
 
@@ -26,11 +30,18 @@ export default function CtaSection() {
             <div className="bg-white dark:bg-background border border-zinc-200 dark:border-border rounded-2xl p-8 space-y-6 shadow-xl shadow-zinc-200/40 dark:shadow-none">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                  <Zap className="w-5 h-5 text-primary-foreground" fill="currentColor" />
+                  <Zap
+                    className="w-5 h-5 text-primary-foreground"
+                    fill="currentColor"
+                  />
                 </div>
                 <div>
-                  <div className="text-zinc-950 dark:text-foreground font-heading font-bold">ElectroXplore</div>
-                  <div className="text-zinc-500 dark:text-muted-foreground text-xs">Engineering Research & Training</div>
+                  <div className="text-zinc-950 dark:text-foreground font-heading font-bold">
+                    ElectroXplore
+                  </div>
+                  <div className="text-zinc-500 dark:text-muted-foreground text-xs">
+                    Engineering Research & Training
+                  </div>
                 </div>
               </div>
 
@@ -41,9 +52,16 @@ export default function CtaSection() {
                   { label: "Certifications", value: "Included" },
                   { label: "Mentorship", value: "Available" },
                 ].map((item) => (
-                  <div key={item.label} className="flex items-center justify-between py-3 border-b border-zinc-100 dark:border-border last:border-0">
-                    <span className="text-zinc-500 dark:text-muted-foreground text-sm">{item.label}</span>
-                    <span className="text-primary text-sm font-semibold">{item.value}</span>
+                  <div
+                    key={item.label}
+                    className="flex items-center justify-between py-3 border-b border-zinc-100 dark:border-border last:border-0"
+                  >
+                    <span className="text-zinc-500 dark:text-muted-foreground text-sm">
+                      {item.label}
+                    </span>
+                    <span className="text-primary text-sm font-semibold">
+                      {item.value}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -62,5 +80,5 @@ export default function CtaSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

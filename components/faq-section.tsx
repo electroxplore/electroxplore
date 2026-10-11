@@ -46,11 +46,11 @@ export default function FaqSection() {
           <Badge className="bg-primary/10 text-primary border border-primary/30 text-xs uppercase tracking-widest px-3 py-1">
             FAQ
           </Badge>
-          <h2 className="font-heading text-4xl sm:text-5xl font-black text-zinc-950 dark:text-foreground leading-tight text-balance">
+          <h1 className="font-heading text-4xl sm:text-5xl font-black text-zinc-950 dark:text-foreground leading-tight text-balance">
             LET US CLEAR
             <br />
             THINGS UP
-          </h2>
+          </h1>
           <p className="text-zinc-600 dark:text-muted-foreground leading-relaxed">
             We answer every question new members bring — here are the most
             common ones.

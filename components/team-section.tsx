@@ -26,10 +26,10 @@ export default async function TeamSection() {
           <p className="text-primary text-xs uppercase tracking-widest font-semibold mb-3">
             The People
           </p>
-          <h2 className="font-heading font-black text-4xl sm:text-5xl text-zinc-950 dark:text-foreground text-balance">
+          <h1 className="font-heading font-black text-4xl sm:text-5xl text-zinc-950 dark:text-foreground text-balance">
             FOUNDERS &<br />
             <span className="text-primary">MEMBERS</span>
-          </h2>
+          </h1>
           <p className="text-zinc-600 dark:text-muted-foreground mt-4 max-w-xl mx-auto text-base leading-relaxed">
             Built by engineers, for engineers. Meet the team behind
             ElectroXplore and the growing community of researchers and learners.

@@ -1,19 +1,25 @@
-import { 
-  Cpu, 
-  Binary, 
-  Radio, 
-  Waves, 
-  BrainCircuit 
-} from "lucide-react";
+import { Binary, BrainCircuit, Cpu, Radio, Waves } from "lucide-react";
 import { PiSunHorizonLight } from "react-icons/pi";
 
 const fields = [
   { icon: Cpu, label: "Robotics", full: "Robotics & Automation Engineering" },
   { icon: Binary, label: "Embedded Systems", full: "Embedded Systems Design" },
   { icon: Radio, label: "IoT", full: "Internet of Things" },
-  { icon: Waves, label: "Signal Processing", full: "Signal Processing & Communications" },
-  { icon: PiSunHorizonLight, label: "Renewable Energy", full: "Renewable Energy & Power Systems" },
-  { icon: BrainCircuit, label: "AI/ML", full: "Artificial Intelligence & Machine Learning" },
+  {
+    icon: Waves,
+    label: "Signal Processing",
+    full: "Signal Processing & Communications",
+  },
+  {
+    icon: PiSunHorizonLight,
+    label: "Renewable Energy",
+    full: "Renewable Energy & Power Systems",
+  },
+  {
+    icon: BrainCircuit,
+    label: "AI/ML",
+    full: "Artificial Intelligence & Machine Learning",
+  },
 ];
 
 export default function FieldsSection() {
@@ -41,5 +47,5 @@ export default function FieldsSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
