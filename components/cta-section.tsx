@@ -21,8 +21,6 @@ export default function CtaSection() {
               the place to begin.
             </p>
           </div>
-
-          {/* Right: Decorative card */}
           <div className="relative">
             <div className="bg-white dark:bg-background border border-zinc-200 dark:border-border rounded-2xl p-8 space-y-6 shadow-xl shadow-zinc-200/40 dark:shadow-none">
               <div className="flex items-center gap-3">
