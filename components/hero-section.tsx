@@ -1,10 +1,8 @@
-import Image from "next/image";
-import { Users, BookOpen, Star } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { FaArrowUpRightFromSquare } from "react-icons/fa6";
-import Link from "next/link";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
+import { BookOpen, Star, Users } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 const stats = [
   { value: "10+", label: "Research Fields" },
@@ -18,13 +16,7 @@ export default function HeroSection() {
       id="home"
       className="relative min-h-screen flex items-center overflow-hidden bg-white dark:bg-transparent"
     >
-      <div
-      // className="absolute inset-0 opacity-[0.04]"
-      // style={{
-      //   backgroundImage: `linear-gradient(oklch(0.65 0.22 210) 1px, transparent 1px), linear-gradient(90deg, oklch(0.65 0.22 210) 1px, transparent 1px)`,
-      //   backgroundSize: "60px 60px",
-      // }}
-      />
+      <div />
 
       <div className="relative w-full">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -33,11 +25,7 @@ export default function HeroSection() {
               Engineering Research & Training
             </Badge>
             <h1 className="font-heading text-5xl sm:text-6xl lg:text-7xl font-black leading-[1.0] tracking-tight text-zinc-950 dark:text-foreground text-balance">
-              EXPLORE THE
-              <br />
-              <span className="text-primary">FUTURE OF</span>
-              <br />
-              ENGINEERING
+              EXPLORE THE FUTURE OF ENGINEERING
             </h1>
             <p className="text-zinc-600 dark:text-muted-foreground leading-relaxed max-w-lg text-base">
               ElectroXplore brings together researchers and learners across EEE,

@@ -45,7 +45,7 @@ const geistMono = Geist_Mono({
 //   },
 // };
 export const metadata: Metadata = {
-  metadataBase: new URL("https://electroxplore.com"),
+  metadataBase: new URL("https://www.electroxplore.com"),
 
   title: {
     default: "ElectroXplore — Engineering Research & Training",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   },
 
   description:
-    "ElectroXplore is an engineering research and training organization focused on EEE, CSE, ETE, and CCE. Explore research opportunities, join research groups, and develop practical engineering skills.",
+    "ElectroXplore is an engineering research and training organization. Explore research opportunities, join research groups, and develop practical engineering skills.",
 
   applicationName: "ElectroXplore",
   generator: "Next.js",
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
   authors: [
     {
       name: "ElectroXplore",
-      url: "https://electroxplore.com",
+      url: "https://www.electroxplore.com",
     },
   ],
 
@@ -133,14 +133,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://electroxplore.com/",
+    url: "https://www.electroxplore.com/",
     siteName: "ElectroXplore",
     title: "ElectroXplore — Engineering Research & Training",
     description:
       "Discover engineering research, join collaborative research groups, and explore practical training opportunities with ElectroXplore.",
     images: [
       {
-        url: "https://electroxplore.com/opengraph-image.png",
+        url: "https://www.electroxplore.com/opengraph-image.png",
         width: 1200,
         height: 630,
         alt: "ElectroXplore — Engineering Research & Training",
@@ -153,7 +153,7 @@ export const metadata: Metadata = {
     title: "ElectroXplore — Engineering Research & Training",
     description:
       "Explore engineering research, collaborative research groups, and practical training opportunities with ElectroXplore.",
-    images: ["https://electroxplore.com/opengraph-image.png"],
+    images: ["https://www.electroxplore.com/opengraph-image.png"],
   },
 
   robots: {

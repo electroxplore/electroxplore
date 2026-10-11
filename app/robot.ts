@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/member/", "/api/"],
     },
-    sitemap: "https://electroxplore.com/sitemap.xml",
-    host: "https://electroxplore.com",
+    sitemap: "https://www.electroxplore.com/sitemap.xml",
+    host: "https://www.electroxplore.com",
   };
 }
