@@ -16,8 +16,6 @@ export default function HeroSection() {
       id="home"
       className="relative min-h-screen flex items-center overflow-hidden bg-white dark:bg-transparent"
     >
-      <div />
-
       <div className="relative w-full">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
@@ -42,10 +40,6 @@ export default function HeroSection() {
                   Join Research Group
                 </HoverBorderGradient>
               </div>
-
-              {/* <Button size="lg" variant="outline" className="border-zinc-200 dark:border-border text-zinc-950 dark:text-foreground hover:bg-zinc-100 dark:hover:bg-secondary uppercase tracking-wider text-sm px-8">
-                Browse Courses
-              </Button> */}
             </Link>
             <div className="flex gap-8 pt-4 border-t border-zinc-200 dark:border-border">
               {stats.map((s) => (
@@ -71,7 +65,6 @@ export default function HeroSection() {
                   priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 dark:from-card dark:via-card/20 to-transparent" />
-                {/* Tag on image */}
               </div>
 
               <div className="p-6 space-y-4 relative bg-white dark:bg-transparent">

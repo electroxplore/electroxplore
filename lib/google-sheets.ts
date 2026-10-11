@@ -1,136 +1,295 @@
-import { google } from "googleapis"
+// import { google } from "googleapis"
 
-const sheets = google.sheets("v4")
+// const sheets = google.sheets("v4")
 
-interface GoogleAuthConfig {
-  email: string
-  key: string
-  spreadsheetId: string
-}
+// interface GoogleAuthConfig {
+//   email: string
+//   key: string
+//   spreadsheetId: string
+// }
 
-let authClient: any = null
+// let authClient: any = null
+
+// async function getAuthClient() {
+//   if (authClient) return authClient
+
+//   const serviceAccountKey = process.env.GOOGLE_SERVICE_ACCOUNT_KEY
+//   if (!serviceAccountKey) {
+//     throw new Error("GOOGLE_SERVICE_ACCOUNT_KEY environment variable not set")
+//   }
+
+//   try {
+//     const decodedKey = Buffer.from(serviceAccountKey, "base64").toString()
+//     const keyJson = JSON.parse(decodedKey)
+
+// const auth = new google.auth.GoogleAuth({
+//   credentials: keyJson,
+//   scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+// })
+// authClient = await auth.getClient()
+// return authClient
+
+//     return authClient
+//   } catch (error) {
+//     console.error("Failed to initialize Google Auth:", error)
+//     throw new Error("Failed to initialize Google Sheets authentication")
+//   }
+// }
+
+// export async function appendToSheet(
+//   sheetName: string,
+//   values: (string | number | boolean)[][]
+// ) {
+//   try {
+//     const auth = await getAuthClient()
+//     const spreadsheetId = process.env.GOOGLE_SHEETS_ID
+//     if (!spreadsheetId) {
+//       throw new Error("GOOGLE_SHEETS_ID environment variable not set")
+//     }
+
+//     const response = await sheets.spreadsheets.values.append({
+//       auth,
+//       spreadsheetId,
+//       range: `${sheetName}!A:A`,
+//       valueInputOption: "USER_ENTERED",
+//       requestBody: {
+//         values,
+//       },
+//     })
+
+//     return response.data
+//   } catch (error) {
+//     console.error("Error appending to Google Sheet:", error)
+//     throw error
+//   }
+// }
+
+// export async function getSheetData(sheetName: string, range?: string) {
+//   try {
+//     const auth = await getAuthClient()
+//     const spreadsheetId = process.env.GOOGLE_SHEETS_ID
+//     if (!spreadsheetId) {
+//       throw new Error("GOOGLE_SHEETS_ID environment variable not set")
+//     }
+
+//     const fullRange = range || `${sheetName}!A:Z`
+
+//     const response = await sheets.spreadsheets.values.get({
+//       auth,
+//       spreadsheetId,
+//       range: fullRange,
+//     })
+
+//     return response.data.values || []
+//   } catch (error) {
+//     console.error("Error reading from Google Sheet:", error)
+//     throw error
+//   }
+// }
+
+// export async function updateSheet(sheetName: string, range: string, values: any[][]) {
+//   try {
+//     const auth = await getAuthClient()
+//     const spreadsheetId = process.env.GOOGLE_SHEETS_ID
+//     if (!spreadsheetId) {
+//       throw new Error("GOOGLE_SHEETS_ID environment variable not set")
+//     }
+
+//     const response = await sheets.spreadsheets.values.update({
+//       auth,
+//       spreadsheetId,
+//       range: `${sheetName}!${range}`,
+//       valueInputOption: "USER_ENTERED",
+//       requestBody: {
+//         values,
+//       },
+//     })
+
+//     return response.data
+//   } catch (error) {
+//     console.error("Error updating Google Sheet:", error)
+//     throw error
+//   }
+// }
+
+// export async function clearSheet(sheetName: string, range?: string) {
+//   try {
+//     const auth = await getAuthClient()
+//     const spreadsheetId = process.env.GOOGLE_SHEETS_ID
+//     if (!spreadsheetId) {
+//       throw new Error("GOOGLE_SHEETS_ID environment variable not set")
+//     }
+
+//     const fullRange = range || `${sheetName}!A:Z`
+
+//     const response = await sheets.spreadsheets.values.clear({
+//       auth,
+//       spreadsheetId,
+//       range: fullRange,
+//     })
+
+//     return response.data
+//   } catch (error) {
+//     console.error("Error clearing Google Sheet:", error)
+//     throw error
+//   }
+// }
+
+import "server-only";
+
+import { google } from "googleapis";
+import { revalidateTag, unstable_cache } from "next/cache";
+
+const sheets = google.sheets("v4");
+
+let authClient: any = null;
 
 async function getAuthClient() {
-  if (authClient) return authClient
+  if (authClient) return authClient;
 
-  const serviceAccountKey = process.env.GOOGLE_SERVICE_ACCOUNT_KEY
+  const serviceAccountKey = process.env.GOOGLE_SERVICE_ACCOUNT_KEY;
+
   if (!serviceAccountKey) {
-    throw new Error("GOOGLE_SERVICE_ACCOUNT_KEY environment variable not set")
+    throw new Error("GOOGLE_SERVICE_ACCOUNT_KEY environment variable not set");
   }
 
   try {
-    const decodedKey = Buffer.from(serviceAccountKey, "base64").toString()
-    const keyJson = JSON.parse(decodedKey)
+    const decodedKey = Buffer.from(serviceAccountKey, "base64").toString(
+      "utf8",
+    );
 
-const auth = new google.auth.GoogleAuth({
-  credentials: keyJson,
-  scopes: ["https://www.googleapis.com/auth/spreadsheets"],
-})
-authClient = await auth.getClient()
-return authClient
+    const keyJson = JSON.parse(decodedKey);
 
-    return authClient
+    const auth = new google.auth.GoogleAuth({
+      credentials: keyJson,
+      scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+    });
+
+    authClient = await auth.getClient();
+
+    return authClient;
   } catch (error) {
-    console.error("Failed to initialize Google Auth:", error)
-    throw new Error("Failed to initialize Google Sheets authentication")
+    console.error("Failed to initialize Google Auth:", error);
+    throw new Error("Failed to initialize Google Sheets authentication");
+  }
+}
+
+function getSpreadsheetId() {
+  const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
+
+  if (!spreadsheetId) {
+    throw new Error("GOOGLE_SHEETS_ID environment variable not set");
+  }
+
+  return spreadsheetId;
+}
+
+// Cache successful reads for 5 minutes.
+// The sheet name and range are part of the cache key.
+const getCachedSheetData = unstable_cache(
+  async (sheetName: string, fullRange: string) => {
+    const auth = await getAuthClient();
+    const spreadsheetId = getSpreadsheetId();
+
+    const response = await sheets.spreadsheets.values.get({
+      auth,
+      spreadsheetId,
+      range: fullRange,
+    });
+
+    return response.data.values ?? [];
+  },
+  ["google-sheets-data-v1"],
+  {
+    revalidate: 300,
+    tags: ["google-sheets-data"],
+  },
+);
+
+// Invalidate cached reads after a successful write.
+function invalidateSheetCache() {
+  revalidateTag("google-sheets-data", "max");
+}
+
+export async function getSheetData(sheetName: string, range?: string) {
+  const fullRange = range || `${sheetName}!A:Z`;
+
+  try {
+    return await getCachedSheetData(sheetName, fullRange);
+  } catch (error) {
+    console.error("Error reading from Google Sheet:", error);
+    throw error;
   }
 }
 
 export async function appendToSheet(
   sheetName: string,
-  values: (string | number | boolean)[][]
+  values: (string | number | boolean)[][],
 ) {
   try {
-    const auth = await getAuthClient()
-    const spreadsheetId = process.env.GOOGLE_SHEETS_ID
-    if (!spreadsheetId) {
-      throw new Error("GOOGLE_SHEETS_ID environment variable not set")
-    }
+    const auth = await getAuthClient();
+    const spreadsheetId = getSpreadsheetId();
 
     const response = await sheets.spreadsheets.values.append({
       auth,
       spreadsheetId,
       range: `${sheetName}!A:A`,
       valueInputOption: "USER_ENTERED",
-      requestBody: {
-        values,
-      },
-    })
+      requestBody: { values },
+    });
 
-    return response.data
+    invalidateSheetCache();
+
+    return response.data;
   } catch (error) {
-    console.error("Error appending to Google Sheet:", error)
-    throw error
+    console.error("Error appending to Google Sheet:", error);
+    throw error;
   }
 }
 
-export async function getSheetData(sheetName: string, range?: string) {
+export async function updateSheet(
+  sheetName: string,
+  range: string,
+  values: any[][],
+) {
   try {
-    const auth = await getAuthClient()
-    const spreadsheetId = process.env.GOOGLE_SHEETS_ID
-    if (!spreadsheetId) {
-      throw new Error("GOOGLE_SHEETS_ID environment variable not set")
-    }
-
-    const fullRange = range || `${sheetName}!A:Z`
-
-    const response = await sheets.spreadsheets.values.get({
-      auth,
-      spreadsheetId,
-      range: fullRange,
-    })
-
-    return response.data.values || []
-  } catch (error) {
-    console.error("Error reading from Google Sheet:", error)
-    throw error
-  }
-}
-
-export async function updateSheet(sheetName: string, range: string, values: any[][]) {
-  try {
-    const auth = await getAuthClient()
-    const spreadsheetId = process.env.GOOGLE_SHEETS_ID
-    if (!spreadsheetId) {
-      throw new Error("GOOGLE_SHEETS_ID environment variable not set")
-    }
+    const auth = await getAuthClient();
+    const spreadsheetId = getSpreadsheetId();
 
     const response = await sheets.spreadsheets.values.update({
       auth,
       spreadsheetId,
       range: `${sheetName}!${range}`,
       valueInputOption: "USER_ENTERED",
-      requestBody: {
-        values,
-      },
-    })
+      requestBody: { values },
+    });
 
-    return response.data
+    invalidateSheetCache();
+
+    return response.data;
   } catch (error) {
-    console.error("Error updating Google Sheet:", error)
-    throw error
+    console.error("Error updating Google Sheet:", error);
+    throw error;
   }
 }
 
 export async function clearSheet(sheetName: string, range?: string) {
   try {
-    const auth = await getAuthClient()
-    const spreadsheetId = process.env.GOOGLE_SHEETS_ID
-    if (!spreadsheetId) {
-      throw new Error("GOOGLE_SHEETS_ID environment variable not set")
-    }
-
-    const fullRange = range || `${sheetName}!A:Z`
+    const auth = await getAuthClient();
+    const spreadsheetId = getSpreadsheetId();
+    const fullRange = range || `${sheetName}!A:Z`;
 
     const response = await sheets.spreadsheets.values.clear({
       auth,
       spreadsheetId,
       range: fullRange,
-    })
+    });
 
-    return response.data
+    invalidateSheetCache();
+
+    return response.data;
   } catch (error) {
-    console.error("Error clearing Google Sheet:", error)
-    throw error
+    console.error("Error clearing Google Sheet:", error);
+    throw error;
   }
 }

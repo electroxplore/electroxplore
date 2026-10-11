@@ -1,6 +1,6 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
-@import 'shadcn/tailwind.css';
+@import "tailwindcss";
+@import "tw-animate-css";
+/* @import 'shadcn/tailwind.css'; */
 
 @theme inline {
   --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
@@ -17,14 +17,12 @@
   }
 }
 
-
-
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --font-heading: var(--font-space-grotesk);
-  --font-sans: var(--font-inter), 'Inter Fallback';
-  --font-mono: var(--font-geist-mono), 'Geist Mono Fallback';
+  --font-sans: var(--font-inter), "Inter Fallback";
+  --font-mono: var(--font-geist-mono), "Geist Mono Fallback";
 
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -68,7 +66,7 @@
   --card-foreground: oklch(0.96 0 0);
   --popover: oklch(0.12 0 0);
   --popover-foreground: oklch(0.96 0 0);
-  --primary: oklch(0.65 0.22 210);          /* electric cyan/blue */
+  --primary: oklch(0.65 0.22 210); /* electric cyan/blue */
   --primary-foreground: oklch(0.08 0 0);
   --secondary: oklch(0.16 0 0);
   --secondary-foreground: oklch(0.96 0 0);
@@ -83,7 +81,7 @@
   --electric: oklch(0.65 0.22 210);
   --surface: oklch(0.14 0 0);
   --radius: 0.5rem;
-  --sidebar: oklch(0.10 0 0);
+  --sidebar: oklch(0.1 0 0);
   --sidebar-foreground: oklch(0.96 0 0);
   --sidebar-primary: oklch(0.65 0.22 210);
   --sidebar-primary-foreground: oklch(0.08 0 0);
@@ -106,7 +104,7 @@
   --card-foreground: oklch(0.12 0 0);
   --popover: oklch(0.96 0 0);
   --popover-foreground: oklch(0.12 0 0);
-  --primary: oklch(0.55 0.22 210);          /* electric cyan/blue */
+  --primary: oklch(0.55 0.22 210); /* electric cyan/blue */
   --primary-foreground: oklch(0.98 0 0);
   --secondary: oklch(0.9 0 0);
   --secondary-foreground: oklch(0.12 0 0);
@@ -143,10 +141,19 @@
 }
 
 /* Custom scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--background); }
-::-webkit-scrollbar-thumb { background: oklch(0.3 0 0); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: oklch(0.65 0.22 210); }
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(0.3 0 0);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.65 0.22 210);
+}
 
 /* Safe area bottom padding for mobile bottom nav */
 .safe-bottom {
@@ -160,9 +167,7 @@
   }
 }
 
-
-
-/* From Uiverse.io by Shoh2008 */ 
+/* From Uiverse.io by Shoh2008 */
 .loader {
   position: relative;
   font-size: 20px;
@@ -171,7 +176,7 @@
 }
 
 .loader:before {
-  content: '';
+  content: "";
   position: absolute;
   transform: translate(-50%, -50%) rotate(45deg);
   height: 100%;
@@ -182,7 +187,7 @@
 }
 
 .loader:after {
-  content: '';
+  content: "";
   position: absolute;
   left: -0.6em;
   bottom: 0.18em;
@@ -190,52 +195,51 @@
   height: 2em;
   background-color: rgb(0, 195, 255);
   border-radius: 15%;
-  animation: rollingRock 2.5s cubic-bezier(.79, 0, .47, .97) infinite;
+  animation: rollingRock 2.5s cubic-bezier(0.79, 0, 0.47, 0.97) infinite;
 }
 
 @keyframes rollingRock {
   0% {
-    transform: translate(0, -1em) rotate(-45deg)
+    transform: translate(0, -1em) rotate(-45deg);
   }
 
   5% {
-    transform: translate(0, -1em) rotate(-50deg)
+    transform: translate(0, -1em) rotate(-50deg);
   }
 
   20% {
-    transform: translate(1em, -2em) rotate(47deg)
+    transform: translate(1em, -2em) rotate(47deg);
   }
 
   25% {
-    transform: translate(1em, -2em) rotate(45deg)
+    transform: translate(1em, -2em) rotate(45deg);
   }
 
   30% {
-    transform: translate(1em, -2em) rotate(40deg)
+    transform: translate(1em, -2em) rotate(40deg);
   }
 
   45% {
-    transform: translate(2em, -3em) rotate(137deg)
+    transform: translate(2em, -3em) rotate(137deg);
   }
 
   50% {
-    transform: translate(2em, -3em) rotate(135deg)
+    transform: translate(2em, -3em) rotate(135deg);
   }
 
   55% {
-    transform: translate(2em, -3em) rotate(130deg)
+    transform: translate(2em, -3em) rotate(130deg);
   }
 
   70% {
-    transform: translate(3em, -4em) rotate(217deg)
+    transform: translate(3em, -4em) rotate(217deg);
   }
 
   75% {
-    transform: translate(3em, -4em) rotate(220deg)
+    transform: translate(3em, -4em) rotate(220deg);
   }
 
   100% {
-    transform: translate(0, -1em) rotate(-225deg)
+    transform: translate(0, -1em) rotate(-225deg);
   }
 }
-      
