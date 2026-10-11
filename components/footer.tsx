@@ -1,11 +1,11 @@
-import { Mail, Phone, MapPin, X } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import Link from "next/link";
-import { FaFacebook, FaGithub } from "react-icons/fa";
-import { BenefitsDrawer } from "./benefits";
-import { TermsAndConditionsDrawer } from "./terms";
-import { RecruitmentPolicyDrawer } from "./policy";
+import { Mail, MapPin, Phone } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
+import { BenefitsDrawer } from "./benefits";
+import { RecruitmentPolicyDrawer } from "./policy";
+import { TermsAndConditionsDrawer } from "./terms";
 
 const quickLinks = [
   { label: "Home", href: "#home" },
@@ -23,9 +23,12 @@ const socials = [
     label: "Facebook",
     href: "https://www.facebook.com/electroxplore/",
   },
-  // { icon: Globe, label: "LinkedIn", href: "#" },
+  {
+    icon: FaLinkedin,
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/electroxplore/",
+  },
   { icon: FaGithub, label: "GitHub", href: "https://github.com/electroxplore" },
-  // { icon: Play, label: "YouTube", href: "#" },
 ];
 
 export default function Footer() {
@@ -33,11 +36,37 @@ export default function Footer() {
     <footer className="dark:bg-card bg white  border-t border-border relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-          {/* Column 1: Brand + Contact */}
           <div className="space-y-5">
-            <Link href="#home">
-        <Image src="/icon.png" alt="ElectroXplore Logo" width={32} height={32} className="w-20" />
-          </Link>
+            <Link
+              href="#home"
+              aria-label="ElectroXplore home"
+              className="inline-flex items-center gap-3 mt-[-6px]"
+            >
+              <span
+                className="flex h-12 w-12 items-center justify-center
+                rounded-xl border border-border bg-card"
+              >
+                <Image
+                  src="/icon.png"
+                  alt="ElectroXplore"
+                  width={36}
+                  height={36}
+                  className="h-9 w-9 object-contain"
+                />
+              </span>
+
+              <span>
+                <span className="block text-lg font-bold tracking-tight">
+                  ElectroXplore
+                </span>
+                <span
+                  className="block text-[10px] font-medium uppercase
+                  tracking-[0.22em] text-muted-foreground"
+                >
+                  Research & Innovation
+                </span>
+              </span>
+            </Link>
 
             <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
               Engineering research and training for the next generation of
@@ -45,12 +74,16 @@ export default function Footer() {
             </p>
 
             <div className="space-y-3">
-              <div className="flex items-start gap-3">
+              <Link
+                href="https://www.google.com/maps/search/22.365124,+91.782564?entry=tts&g_ep=EgoyMDI2MTAwNi4wIPu8ASoASAFQAw%3D%3D&skid=7f9e27dd-d333-4435-bb3e-fa313d9b21b4"
+                className="flex items-start gap-3 "
+              >
                 <MapPin className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                <span className="text-muted-foreground text-sm">
-                  Chittagong, Bangladesh
+                <span className="text-muted-foreground text-sm text-muted-foreground text-sm hover:text-foreground transition-colors">
+                  W-D-7, West Ferojshah Colony, Akbarshah, Chittagong,
+                  Bangladesh
                 </span>
-              </div>
+              </Link>
               <div className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-primary flex-shrink-0" />
                 <Link
