@@ -1,9 +1,14 @@
-"use client"
+"use client";
 
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Badge } from "@/components/ui/badge"
-import { HelpCircle, MessageCircle } from "lucide-react"
-import { ContactCollapsible } from "./contact-info"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Badge } from "@/components/ui/badge";
+import { HelpCircle, MessageCircle } from "lucide-react";
+import { ContactCollapsible } from "./contact-info";
 
 const faqs = [
   {
@@ -30,11 +35,11 @@ const faqs = [
     q: "Can I join multiple research groups?",
     a: "You can apply to multiple groups, though acceptance depends on your background and group capacity. We encourage interdisciplinary involvement — for example, an EEE student contributing to an IoT or AI project is very welcome.",
   },
-]
+];
 
 export default function FaqSection() {
   return (
-    <section className="py-24 bg-white dark:bg-background relative overflow-hidden">
+    <section className="py-24 bg-white dark:bg-transparent relative overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center space-y-4 mb-12">
@@ -42,16 +47,23 @@ export default function FaqSection() {
             FAQ
           </Badge>
           <h2 className="font-heading text-4xl sm:text-5xl font-black text-zinc-950 dark:text-foreground leading-tight text-balance">
-            LET US CLEAR<br />
+            LET US CLEAR
+            <br />
             THINGS UP
           </h2>
           <p className="text-zinc-600 dark:text-muted-foreground leading-relaxed">
-            We answer every question new members bring — here are the most common ones.
+            We answer every question new members bring — here are the most
+            common ones.
           </p>
         </div>
 
         {/* Accordion */}
-        <Accordion type="single" collapsible defaultValue="item-0" className="space-y-2">
+        <Accordion
+          type="single"
+          collapsible
+          defaultValue="item-0"
+          className="space-y-2"
+        >
           {faqs.map((faq, i) => (
             <AccordionItem
               key={i}
@@ -73,10 +85,13 @@ export default function FaqSection() {
           <div className="flex items-center justify-center gap-2">
             <HelpCircle className="w-5 h-5 text-primary" />
             <MessageCircle className="w-5 h-5 text-primary" />
-            <span className="text-zinc-800 dark:text-muted-foreground font-semibold">Need more clarity?</span>
+            <span className="text-zinc-800 dark:text-muted-foreground font-semibold">
+              Need more clarity?
+            </span>
           </div>
           <p className="text-zinc-600 dark:text-muted-foreground text-sm">
-            You can reach our team anytime — we&apos;re happy to answer any questions about research groups or training.
+            You can reach our team anytime — we&apos;re happy to answer any
+            questions about research groups or training.
           </p>
           <div className="flex justify-center">
             <ContactCollapsible />
@@ -84,5 +99,5 @@ export default function FaqSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
