@@ -21,7 +21,7 @@ export default function BenefitsPage() {
   const benefits = [
     {
       icon: <GraduationCap className="h-5 w-5 text-primary" />,
-      text: "Receive specialized training and gain state-of-the-art knowledge in a focused research field.",
+      text: "Gain advanced training and expertise in a focused research field.",
     },
     {
       icon: <BookOpen className="h-5 w-5 text-primary" />,
@@ -54,8 +54,8 @@ export default function BenefitsPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-background text-foreground relative">
-      <div className="mx-auto w-full max-w-4xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+    <main className="min-h-screen bg-transparent text-foreground relative">
+      <div className="mx-auto w-full max-w-4xl pt-16">
         {/* Page Header */}
         <header className="mb-10 border-b border-border pb-8 sm:mb-12">
           <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-primary">
@@ -77,7 +77,7 @@ export default function BenefitsPage() {
           {benefits.map((benefit, index) => (
             <article
               key={index}
-              className="flex items-start gap-4 rounded-xl border border-border/50 bg-muted/30 p-4 transition-colors hover:bg-muted/60 sm:p-5"
+              className="flex items-start gap-4 rounded-xl backdrop-blur-xs border border-border/50 bg-muted/30 p-4 transition-colors hover:bg-muted/60 sm:p-5"
             >
               <div className="flex-shrink-0 rounded-lg border border-border bg-background p-2.5 shadow-sm">
                 {benefit.icon}

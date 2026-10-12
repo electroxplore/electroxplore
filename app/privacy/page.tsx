@@ -18,22 +18,22 @@ import {
 export default function RecruitmentPolicyPage() {
   const eligibility = [
     {
-      icon: <GraduationCap className="h-5 w-5 text-indigo-500" />,
+      icon: <GraduationCap className="h-5 w-5 text-cyan-500" />,
       title: "Academic Standing",
       text: "Must be a B.Sc. Engineering student (4th semester or above) in EEE, CSE, ETE, CCE, or a relevant structural engineering field.",
     },
     {
-      icon: <LineChart className="h-5 w-5 text-indigo-500" />,
+      icon: <LineChart className="h-5 w-5 text-cyan-500" />,
       title: "Performance",
       text: "Demonstrated strong academic performance and a keen interest in deep technical research domains.",
     },
     {
-      icon: <BrainCircuit className="h-5 w-5 text-indigo-500" />,
+      icon: <BrainCircuit className="h-5 w-5 text-cyan-500" />,
       title: "Mindset",
       text: "Strong, self-driven analytical abilities equipped with a critical problem-solving mindset.",
     },
     {
-      icon: <Code2 className="h-5 w-5 text-indigo-500" />,
+      icon: <Code2 className="h-5 w-5 text-cyan-500" />,
       title: "Technical Skill",
       text: "Functional proficiency in modern engineering frameworks and core programming languages.",
     },
@@ -46,11 +46,11 @@ export default function RecruitmentPolicyPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-background text-foreground relative">
-      <div className="mx-auto w-full max-w-4xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+    <main className="min-h-screen bg-transparent text-foreground relative">
+      <div className="mx-auto w-full max-w-4xl pt-16">
         {/* Page Header */}
         <header className="mb-10 border-b border-border pb-8 sm:mb-12">
-          <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-indigo-500">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-cyan-500">
             Join Our Cohort
           </p>
 
@@ -68,7 +68,7 @@ export default function RecruitmentPolicyPage() {
           {/* Eligibility Section */}
           <section className="space-y-4">
             <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-foreground/70">
-              <Binary className="h-5 w-5 text-indigo-500" />
+              <Binary className="h-5 w-5 text-cyan-500" />
               Eligibility & Qualifications
             </h2>
 
@@ -76,7 +76,7 @@ export default function RecruitmentPolicyPage() {
               {eligibility.map((item, index) => (
                 <div
                   key={index}
-                  className="flex items-start gap-4 rounded-xl border border-border/40 bg-muted/20 p-4 transition-colors hover:bg-muted/50 sm:p-5"
+                  className="flex items-start gap-4 rounded-xl border backdrop-blur-xs border-border/40 bg-muted/20 p-4 transition-colors hover:bg-muted/50 sm:p-5"
                 >
                   <div className="flex-shrink-0 rounded-lg border border-border bg-background p-2 shadow-sm">
                     {item.icon}
@@ -103,7 +103,7 @@ export default function RecruitmentPolicyPage() {
               Core Responsibilities
             </h2>
 
-            <div className="rounded-xl border border-border/50 bg-muted/20 p-5 sm:p-6">
+            <div className="rounded-xl border border-border/50 backdrop-blur-xs bg-muted/20 p-5 sm:p-6">
               <ul className="space-y-5">
                 {responsibilities.map((text, index) => (
                   <li
