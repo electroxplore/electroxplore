@@ -244,8 +244,6 @@ export default async function MemberDetailPage({ params }: Props) {
   const { slug } = await params;
   const member = await getMemberBySlug(slug);
 
-  // SECURITY CHECK: only Founder profiles can be rendered.
-  // This check runs on the server for direct URL requests too.
   if (!member || !isFounder(member.specialRole)) {
     notFound();
   }
