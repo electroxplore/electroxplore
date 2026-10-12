@@ -1,19 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import {
-  Zap,
-  Home,
-  FlaskConical,
-  BookOpen,
-  Users,
-  Info,
-  Moon,
-  Sun,
-} from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { BookOpen, FlaskConical, Home, Users } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Team", href: "/team" },
@@ -60,26 +51,27 @@ export default function Navbar({ user }: any) {
     return () => window.removeEventListener("hashchange", onHashChange);
   }, []);
 
+  console.log(user);
+
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-transparent backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <Link href="/">
-              <Image
-                src="/logo.png"
-                alt="ElectroXplore Logo"
-                width={140}
-                height={140}
-                className="size-35 hidden dark:block"
-              />
-              <Image
-                src="/logo-w.png"
-                alt="ElectroXplore Logo"
-                width={140}
-                height={140}
-                className="size-35 block dark:hidden"
-              />
-      
+            <Image
+              src="/logo.png"
+              alt="ElectroXplore Logo"
+              width={140}
+              height={140}
+              className="size-35 hidden dark:block"
+            />
+            <Image
+              src="/logo-w.png"
+              alt="ElectroXplore Logo"
+              width={140}
+              height={140}
+              className="size-35 block dark:hidden"
+            />
           </Link>
 
           {/* Desktop Nav */}
