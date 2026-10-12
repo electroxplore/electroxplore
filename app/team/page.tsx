@@ -15,6 +15,45 @@ export default async function MembersPage() {
   const regularMembers = allMembers.filter(
     (m) => m.specialRole?.toLowerCase() !== "founder",
   );
+  const getDisplayName = (fullName: string): string => {
+    if (!fullName?.trim()) return "Member";
+
+    const titles = [
+      "md",
+      "md.",
+      "mohd",
+      "mohd.",
+      "mohammed",
+      "muhammad",
+      "muhammed",
+      "mohammad",
+      "mr",
+      "mr.",
+      "mrs",
+      "mrs.",
+      "ms",
+      "ms.",
+      "dr",
+      "dr.",
+      "sr",
+      "sr.",
+      "jr",
+      "jr.",
+      "prof",
+      "prof.",
+      "sheikh",
+      "sk",
+    ];
+
+    const words = fullName.trim().split(/\s+/);
+
+    // Remove common titles and prefixes from the beginning.
+    while (words.length > 1 && titles.includes(words[0].toLowerCase())) {
+      words.shift();
+    }
+
+    return words[0] || "Member";
+  };
 
   return (
     <div className="pt-10 relative">
@@ -160,6 +199,22 @@ function FounderCard({ member }: { member: Member }) {
 function MemberCard({ member }: { member: Member }) {
   return (
     <MagicCard className="dark:bg-zinc-900/50 backdrop-blur-3xl  bg-zinc-100 rounded-xl shadow-sm border-0 p-5 flex flex-col justify-between transition duration-200 hover:shadow-md hover:border-gray-200">
+      <div className="absolute -top-4 -right-4 z-10">
+        <span
+          className={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-1 text-xs font-semibold shadow-sm backdrop-blur-sm ${
+            member.group
+              ? "border-cyan-500/20 bg-cyan-500/10 text-cyan-600 dark:text-cyan-400"
+              : "border-gray-500/20 bg-gray-500/10 text-gray-500 dark:text-gray-400"
+          }`}
+        >
+          <span
+            className={`h-1.5 w-1.5 rounded-lg ${
+              member.group ? "bg-cyan-500" : "bg-gray-400"
+            }`}
+          />
+          {member.group || "Inactive"}
+        </span>
+      </div>
       <div>
         <div className="flex items-center gap-4 mb-4">
           <div className="w-12 h-12 rounded-full bg-zinc-50 dark:bg-zinc-800 border dark:border-zinc-100 border-zinc-600 flex items-center justify-center overflow-hidden flex-shrink-0">
@@ -177,7 +232,33 @@ function MemberCard({ member }: { member: Member }) {
           </div>
           <div>
             <h4 className="font-semibold text-gray-900 dark:text-zinc-300 leading-snug">
-              {member.fullName}
+              {member.fullName
+                ?.trim()
+                .split(/\s+/)
+                .filter(Boolean)
+                .filter(
+                  (word, index, arr) =>
+                    index !== 0 ||
+                    ![
+                      "md",
+                      "md.",
+                      "mohd",
+                      "mohammed",
+                      "muhammad",
+                      "muhammed",
+                      "mohammad",
+                      "dr",
+                      "dr.",
+                      "sr",
+                      "sr.",
+                      "mr",
+                      "mr.",
+                      "prof",
+                      "prof.",
+                    ].includes(word.toLowerCase()),
+                )
+                .slice(0, 1)
+                .join("") || "Member"}
             </h4>
             <p className="text-xs text-zinc-900 dark:text-cyan-600 font-medium">
               {member.groupRole || "Member"}

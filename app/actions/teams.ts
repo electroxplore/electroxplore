@@ -26,6 +26,7 @@ export interface Member {
   review: string;
   studentIdImage: string;
   nidImage: string;
+  group: string;
 }
 
 export async function getMembers(): Promise<Member[]> {
@@ -67,6 +68,7 @@ export async function getMembers(): Promise<Member[]> {
         review: row[22] || "",
         studentIdImage: row[23] || "",
         nidImage: row[24] || "",
+        group: row[25] || "",
       }))
       .filter((member) => member.memberId); // Filters out empty rows
   } catch (error) {
