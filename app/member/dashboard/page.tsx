@@ -224,7 +224,7 @@ export default async function DashboardPage() {
             ))}
           </div>
 
-          <div className="border-t border-zinc-100 dark:border-zinc-800 my-2"></div>
+          {/* <div className="border-t border-zinc-100 dark:border-zinc-800 my-2"></div> */}
 
           {/* Secondary Freelance/Performance Grid Strip */}
           {/* <div className="px-4 py-3 grid grid-cols-3 gap-2 text-center max-w-xl mx-auto md:mx-0">
