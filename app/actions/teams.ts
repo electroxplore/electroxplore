@@ -29,6 +29,17 @@ export interface Member {
   group: string;
 }
 
+// @/app/actions/teams.ts
+export async function getMemberBySlug(slug: string): Promise<Member | null> {
+  const members = await getMembers();
+  // Match either by memberId or slug (adjust to match your identifier field)
+  return (
+    members.find(
+      (m) => String(m.memberId).toLowerCase() === slug.toLowerCase(),
+    ) || null
+  );
+}
+
 export async function getMembers(): Promise<Member[]> {
   try {
     if (!process.env.GOOGLE_SERVICE_ACCOUNT_KEY) {
