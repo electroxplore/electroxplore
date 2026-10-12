@@ -195,7 +195,6 @@ function FounderCard({ member }: { member: Member }) {
   );
 }
 
-/* ================= REGULAR MEMBER CARD COMPONENT ================= */
 function MemberCard({ member }: { member: Member }) {
   return (
     <MagicCard className="dark:bg-zinc-900/50 backdrop-blur-3xl  bg-zinc-100 rounded-xl shadow-sm border-0 p-5 flex flex-col justify-between transition duration-200 hover:shadow-md hover:border-gray-200">
