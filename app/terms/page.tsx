@@ -1,5 +1,13 @@
-import Footer from "@/components/footer";
-import { Separator } from "@/components/ui/separator";
+import {
+  Briefcase,
+  CalendarClock,
+  Coins,
+  Lock,
+  Scale,
+  ShieldCheck,
+  Target,
+} from "lucide-react";
+
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,92 +16,92 @@ export const metadata: Metadata = {
     "Terms and Conditions for using ElectroXplore research and training services.",
 };
 
-const sections = [
-  {
-    title: "1. Acceptance of Terms",
-    body: `By accessing or using the ElectroXplore platform, website, research groups, or training programs, you agree to be bound by these Terms and Conditions. If you do not agree to any part of these terms, you may not access or use our services. These terms apply to all visitors, members, course enrollees, and any other users of ElectroXplore.`,
-  },
-  {
-    title: "2. About ElectroXplore",
-    body: `ElectroXplore is an engineering research organization and training platform focused on fields including Electrical & Electronic Engineering (EEE), Computer Science & Engineering (CSE), Electronics & Telecommunication Engineering (ETE), Computer & Communication Engineering (CCE), and related disciplines. We operate membership-based research groups and structured training programs.`,
-  },
-  {
-    title: "3. Membership & Research Groups",
-    body: `Research group membership is currently offered free of charge. ElectroXplore reserves the right to introduce paid tiers in the future with advance notice to existing members. Members are expected to participate in good faith, respect fellow members, and contribute constructively to research activities. ElectroXplore may revoke membership for violation of these terms or community standards at its sole discretion.`,
-  },
-  {
-    title: "4. Training Programs & Courses",
-    body: `Some training courses are offered free of charge while others require a course fee. All fees, where applicable, are clearly stated before enrollment. Course fees are non-refundable once access has been granted unless the course is cancelled by ElectroXplore. Enrollment in a course grants you a personal, non-transferable license to access the course content for the duration specified.`,
-  },
-  {
-    title: "5. Intellectual Property",
-    body: `All content published on ElectroXplore — including course materials, research summaries, articles, graphics, and the ElectroXplore name and logo — is the property of ElectroXplore or its content contributors and is protected by applicable intellectual property laws. You may not reproduce, distribute, or create derivative works without prior written permission. Members retain ownership of original research they contribute but grant ElectroXplore a non-exclusive license to publish and share it within the platform.`,
-  },
-  {
-    title: "6. User Conduct",
-    body: `Users agree not to: post or share plagiarized, false, or harmful content; harass, threaten, or discriminate against other members; attempt to gain unauthorized access to platform systems; use the platform for commercial solicitation without permission; or violate any applicable laws or regulations. ElectroXplore reserves the right to remove content and suspend accounts that violate these standards.`,
-  },
-  {
-    title: "7. Privacy",
-    body: `Your use of ElectroXplore is also governed by our Privacy Policy, which is incorporated into these Terms by reference. By using our services, you consent to the collection and use of information as described in our Privacy Policy.`,
-  },
-  {
-    title: "8. Disclaimers & Limitation of Liability",
-    body: `ElectroXplore provides its platform and content on an "as is" basis without warranties of any kind, either express or implied. We do not guarantee the accuracy, completeness, or suitability of any research content or course material. To the maximum extent permitted by law, ElectroXplore shall not be liable for any indirect, incidental, or consequential damages arising from your use of, or inability to use, the platform.`,
-  },
-  {
-    title: "9. Changes to Terms",
-    body: `ElectroXplore reserves the right to modify these Terms at any time. Significant changes will be communicated to registered members via email or platform notification. Continued use of the platform after changes are posted constitutes your acceptance of the revised terms. We encourage you to review this page periodically.`,
-  },
-  {
-    title: "10. Contact",
-    body: `For questions about these Terms and Conditions, please contact us at: hello@electroxplore.org or write to us at ElectroXplore, Dhaka, Bangladesh.`,
-  },
-];
+export default function TermsAndConditionsPage() {
+  const sections = [
+    {
+      icon: <Target className="w-5 h-5 text-primary" />,
+      title: "1. Scope and Objectives",
+      text: "The primary objective of the research team is to conduct high-quality, impactful research in areas defined by the Electro Xplore leadership and project scope. All team members are expected to align their efforts with these overarching goals.",
+    },
+    {
+      icon: <CalendarClock className="w-5 h-5 text-primary" />,
+      title: "2. Membership Duration & Termination",
+      text: "Membership is project-based (e.g., 6 months, 1 year). Electro Xplore may terminate membership due to failure to meet performance metrics, policy breaches, or ethical violations. Resignation requires a minimum of two (2) weeks' written notice with a smooth task handover.",
+    },
+    {
+      icon: <Briefcase className="w-5 h-5 text-primary" />,
+      title: "3. Responsibilities and Commitment",
+      text: "Members must actively participate in scheduled meetings, small sessions, and webinars. All data collection, analysis, and documentation must adhere to the highest standards of academic rigor and data integrity.",
+    },
+    {
+      icon: <ShieldCheck className="w-5 h-5 text-primary" />,
+      title: "4. Intellectual Property (IP)",
+      text: "All IP, including data, methodologies, code, and final research outputs (publications, reports, patents), shall be the exclusive property of Electro Xplore. Academic usage requires prior written permission.",
+    },
+    {
+      icon: <Lock className="w-5 h-5 text-primary" />,
+      title: "5. Confidentiality & Publication",
+      text: "All non-public information and preliminary findings must be kept strictly confidential. Submissions for publication (papers, presentations) must receive official clearance from the Electro Xplore research lead before external sharing.",
+    },
+    {
+      icon: <Coins className="w-5 h-5 text-primary" />,
+      title: "6. Compensation and Acknowledgment",
+      text: "Any stipends or financial reimbursements are governed by separate financial agreements. Authorship credit on publications is determined by the team lead based on significant contributions and academic guidelines.",
+    },
+    {
+      icon: <Scale className="w-5 h-5 text-primary" />,
+      title: "7. Dispute Resolution",
+      text: "Any disputes arising from these terms and conditions will be addressed internally through mechanisms established by the Electro Xplore leadership team.",
+    },
+  ];
 
-export default function TermsPage() {
   return (
-    <div className="min-h-screen bg-background relative">
-      {/* Hero */}
-      <section className="pt-32 pb-16 bg-card border-b border-border">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-primary text-xs uppercase tracking-widest font-semibold mb-3">
-            Legal
+    <main className="min-h-screen bg-background text-foreground relative">
+      <div className="mx-auto w-full max-w-4xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <header className="mb-10 border-b border-border pb-8 sm:mb-12">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-primary">
+            Legal Framework
           </p>
-          <h1 className="font-heading font-black text-4xl sm:text-5xl text-foreground text-balance">
-            Terms &<br />
-            <span className="text-primary">Conditions</span>
-          </h1>
-          <p className="text-muted-foreground mt-4 text-base leading-relaxed max-w-2xl">
-            Please read these terms carefully before using ElectroXplore. They
-            govern your use of our research and training services.
-          </p>
-          <p className="text-muted-foreground text-xs mt-4 uppercase tracking-wider">
-            Last updated: June 2026
-          </p>
-        </div>
-      </section>
 
-      {/* Content */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-          {sections.map((sec, i) => (
-            <div key={i} className="space-y-3">
-              <h2 className="font-heading font-bold text-foreground text-xl">
-                {sec.title}
-              </h2>
-              <p className="text-muted-foreground leading-relaxed text-base">
-                {sec.body}
-              </p>
-              {i < sections.length - 1 && (
-                <Separator className="bg-border mt-6" />
-              )}
-            </div>
+          <h1 className="text-balance font-heading text-3xl font-black sm:text-4xl lg:text-5xl">
+            Terms & Conditions
+          </h1>
+
+          <p className="pt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
+            Please read these terms carefully before joining Electro Xplore.
+            They govern your membership, responsibilities, and research
+            contributions.
+          </p>
+        </header>
+
+        <div className="space-y-4">
+          {sections.map((item, index) => (
+            <section
+              key={index}
+              className="flex items-start gap-4 rounded-xl border border-border/50 bg-muted/30 p-4 transition-colors hover:bg-muted/60 sm:gap-5 sm:p-5"
+            >
+              <div className="flex-shrink-0 rounded-lg border border-border bg-background p-2.5 shadow-sm">
+                {item.icon}
+              </div>
+
+              <div className="min-w-0 space-y-2 pt-0.5">
+                <h2 className="text-sm font-semibold text-foreground sm:text-base">
+                  {item.title}
+                </h2>
+
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  {item.text}
+                </p>
+              </div>
+            </section>
           ))}
         </div>
-      </section>
 
-      <Footer />
-    </div>
+        <footer className="mt-10 flex flex-col gap-2 border-t border-border pt-5 text-[10px] uppercase tracking-wider text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+          <span>ElectroXplore Legal</span>
+          <span>Last updated: June 2026</span>
+        </footer>
+      </div>
+    </main>
   );
 }

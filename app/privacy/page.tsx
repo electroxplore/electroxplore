@@ -1,5 +1,3 @@
-import Footer from "@/components/footer";
-import { Separator } from "@/components/ui/separator";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,98 +6,125 @@ export const metadata: Metadata = {
     "Privacy Policy for ElectroXplore research and training platform.",
 };
 
-const sections = [
-  {
-    title: "1. Introduction",
-    body: `ElectroXplore ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our research and training services. Please read this policy carefully. If you disagree with its terms, please discontinue use of the platform.`,
-  },
-  {
-    title: "2. Information We Collect",
-    body: `We collect information you voluntarily provide when you register, enroll in a course, or apply for research group membership — including your name, email address, educational background, and area of engineering interest. We also automatically collect certain technical data when you visit our platform, such as your IP address, browser type, device identifiers, pages visited, and time spent on pages. We use cookies and similar tracking technologies to improve your experience.`,
-  },
-  {
-    title: "3. How We Use Your Information",
-    body: `We use the information we collect to: create and manage your account; process course enrollments and research group applications; communicate with you about your membership, courses, and platform updates; send newsletters or announcements (with your consent); improve our platform and content based on usage patterns; respond to your inquiries and provide support; and comply with legal obligations.`,
-  },
-  {
-    title: "4. Sharing of Your Information",
-    body: `We do not sell, trade, or rent your personal information to third parties. We may share information with trusted service providers who assist us in operating the platform (e.g., hosting, email delivery, payment processing) under strict confidentiality agreements. We may disclose your information if required by law, court order, or to protect the rights and safety of ElectroXplore and its members. In the event of a merger or acquisition, your information may be transferred as part of that transaction.`,
-  },
-  {
-    title: "5. Cookies & Tracking",
-    body: `We use cookies and similar technologies to maintain session state, remember preferences, analyze platform usage, and improve performance. You can control cookie settings through your browser. Disabling cookies may affect certain features of the platform. We do not use cookies to serve third-party advertisements.`,
-  },
-  {
-    title: "6. Data Retention",
-    body: `We retain your personal information for as long as your account is active or as needed to provide services. If you close your account or request deletion, we will delete or anonymize your data within 30 days, except where retention is required by law or legitimate business necessity (e.g., financial records for a legally required period).`,
-  },
-  {
-    title: "7. Security",
-    body: `We implement reasonable technical and organizational measures to protect your personal information from unauthorized access, disclosure, alteration, or destruction. These include encrypted data transmission (HTTPS), access controls, and regular security reviews. However, no method of transmission over the Internet is 100% secure, and we cannot guarantee absolute security.`,
-  },
-  {
-    title: "8. Your Rights",
-    body: `Depending on your jurisdiction, you may have the right to: access the personal information we hold about you; request correction of inaccurate data; request deletion of your data; withdraw consent for certain processing activities; and lodge a complaint with a data protection authority. To exercise these rights, contact us at hello@electroxplore.org.`,
-  },
-  {
-    title: "9. Children's Privacy",
-    body: `ElectroXplore is not directed at children under the age of 13. We do not knowingly collect personal information from children under 13. If you believe a child has provided us with personal information, please contact us and we will take steps to delete that information promptly.`,
-  },
-  {
-    title: "10. Changes to This Policy",
-    body: `We may update this Privacy Policy from time to time. When we do, we will revise the "Last updated" date above and notify registered users via email of significant changes. Your continued use of the platform after any change constitutes your acceptance of the updated policy.`,
-  },
-  {
-    title: "11. Contact Us",
-    body: `If you have questions or concerns about this Privacy Policy or our data practices, please contact us: Email: hello@electroxplore.org | Address: ElectroXplore, Dhaka, Bangladesh | Phone: +880 1700-000000`,
-  },
-];
+import {
+  Binary,
+  BrainCircuit,
+  CheckCircle2,
+  Code2,
+  GraduationCap,
+  LineChart,
+} from "lucide-react";
 
-export default function PrivacyPage() {
+export default function RecruitmentPolicyPage() {
+  const eligibility = [
+    {
+      icon: <GraduationCap className="h-5 w-5 text-indigo-500" />,
+      title: "Academic Standing",
+      text: "Must be a B.Sc. Engineering student (4th semester or above) in EEE, CSE, ETE, CCE, or a relevant structural engineering field.",
+    },
+    {
+      icon: <LineChart className="h-5 w-5 text-indigo-500" />,
+      title: "Performance",
+      text: "Demonstrated strong academic performance and a keen interest in deep technical research domains.",
+    },
+    {
+      icon: <BrainCircuit className="h-5 w-5 text-indigo-500" />,
+      title: "Mindset",
+      text: "Strong, self-driven analytical abilities equipped with a critical problem-solving mindset.",
+    },
+    {
+      icon: <Code2 className="h-5 w-5 text-indigo-500" />,
+      title: "Technical Skill",
+      text: "Functional proficiency in modern engineering frameworks and core programming languages.",
+    },
+  ];
+
+  const responsibilities = [
+    "Work diligently as a trainee researcher within an assigned specialized research group under direct mentor guidance.",
+    "Maintain high levels of team meeting attendance, dynamic discussion contribution, and workspace presentation syncs.",
+    "Demonstrate rigorous consistency, high operational discipline, and individual dedication to assigned development milestones.",
+  ];
+
   return (
-    <div className="min-h-screen bg-background relative">
-      {/* Hero */}
-      <section className="pt-32 pb-16 bg-card border-b border-border">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-primary text-xs uppercase tracking-widest font-semibold mb-3">
-            Legal
+    <main className="min-h-screen bg-background text-foreground relative">
+      <div className="mx-auto w-full max-w-4xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        {/* Page Header */}
+        <header className="mb-10 border-b border-border pb-8 sm:mb-12">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-indigo-500">
+            Join Our Cohort
           </p>
-          <h1 className="font-heading font-black text-4xl sm:text-5xl text-foreground text-balance">
-            Privacy
-            <br />
-            <span className="text-primary">Policy</span>
+
+          <h1 className="text-balance font-heading text-3xl font-black sm:text-4xl lg:text-5xl">
+            Recruitment Policy
           </h1>
-          <p className="text-muted-foreground mt-4 text-base leading-relaxed max-w-2xl">
-            We take your privacy seriously. This policy explains what data we
-            collect, how we use it, and your rights as a member of
-            ElectroXplore.
-          </p>
-          <p className="text-muted-foreground text-xs mt-4 uppercase tracking-wider">
-            Last updated: June 2026
-          </p>
-        </div>
-      </section>
 
-      {/* Content */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-          {sections.map((sec, i) => (
-            <div key={i} className="space-y-3">
-              <h2 className="font-heading font-bold text-foreground text-xl">
-                {sec.title}
-              </h2>
-              <p className="text-muted-foreground leading-relaxed text-base">
-                {sec.body}
-              </p>
-              {i < sections.length - 1 && (
-                <Separator className="bg-border mt-6" />
-              )}
+          <p className="pt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
+            Review our academic eligibility criteria and performance metrics
+            expected of active research group members.
+          </p>
+        </header>
+
+        <div className="space-y-10">
+          {/* Eligibility Section */}
+          <section className="space-y-4">
+            <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-foreground/70">
+              <Binary className="h-5 w-5 text-indigo-500" />
+              Eligibility & Qualifications
+            </h2>
+
+            <div className="grid gap-3 sm:grid-cols-2">
+              {eligibility.map((item, index) => (
+                <div
+                  key={index}
+                  className="flex items-start gap-4 rounded-xl border border-border/40 bg-muted/20 p-4 transition-colors hover:bg-muted/50 sm:p-5"
+                >
+                  <div className="flex-shrink-0 rounded-lg border border-border bg-background p-2 shadow-sm">
+                    {item.icon}
+                  </div>
+
+                  <div className="min-w-0 space-y-1">
+                    <h3 className="text-sm font-semibold text-foreground">
+                      {item.title}
+                    </h3>
+
+                    <p className="text-sm leading-relaxed text-muted-foreground">
+                      {item.text}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </section>
+          </section>
 
-      <Footer />
-    </div>
+          {/* Core Responsibilities Section */}
+          <section className="space-y-4">
+            <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-foreground/70">
+              <CheckCircle2 className="h-5 w-5 text-emerald-500" />
+              Core Responsibilities
+            </h2>
+
+            <div className="rounded-xl border border-border/50 bg-muted/20 p-5 sm:p-6">
+              <ul className="space-y-5">
+                {responsibilities.map((text, index) => (
+                  <li
+                    key={index}
+                    className="flex items-start gap-3 text-sm leading-relaxed text-muted-foreground"
+                  >
+                    <span className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-emerald-500" />
+                    <span>{text}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        </div>
+
+        {/* Page Footer */}
+        <footer className="mt-10 flex flex-col gap-2 border-t border-border pt-5 text-[10px] uppercase tracking-wider text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+          <span>ElectroXplore Talent</span>
+          <span>Academic Cycle: 2026</span>
+        </footer>
+      </div>
+    </main>
   );
 }

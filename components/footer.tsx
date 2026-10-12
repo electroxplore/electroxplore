@@ -3,9 +3,6 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
-import { BenefitsDrawer } from "./benefits";
-import { RecruitmentPolicyDrawer } from "./policy";
-import { TermsAndConditionsDrawer } from "./terms";
 
 const quickLinks = [
   { label: "Home", href: "#home" },
@@ -172,10 +169,10 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} ElectroXplore. All rights
             reserved.
           </p>
-          <div className="flex gap-4">
-            <BenefitsDrawer />
-            <TermsAndConditionsDrawer />
-            <RecruitmentPolicyDrawer />
+          <div className="flex gap-4 text-xs text-muted-foreground">
+            <Link href="/benefits">Benefits</Link>
+            <Link href="/terms">Terms & Conditions</Link>
+            <Link href="/privacy">Eligibility & Responsibilities</Link>
           </div>
         </div>
       </div>
